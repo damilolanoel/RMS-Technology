@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RMS Technologies — Microsoft CSP Playbook 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06080E;--bg2:#0D1117;--bg3:#141A24;--bg4:#1C2535;
+  --cyan:#00C8F0;--cyan2:#00A0C0;--cg:rgba(0,200,240,0.08);--cb:rgba(0,200,240,0.2);
+  --white:#EEF2FF;--w2:#A8B4CC;--w3:#5A6478;--w4:#2E3648;
+  --rule:rgba(255,255,255,0.06);--rule2:rgba(0,200,240,0.14);
+  --green:#00D4A0;--amber:#F0A800;--red:#FF5C7A;
+  --r:8px;--rl:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.65;overflow-x:hidden}
+
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,200,240,0.025)1px,transparent 1px),linear-gradient(90deg,rgba(0,200,240,0.025)1px,transparent 1px);
+  background-size:60px 60px}
+body::after{content:'';position:fixed;top:-20%;left:50%;transform:translateX(-50%);
+  width:900px;height:700px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(0,200,240,0.08)0%,transparent 65%)}
+
+/* COVER */
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:48px;position:relative;z-index:1}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start}
+.mark{display:flex;align-items:center;gap:14px}
+.mark-box{width:48px;height:48px;background:var(--cyan);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-weight:500;color:var(--bg);font-size:14px;letter-spacing:-.5px}
+.mark-text{font-weight:700;font-size:18px;letter-spacing:-.3px}
+.mark-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+.classified{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);padding:6px 12px;border:1px solid var(--cb);border-radius:20px;background:var(--cg);letter-spacing:1.5px;text-transform:uppercase}
+.classified::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+.cover-center{max-width:900px}
+.cover-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:24px}
+.cover-title{font-size:88px;font-weight:300;line-height:.95;letter-spacing:-3px;margin-bottom:28px}
+.cover-title b{font-weight:700;color:var(--cyan);font-style:italic}
+.cover-tagline{font-size:22px;color:var(--w2);max-width:680px;font-weight:300;line-height:1.45}
+.cover-bottom{display:flex;justify-content:space-between;align-items:flex-end;padding-top:32px;border-top:1px solid var(--rule);flex-wrap:wrap;gap:24px}
+.cover-meta-block{display:flex;flex-direction:column;gap:4px}
+.cover-meta-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase}
+.cover-meta-value{font-size:13px;color:var(--w2)}
+
+/* BAND */
+.band{padding:32px 48px;background:var(--bg2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.band-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.band-item{display:flex;flex-direction:column;gap:4px}
+.band-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase}
+.band-value{font-size:24px;font-weight:600;color:var(--cyan);letter-spacing:-.5px}
+.band-value small{font-size:12px;color:var(--w2);font-weight:400;display:block;margin-top:4px}
+
+/* SECTIONS */
+section{position:relative;z-index:1;padding:88px 48px;border-top:1px solid var(--rule)}
+.container{max-width:1100px;margin:0 auto}
+.s-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.s-num::after{content:'';flex:1;height:1px;background:var(--rule2);max-width:80px}
+.s-title{font-size:48px;font-weight:300;letter-spacing:-1.5px;line-height:1.05;margin-bottom:18px}
+.s-title b{font-weight:700;color:var(--cyan)}
+.s-lede{font-size:17px;color:var(--w2);max-width:760px;line-height:1.55;margin-bottom:48px}
+
+/* OVERVIEW BLOCK */
+.over-block{background:linear-gradient(135deg,var(--bg2)0%,var(--bg3)100%);border:1px solid var(--rule2);border-radius:var(--rl);padding:48px;position:relative;overflow:hidden}
+.over-block::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--cyan)}
+.over-block::after{content:'CSP';position:absolute;top:-30px;right:30px;font-size:200px;color:var(--cyan);opacity:.05;font-family:'DM Mono',monospace;font-weight:700;letter-spacing:-8px}
+.over-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+.over-text{font-size:18px;line-height:1.7;color:var(--white);max-width:880px}
+.over-text b{color:var(--cyan);font-weight:600}
+
+/* SKU CARDS */
+.sku-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:32px}
+.sku-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:28px;position:relative;transition:all .25s}
+.sku-card:hover{border-color:var(--cb);transform:translateY(-2px)}
+.sku-head{display:flex;justify-content:space-between;align-items:start;margin-bottom:18px;gap:16px}
+.sku-cat{font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--cg);border:1px solid var(--cb);padding:4px 10px;border-radius:12px;display:inline-block;margin-bottom:8px}
+.sku-name{font-size:22px;font-weight:600;letter-spacing:-.3px}
+.sku-tag{font-size:12px;color:var(--w2);margin-top:4px}
+.sku-price{font-family:'DM Mono',monospace;font-size:13px;color:var(--cyan);font-weight:600;text-align:right;white-space:nowrap}
+.sku-price small{font-size:11px;color:var(--w3);font-weight:400;display:block;margin-top:2px}
+.sku-margin{font-family:'DM Mono',monospace;font-size:11px;color:var(--green);padding:6px 10px;background:rgba(0,212,160,0.08);border:1px solid rgba(0,212,160,0.2);border-radius:var(--r);display:inline-block;margin-bottom:16px}
+.sku-items{list-style:none;display:flex;flex-direction:column;gap:8px}
+.sku-items li{font-size:13px;color:var(--w2);padding-left:18px;position:relative;line-height:1.5}
+.sku-items li::before{content:'→';position:absolute;left:0;color:var(--cyan);font-weight:700}
+
+/* PACKAGE TABLE */
+.pkg-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:13px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden}
+.pkg-table th{padding:16px 18px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--bg3);border-bottom:1px solid var(--rule)}
+.pkg-table td{padding:16px 18px;border-bottom:1px solid var(--rule);color:var(--w2);vertical-align:top;line-height:1.55}
+.pkg-table tr:last-child td{border-bottom:none}
+.pkg-table td:first-child{color:var(--white);font-weight:600;white-space:nowrap}
+.pkg-table td .pkg-target{font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);display:block;margin-top:4px;font-weight:400}
+.pkg-table td.price{color:var(--cyan);font-family:'DM Mono',monospace;font-weight:600;white-space:nowrap}
+.pkg-table td.margin{color:var(--green);font-family:'DM Mono',monospace;font-weight:600;white-space:nowrap}
+
+/* STEP-BY-STEP */
+.steps{display:flex;flex-direction:column;gap:0;margin-top:48px}
+.step{display:grid;grid-template-columns:80px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid var(--rule);position:relative}
+.step:last-child{border-bottom:none}
+.step::after{content:'';position:absolute;left:39px;top:80px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--cb),transparent)}
+.step:last-child::after{display:none}
+.step-num-wrap{position:relative;z-index:1}
+.step-num{width:48px;height:48px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:15px;color:var(--cyan);font-weight:600;margin-top:4px}
+.step-body{display:flex;flex-direction:column;gap:8px}
+.step-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.step-when{font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);background:var(--cg);border:1px solid var(--cb);padding:4px 10px;border-radius:12px;letter-spacing:1.5px;text-transform:uppercase}
+.step-title{font-size:22px;font-weight:600;letter-spacing:-.3px;line-height:1.2}
+.step-text{font-size:14px;color:var(--w2);line-height:1.7;margin-top:4px}
+.step-text b{color:var(--cyan);font-weight:600}
+.step-text a{color:var(--cyan);text-decoration:none;border-bottom:1px dashed var(--cb)}
+.step-callout{margin-top:14px;padding:14px 18px;background:var(--cg);border:1px solid var(--cb);border-radius:var(--r);font-family:'DM Mono',monospace;font-size:12px;color:var(--w2);line-height:1.6}
+.step-callout b{color:var(--cyan)}
+
+/* DISTRIBUTORS */
+.dist-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.dist-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:28px;transition:all .25s}
+.dist-card:hover{border-color:var(--cb)}
+.dist-card.priority{border-color:var(--cb);background:linear-gradient(135deg,rgba(0,200,240,0.04)0%,transparent 100%)}
+.dist-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.dist-name{font-size:20px;font-weight:600;margin-bottom:6px;letter-spacing:-.3px}
+.dist-sub{font-size:13px;color:var(--w2);margin-bottom:18px;line-height:1.5}
+.dist-detail{font-family:'DM Mono',monospace;font-size:11px;color:var(--w2);padding-top:14px;border-top:1px solid var(--rule);line-height:1.7}
+.dist-detail span{color:var(--cyan)}
+
+/* TARGET CLIENTS */
+.tc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:32px}
+.tc-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:28px}
+.tc-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--cg);border:1px solid var(--cb);padding:4px 10px;border-radius:12px;display:inline-block;margin-bottom:14px}
+.tc-name{font-size:20px;font-weight:600;margin-bottom:10px;letter-spacing:-.3px}
+.tc-text{font-size:14px;color:var(--w2);line-height:1.65;margin-bottom:18px}
+.tc-targets{display:flex;flex-wrap:wrap;gap:8px}
+.tc-target{font-family:'DM Mono',monospace;font-size:11px;color:var(--w2);background:var(--bg);border:1px solid var(--rule);padding:5px 10px;border-radius:var(--r)}
+
+/* REVENUE BREAKDOWN */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.rev-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:28px;position:relative;overflow:hidden}
+.rev-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--cyan)}
+.rev-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.rev-value{font-size:36px;font-weight:600;letter-spacing:-1px;line-height:1.1;color:var(--white)}
+.rev-unit{font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);margin-top:4px;letter-spacing:1px;text-transform:uppercase}
+.rev-text{font-size:13px;color:var(--w2);line-height:1.6;margin-top:16px;padding-top:16px;border-top:1px solid var(--rule)}
+
+.rev-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:13px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden}
+.rev-table th{padding:14px 16px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--bg3);border-bottom:1px solid var(--rule)}
+.rev-table th:not(:first-child){text-align:right}
+.rev-table td{padding:14px 16px;border-bottom:1px solid var(--rule);color:var(--w2)}
+.rev-table td:not(:first-child){text-align:right;font-family:'DM Mono',monospace}
+.rev-table td:first-child{color:var(--white)}
+.rev-table tr:last-child td{border-bottom:none;background:var(--bg3);font-weight:600;color:var(--cyan)}
+
+/* FOOTER */
+footer{padding:48px;border-top:1px solid var(--rule);position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);letter-spacing:1px;flex-wrap:wrap;gap:12px}
+
+@media(max-width:900px){
+  .cover-title{font-size:54px}.s-title{font-size:34px}
+  .band-grid,.sku-grid,.dist-grid,.tc-grid,.rev-grid{grid-template-columns:1fr}
+  section{padding:64px 24px}.cover,.band{padding:24px}
+  .step{grid-template-columns:1fr;gap:16px}.step::after{display:none}
+  .pkg-table,.rev-table{font-size:12px}
+  .pkg-table th,.pkg-table td,.rev-table th,.rev-table td{padding:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="mark">
+      <div class="mark-box">R/</div>
+      <div>
+        <div class="mark-text">RMS Technologies</div>
+        <div class="mark-sub">Microsoft CSP Playbook · 2026</div>
+      </div>
+    </div>
+    <div class="classified">CEO Playbook · Confidential</div>
+  </div>
+  <div class="cover-center">
+    <div class="cover-meta">Document 03 of 05 · Microsoft CSP Engine</div>
+    <h1 class="cover-title">The <b>licensing</b><br>engine.</h1>
+    <p class="cover-tagline">How RMS Technologies enrols as a Microsoft Cloud Solution Provider, what we sell, how we price it, and how we turn ₦42m of licensing revenue into permanent monthly cash flow.</p>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Programme</div>
+      <div class="cover-meta-value">Microsoft CSP · Indirect Reseller</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Region</div>
+      <div class="cover-meta-value">Africa CSP — 18 countries</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Y1 Revenue Target</div>
+      <div class="cover-meta-value">₦42m · ~300 seats provisioned</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Setup Time</div>
+      <div class="cover-meta-value">~10 business days end to end</div>
+    </div>
+  </div>
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <div class="band-grid">
+    <div class="band-item"><div class="band-label">Margin profile</div><div class="band-value">10–22%<small>recurring monthly</small></div></div>
+    <div class="band-item"><div class="band-label">COGS</div><div class="band-value">Zero<small>pure pass-through</small></div></div>
+    <div class="band-item"><div class="band-label">Setup capital</div><div class="band-value">~₦0<small>no inventory, no debt</small></div></div>
+    <div class="band-item"><div class="band-label">Time to first sale</div><div class="band-value">2 weeks<small>post-enrolment</small></div></div>
+  </div>
+</div>
+
+<!-- 01 OVERVIEW -->
+<section>
+  <div class="container">
+    <div class="s-num">01 — Overview</div>
+    <h2 class="s-title">What the CSP <b>programme</b> is —<br>and why we are running it.</h2>
+    <p class="s-lede">Microsoft's official channel for reselling cloud products. As an Indirect Reseller, we sit between Microsoft (via a distributor) and the end client — owning the relationship while the distributor handles billing.</p>
+
+    <div class="over-block">
+      <div class="over-label">// The CSP thesis in one paragraph</div>
+      <p class="over-text">The Cloud Solution Provider programme is Microsoft's official channel for reselling Microsoft 365, Azure, Dynamics 365, Copilot, and Defender. As an <b>Indirect Reseller</b>, RMS Technologies signs up under a distributor — Westcon-Comstor Africa, Ingram Micro, or Dynamics Africa — who handles the direct Microsoft relationship and billing. RMS provisions, sells, and supports licences to clients, earning a reseller margin on every seat every month. Because Nigeria sits in Microsoft's <b>Africa CSP region</b>, we can sell to clients across 18 African countries from a single enrolment. The economics are simple: zero inventory, zero COGS, recurring monthly cash flow, and a permanent commercial reason to be inside every client's IT environment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 WHAT WE SELL -->
+<section>
+  <div class="container">
+    <div class="s-num">02 — Product Catalog</div>
+    <h2 class="s-title">Six SKU families.<br>One <b>provisioning portal</b>.</h2>
+    <p class="s-lede">Everything below is sold through the same Partner Center workflow — order, provision, invoice, support. The bundle a client buys depends on size, sector, and security posture.</p>
+
+    <div class="sku-grid">
+      <div class="sku-card">
+        <div class="sku-head">
+          <div>
+            <div class="sku-cat">SKU 01</div>
+            <div class="sku-name">Microsoft 365 Business</div>
+            <div class="sku-tag">Email, Teams, Office apps, OneDrive</div>
+          </div>
+          <div class="sku-price">From $6<small>/user/month</small></div>
+        </div>
+        <div class="sku-margin">~15–25% margin per seat</div>
+        <ul class="sku-items">
+          <li><b>Business Basic</b> — email + Teams + web Office</li>
+          <li><b>Business Standard</b> — full desktop apps + Teams</li>
+          <li><b>Business Premium</b> — security + device management</li>
+          <li><b>Apps for Business</b> — Office apps only</li>
+        </ul>
+      </div>
+
+      <div class="sku-card">
+        <div class="sku-head">
+          <div>
+            <div class="sku-cat">SKU 02</div>
+            <div class="sku-name">Microsoft Azure</div>
+            <div class="sku-tag">Cloud compute, storage, databases, AI</div>
+          </div>
+          <div class="sku-price">Pay-as-you-go<small>or reserved</small></div>
+        </div>
+        <div class="sku-margin">~10–18% on consumption</div>
+        <ul class="sku-items">
+          <li>Azure Virtual Machines</li>
+          <li>Azure SQL / Cosmos DB</li>
+          <li>Azure AI + Cognitive Services</li>
+          <li>Azure DevOps & Backup</li>
+        </ul>
+      </div>
+
+      <div class="sku-card">
+        <div class="sku-head">
+          <div>
+            <div class="sku-cat">SKU 03</div>
+            <div class="sku-name">Microsoft Copilot</div>
+            <div class="sku-tag">AI assistant for Microsoft 365</div>
+          </div>
+          <div class="sku-price">$30<small>/user/month</small></div>
+        </div>
+        <div class="sku-margin">~15–20% margin · fastest growing</div>
+        <ul class="sku-items">
+          <li>Copilot for Microsoft 365</li>
+          <li>Copilot for Sales / Service</li>
+          <li>Copilot Studio (custom AI agents)</li>
+          <li>Easy upsell to every existing M365 client</li>
+        </ul>
+      </div>
+
+      <div class="sku-card">
+        <div class="sku-head">
+          <div>
+            <div class="sku-cat">SKU 04</div>
+            <div class="sku-name">Microsoft Dynamics 365</div>
+            <div class="sku-tag">CRM and ERP for growing businesses</div>
+          </div>
+          <div class="sku-price">From $65<small>/user/month</small></div>
+        </div>
+        <div class="sku-margin">~15–20% margin · high ticket</div>
+        <ul class="sku-items">
+          <li>Sales, Customer Service, Marketing</li>
+          <li>Business Central (SME ERP)</li>
+          <li>Finance & Operations (Enterprise)</li>
+          <li>One Dynamics deal = ₦3m+/year RMS revenue</li>
+        </ul>
+      </div>
+
+      <div class="sku-card">
+        <div class="sku-head">
+          <div>
+            <div class="sku-cat">SKU 05</div>
+            <div class="sku-name">Microsoft Security</div>
+            <div class="sku-tag">Identity, endpoint, and email protection</div>
+          </div>
+          <div class="sku-price">From $3<small>/user/month</small></div>
+        </div>
+        <div class="sku-margin">~15–22% margin</div>
+        <ul class="sku-items">
+          <li>Microsoft Defender for Business</li>
+          <li>Entra ID (Azure AD) Premium</li>
+          <li>Intune device management</li>
+          <li>Microsoft Sentinel (SIEM)</li>
+        </ul>
+      </div>
+
+      <div class="sku-card">
+        <div class="sku-head">
+          <div>
+            <div class="sku-cat">SKU 06</div>
+            <div class="sku-name">Education & Non-Profit</div>
+            <div class="sku-tag">Discounted plans for NGOs, schools, govt</div>
+          </div>
+          <div class="sku-price">Up to 75%<small>discount vs standard</small></div>
+        </div>
+        <div class="sku-margin">Service-fee model · margin on setup</div>
+        <ul class="sku-items">
+          <li>Microsoft 365 for Nonprofits (free tier)</li>
+          <li>Azure credits for qualifying NGOs</li>
+          <li>Teams for Education & Gov</li>
+          <li>Perfect for UNICEF, DAI, Palladium</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PRICING & PACKAGES -->
+<section>
+  <div class="container">
+    <div class="s-num">03 — Bundled Packages</div>
+    <h2 class="s-title">How we <b>package</b><br>and price for sale.</h2>
+    <p class="s-lede">Five named bundles. Sales conversations stop debating à la carte SKUs and start at "which package fits you." Six months in, every salesperson should be able to recommend a package within 60 seconds of a discovery call.</p>
+
+    <table class="pkg-table">
+      <thead>
+        <tr><th>Package</th><th>Target</th><th>What's included</th><th>Seats</th><th>Client Price</th><th>RMS Margin</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>RMS Starter<span class="pkg-target">Micro SMEs</span></td>
+          <td>SMEs · 1–10 seats</td>
+          <td>M365 Business Basic + setup + 1hr support/month</td>
+          <td>1–10</td>
+          <td class="price">$8–$10<br>/seat/mo</td>
+          <td class="margin">$2.50–$4<br>/seat/mo</td>
+        </tr>
+        <tr>
+          <td>RMS Business<span class="pkg-target">SME workhorse</span></td>
+          <td>SMEs · 10–50 seats</td>
+          <td>M365 Business Standard + OneDrive + Teams setup + monthly review</td>
+          <td>10–50</td>
+          <td class="price">$14–$18<br>/seat/mo</td>
+          <td class="margin">$3–$6<br>/seat/mo</td>
+        </tr>
+        <tr>
+          <td>RMS Professional<span class="pkg-target">Mid-market</span></td>
+          <td>Mid-market · 50–200 seats</td>
+          <td>M365 Business Premium + Defender + Intune + dedicated account contact</td>
+          <td>50–200</td>
+          <td class="price">$20–$26<br>/seat/mo</td>
+          <td class="margin">$5–$8<br>/seat/mo</td>
+        </tr>
+        <tr>
+          <td>RMS Enterprise<span class="pkg-target">Corporates & govt</span></td>
+          <td>Corporate · 200+ seats</td>
+          <td>M365 E3/E5 + Azure + Copilot + dedicated account manager + framework agreement</td>
+          <td>200+</td>
+          <td class="price">Quoted</td>
+          <td class="margin">$6–$12<br>/seat/mo</td>
+        </tr>
+        <tr>
+          <td>RMS NGO/Edu<span class="pkg-target">Mission-driven</span></td>
+          <td>NGOs, schools, government</td>
+          <td>Microsoft 365 Nonprofit + Azure credits + Teams training + NDPR docs</td>
+          <td>Any</td>
+          <td class="price">Subsidised<br>+ service fee</td>
+          <td class="margin">Service fee<br>+ margin</td>
+        </tr>
+        <tr>
+          <td>Copilot Add-On<span class="pkg-target">AI upgrade</span></td>
+          <td>Any existing M365 client</td>
+          <td>Microsoft 365 Copilot provisioned on existing tenant + adoption workshop</td>
+          <td>Any</td>
+          <td class="price">$32–$35<br>/seat/mo</td>
+          <td class="margin">$5–$7<br>/seat/mo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 04 ENROLMENT STEPS -->
+<section>
+  <div class="container">
+    <div class="s-num">04 — CSP Enrolment</div>
+    <h2 class="s-title">Becoming a CSP Indirect Reseller<br>in <b>~10 business days</b>.</h2>
+    <p class="s-lede">The exact sequence. Each step has an owner (CEO until first hire), a portal, and a hard exit criterion. We do not move on until the current step's confirmation email is in our inbox.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num-wrap"><div class="step-num">01</div></div>
+        <div class="step-body">
+          <div class="step-meta"><span class="step-when">Day 1</span></div>
+          <div class="step-title">Create a Microsoft work account (M365 tenant)</div>
+          <p class="step-text">Sign up for a Microsoft 365 Business trial at microsoft.com/en-ng/microsoft-365 using the @rmstech.ng domain. This creates the Azure AD "work account" required for Partner Center. We can either spin a separate tenant exclusively for partner ops, or use the same tenant we use for internal email — recommendation is <b>one shared tenant on rmstech.ng</b>.</p>
+          <div class="step-callout">→ <b>Prerequisite:</b> rmstech.ng domain registered and verified. → <b>Exit:</b> work account created, MFA enabled on CEO login.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-wrap"><div class="step-num">02</div></div>
+        <div class="step-body">
+          <div class="step-meta"><span class="step-when">Day 1</span></div>
+          <div class="step-title">Join the Microsoft AI Cloud Partner Programme (MAICPP)</div>
+          <p class="step-text">Go to <a>partner.microsoft.com</a> → click "Join now" → sign in with the work account from Step 1. Complete the registration form with the CAC-registered company details (legal name, address, phone). A Microsoft Partner Network (MPN ID) is issued within minutes. <b>Save this ID — it is required at every subsequent step.</b> The membership itself is free.</p>
+          <div class="step-callout">→ <b>Exit:</b> MPN ID issued and saved to the CEO's password manager + a backup copy in 1Password shared vault.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-wrap"><div class="step-num">03</div></div>
+        <div class="step-body">
+          <div class="step-meta"><span class="step-when">Day 1–2</span></div>
+          <div class="step-title">Enrol as CSP Indirect Reseller in Partner Center</div>
+          <p class="step-text">Go to <a>partnercenter.microsoft.com</a> → Account settings → Enrol → Select <b>"Cloud Solution Provider"</b> → Select <b>"Indirect Reseller."</b> Fill in legal entity details, support contact info (the email and phone number clients will reach support on), and accept the Microsoft Partner Agreement (MPA). Microsoft verification takes 3–5 business days. Verification email arrives to the global admin account.</p>
+          <div class="step-callout">→ <b>Critical:</b> the support phone and email shown to Microsoft will be shown to clients. Use a dedicated support@rmstech.ng inbox and a phone number that is always answered during business hours.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-wrap"><div class="step-num">04</div></div>
+        <div class="step-body">
+          <div class="step-meta"><span class="step-when">Week 1–2</span></div>
+          <div class="step-title">Choose and connect with a distributor</div>
+          <p class="step-text">A CSP Indirect Reseller cannot transact without an approved distributor. We will engage all three options in parallel, then commit to one as primary. The distributor handles billing with Microsoft; RMS owns the customer relationship and charges clients directly in NGN.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-wrap"><div class="step-num">05</div></div>
+        <div class="step-body">
+          <div class="step-meta"><span class="step-when">Week 2</span></div>
+          <div class="step-title">Accept distributor partnership invitation</div>
+          <p class="step-text">Once a distributor agrees to onboard us, they send a <b>one-click partnership invitation</b> via email to the Partner Center Global Admin (CEO account). Accept it in Partner Center. The distributor's name then appears under "Indirect providers" — we can now place orders through their portal on behalf of clients.</p>
+          <div class="step-callout">→ <b>Exit:</b> distributor visible under Partner Center → Account Settings → Indirect Providers.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-wrap"><div class="step-num">06</div></div>
+        <div class="step-body">
+          <div class="step-meta"><span class="step-when">Week 2</span></div>
+          <div class="step-title">Partner Center billing & FX settlement setup</div>
+          <p class="step-text">Add the company bank account (or corporate card) to the distributor's billing portal. Most Africa distributors invoice <b>monthly in USD</b>. We are billed by the distributor; we then invoice clients in NGN at our marked-up rate. The domiciliary account is the settlement instrument — keep a 30-day USD reserve to absorb FX timing risk.</p>
+          <div class="step-callout">→ <b>CFO note:</b> reconcile distributor invoices to client billing each month-end. Build the FX variance into pricing — do not absorb it.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-wrap"><div class="step-num">07</div></div>
+        <div class="step-body">
+          <div class="step-meta"><span class="step-when">Week 2</span></div>
+          <div class="step-title">Complete Microsoft business & identity verification</div>
+          <p class="step-text">Microsoft conducts business verification: company name vs CAC records, email domain ownership, and employment/identity verification of the primary contact (CEO). Have CAC certificate, utility bill (office address), and BVN ready. Verification status appears in Partner Center → Account Settings → Legal Info. If not verified within 5 business days, contact Partner Center support.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num-wrap"><div class="step-num">08</div></div>
+        <div class="step-body">
+          <div class="step-meta"><span class="step-when">Week 2</span></div>
+          <div class="step-title">Sign Microsoft Partner Agreement & go live</div>
+          <p class="step-text">Final acceptance of the MPA in Partner Center. Once accepted, the CSP transaction surface activates: we can quote a client, place an order with the distributor, and provision licences directly into the client's tenant within minutes. <b>First paying client should follow within 10 business days of this milestone.</b></p>
+          <div class="step-callout">→ <b>Day-1 sales motion:</b> the first three clients are existing RMS contacts. We do not chase strangers in the first month — we convert the easiest five conversations in our address book.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 DISTRIBUTORS -->
+<section>
+  <div class="container">
+    <div class="s-num">05 — Distributor Selection</div>
+    <h2 class="s-title">Three viable<br><b>Africa distributors</b>.</h2>
+    <p class="s-lede">We engage all three. We commit to the one that responds fastest, offers the cleanest billing, and provides best onboarding support. Switching is possible later but expensive — get this right.</p>
+
+    <div class="dist-grid">
+      <div class="dist-card priority">
+        <div class="dist-tag">Option A · Primary candidate</div>
+        <div class="dist-name">Westcon-Comstor Africa</div>
+        <div class="dist-sub">Africa's primary Microsoft distributor. Strong Nigeria presence. Large channel team experienced with new resellers.</div>
+        <div class="dist-detail">Web: <span>westconcomstor.com</span><br>Contact: <span>africa.microsoft@westcon.com</span><br>Strength: scale, Nigeria team<br>Watch: onboarding can be slow</div>
+      </div>
+      <div class="dist-card">
+        <div class="dist-tag">Option B</div>
+        <div class="dist-name">Ingram Micro Africa</div>
+        <div class="dist-sub">Global distribution leader. Excellent automated cloud marketplace. Strong for resellers wanting self-service portals.</div>
+        <div class="dist-detail">Web: <span>ingrammicro.com</span><br>Contact: <span>Africa team via website</span><br>Strength: platform automation<br>Watch: less Nigeria-specific service</div>
+      </div>
+      <div class="dist-card">
+        <div class="dist-tag">Option C · Specialist</div>
+        <div class="dist-name">Dynamics Africa (4Sight)</div>
+        <div class="dist-sub">Specialist Microsoft CSP provider focused on Africa. Smaller but high-touch. Strong for Dynamics 365 deals specifically.</div>
+        <div class="dist-detail">Web: <span>dynamicsafrica.biz</span><br>Contact: <span>csp@dynamicsafrica.biz</span><br>Strength: high-touch onboarding<br>Watch: smaller scale</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 TARGET CLIENTS -->
+<section>
+  <div class="container">
+    <div class="s-num">06 — Target Client Map</div>
+    <h2 class="s-title">Where the<br>licensing revenue <b>comes from</b>.</h2>
+    <p class="s-lede">Y1 licensing revenue is spread across four client cohorts. Each cohort has a different sales motion, a different price point, and a different lifetime value. Allocate sales effort to lifetime value, not deal size.</p>
+
+    <div class="tc-grid">
+      <div class="tc-card">
+        <div class="tc-tag">Cohort 01 · Volume</div>
+        <div class="tc-name">SMEs (10–50 seats)</div>
+        <p class="tc-text">Growth-stage businesses doing their first serious M365 deployment. Sweet spot for the RMS Business package. Sales cycle: 2–4 weeks. Avg deal: 25 seats at $16/mo = ~₦480k/mo per client.</p>
+        <div class="tc-targets"><span class="tc-target">Fintech startups</span><span class="tc-target">Growing FMCG</span><span class="tc-target">Professional services</span><span class="tc-target">Accounting firms</span></div>
+      </div>
+      <div class="tc-card">
+        <div class="tc-tag">Cohort 02 · Value</div>
+        <div class="tc-name">Corporates (100–500 seats)</div>
+        <p class="tc-text">Existing M365 customers consolidating from multiple vendors. RMS Professional / Enterprise. Sales cycle: 6–12 weeks. Avg deal: 200 seats at $22/mo = ~₦6.6m/mo per client. One closes Y1 = 15% of plan.</p>
+        <div class="tc-targets"><span class="tc-target">Tier-2 banks</span><span class="tc-target">Insurance</span><span class="tc-target">Manufacturing</span><span class="tc-target">Healthcare groups</span></div>
+      </div>
+      <div class="tc-card">
+        <div class="tc-tag">Cohort 03 · Strategic</div>
+        <div class="tc-name">Government & MDAs</div>
+        <p class="tc-text">Federal ministries, Lagos State agencies, parastatals. Framework agreements with multi-year horizons. Sales cycle: 6–18 months. One deal can fund a full year. Procurement compliance is the moat.</p>
+        <div class="tc-targets"><span class="tc-target">Federal ministries</span><span class="tc-target">Lagos State MDAs</span><span class="tc-target">Parastatals</span><span class="tc-target">Tertiary institutions</span></div>
+      </div>
+      <div class="tc-card">
+        <div class="tc-tag">Cohort 04 · Discount-led</div>
+        <div class="tc-name">NGOs & Donor-Funded</div>
+        <p class="tc-text">Qualify for Microsoft Nonprofit pricing (up to 75% discount). RMS revenue model is the service fee + ongoing support — not the licence margin. High-volume, low-margin, high-retention.</p>
+        <div class="tc-targets"><span class="tc-target">UNICEF</span><span class="tc-target">DAI</span><span class="tc-target">Palladium</span><span class="tc-target">Save the Children</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 REVENUE PLAN -->
+<section>
+  <div class="container">
+    <div class="s-num">07 — Revenue Plan</div>
+    <h2 class="s-title">₦42m in Year 1.<br><b>Math that has to hold.</b></h2>
+    <p class="s-lede">The number is not aspirational — it is the result of 300 provisioned seats at a blended ₦14k/seat/month, plus Azure consumption, plus Copilot adoption on a third of the base. Each input is independently defensible.</p>
+
+    <div class="rev-grid">
+      <div class="rev-card">
+        <div class="rev-label">// End-of-Y1 seat count</div>
+        <div class="rev-value">300+</div>
+        <div class="rev-unit">provisioned · 25 clients</div>
+        <p class="rev-text">Avg client = 12 seats. Ramps from 0 in Q1 to 300+ by Q4 — about 25 net seats added per month.</p>
+      </div>
+      <div class="rev-card">
+        <div class="rev-label">// Exit MRR · December 2026</div>
+        <div class="rev-value">₦3.5m</div>
+        <div class="rev-unit">per month, recurring</div>
+        <p class="rev-text">300 seats × ~₦11.5k/seat blended margin. This is the cash flow that compounds into Y2 without any new sales effort.</p>
+      </div>
+      <div class="rev-card">
+        <div class="rev-label">// Y1 total licensing revenue</div>
+        <div class="rev-value">₦42m</div>
+        <div class="rev-unit">across all SKUs</div>
+        <p class="rev-text">Includes M365 + Azure consumption + Copilot + Defender + ~3 Dynamics 365 deals at corporate scale.</p>
+      </div>
+    </div>
+
+    <table class="rev-table">
+      <thead>
+        <tr><th>SKU Family</th><th>Y1 Revenue (₦)</th><th>% of total</th><th>Driver assumption</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Microsoft 365 (Business & E3/E5)</td><td>22,000,000</td><td>52%</td><td>300 seats, blended $16/seat/mo by Y1 exit</td></tr>
+        <tr><td>Microsoft Azure (consumption)</td><td>8,000,000</td><td>19%</td><td>10–12 clients with active Azure spend</td></tr>
+        <tr><td>Microsoft Copilot</td><td>6,500,000</td><td>15%</td><td>Adoption on ~30% of M365 base by Y1 exit</td></tr>
+        <tr><td>Microsoft Defender + Security</td><td>3,500,000</td><td>8%</td><td>Attached to all Premium and Enterprise clients</td></tr>
+        <tr><td>Microsoft Dynamics 365</td><td>2,000,000</td><td>5%</td><td>2–3 corporate Dynamics deals closed in H2</td></tr>
+        <tr><td>Total CSP Revenue Y1</td><td>42,000,000</td><td>100%</td><td>Exit ARR run-rate ₦42m+ entering 2027</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div>RMS Technologies Limited · Microsoft CSP Playbook 2026</div>
+  <div>Document 03 / 05 · CEO Confidential</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RMS Technologies — Sales Playbook 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06080E;--bg2:#0D1117;--bg3:#141A24;--bg4:#1C2535;
+  --cyan:#00C8F0;--cyan2:#00A0C0;--cg:rgba(0,200,240,0.08);--cb:rgba(0,200,240,0.2);
+  --white:#EEF2FF;--w2:#A8B4CC;--w3:#5A6478;--w4:#2E3648;
+  --rule:rgba(255,255,255,0.06);--rule2:rgba(0,200,240,0.14);
+  --green:#00D4A0;--amber:#F0A800;--red:#FF5C7A;
+  --r:8px;--rl:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.65;overflow-x:hidden}
+
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,200,240,0.025)1px,transparent 1px),linear-gradient(90deg,rgba(0,200,240,0.025)1px,transparent 1px);
+  background-size:60px 60px}
+body::after{content:'';position:fixed;top:-20%;left:50%;transform:translateX(-50%);
+  width:900px;height:700px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(0,200,240,0.08)0%,transparent 65%)}
+
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:48px;position:relative;z-index:1}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start}
+.mark{display:flex;align-items:center;gap:14px}
+.mark-box{width:48px;height:48px;background:var(--cyan);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-weight:500;color:var(--bg);font-size:14px;letter-spacing:-.5px}
+.mark-text{font-weight:700;font-size:18px;letter-spacing:-.3px}
+.mark-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+.classified{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);padding:6px 12px;border:1px solid var(--cb);border-radius:20px;background:var(--cg);letter-spacing:1.5px;text-transform:uppercase}
+.classified::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+.cover-center{max-width:900px}
+.cover-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:24px}
+.cover-title{font-size:88px;font-weight:300;line-height:.95;letter-spacing:-3px;margin-bottom:28px}
+.cover-title b{font-weight:700;color:var(--cyan);font-style:italic}
+.cover-tagline{font-size:22px;color:var(--w2);max-width:680px;font-weight:300;line-height:1.45}
+.cover-bottom{display:flex;justify-content:space-between;align-items:flex-end;padding-top:32px;border-top:1px solid var(--rule);flex-wrap:wrap;gap:24px}
+.cover-meta-block{display:flex;flex-direction:column;gap:4px}
+.cover-meta-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase}
+.cover-meta-value{font-size:13px;color:var(--w2)}
+
+.band{padding:32px 48px;background:var(--bg2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.band-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.band-item{display:flex;flex-direction:column;gap:4px}
+.band-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase}
+.band-value{font-size:24px;font-weight:600;color:var(--cyan);letter-spacing:-.5px}
+.band-value small{font-size:12px;color:var(--w2);font-weight:400;display:block;margin-top:4px}
+
+section{position:relative;z-index:1;padding:88px 48px;border-top:1px solid var(--rule)}
+.container{max-width:1100px;margin:0 auto}
+.s-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.s-num::after{content:'';flex:1;height:1px;background:var(--rule2);max-width:80px}
+.s-title{font-size:48px;font-weight:300;letter-spacing:-1.5px;line-height:1.05;margin-bottom:18px}
+.s-title b{font-weight:700;color:var(--cyan)}
+.s-lede{font-size:17px;color:var(--w2);max-width:760px;line-height:1.55;margin-bottom:48px}
+
+/* PHILOSOPHY */
+.philo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.philo-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:30px;transition:all .25s}
+.philo-card:hover{border-color:var(--cb)}
+.philo-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;margin-bottom:12px}
+.philo-h{font-size:18px;font-weight:600;margin-bottom:10px;letter-spacing:-.2px}
+.philo-t{font-size:13px;color:var(--w2);line-height:1.65}
+.philo-t b{color:var(--cyan);font-weight:600}
+
+/* FUNNEL */
+.funnel{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:32px;position:relative}
+.funnel::before{content:'';position:absolute;top:32px;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,var(--cb),var(--cyan),var(--cb),transparent)}
+.f-stage{position:relative;z-index:1;text-align:center;padding:0 6px}
+.f-num{width:48px;height:48px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;color:var(--cyan);font-weight:600}
+.f-name{font-size:13px;font-weight:600;margin-bottom:6px;letter-spacing:-.2px}
+.f-conv{font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.f-time{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:.5px}
+
+.funnel-math{margin-top:48px;padding:32px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl)}
+.funnel-math-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px}
+.funnel-math-rows{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.fm-row{display:flex;flex-direction:column;gap:4px}
+.fm-num{font-size:24px;font-weight:600;color:var(--cyan);letter-spacing:-.5px;line-height:1}
+.fm-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+.fm-meta{font-size:12px;color:var(--w2);margin-top:2px}
+
+/* PROSPECT SOURCES */
+.src-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:32px}
+.src-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:28px}
+.src-head{display:flex;justify-content:space-between;align-items:start;gap:16px;margin-bottom:14px}
+.src-name{font-size:18px;font-weight:600;letter-spacing:-.2px}
+.src-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--cg);border:1px solid var(--cb);padding:4px 10px;border-radius:12px;white-space:nowrap}
+.src-text{font-size:13px;color:var(--w2);line-height:1.65;margin-bottom:14px}
+.src-pts{list-style:none;display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:1px solid var(--rule)}
+.src-pts li{font-size:12px;color:var(--w2);padding-left:16px;position:relative;line-height:1.5}
+.src-pts li::before{content:'→';position:absolute;left:0;color:var(--cyan);font-weight:700}
+.src-pts li b{color:var(--cyan);font-weight:600}
+
+/* EMAIL TEMPLATES */
+.email-block{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden;margin-bottom:18px}
+.email-head{padding:16px 22px;background:var(--bg3);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.email-tag{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase}
+.email-when{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1px}
+.email-body{padding:24px;font-family:'DM Mono',monospace;font-size:13px;color:var(--w2);line-height:1.85}
+.email-body .e-line{display:block;margin-bottom:4px}
+.email-body .e-key{color:var(--cyan)}
+.email-body .e-sep{display:block;height:1px;background:var(--rule);margin:14px 0}
+.email-body .e-prose{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.7;color:var(--white);font-weight:400;margin-bottom:14px}
+.email-body .e-prose b{color:var(--cyan);font-weight:600}
+.email-body .e-sig{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--w2);line-height:1.6}
+.email-body .e-cred{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:.5px;display:block;margin-top:2px}
+
+/* DISCOVERY FRAMEWORK */
+.disco-block{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:0;margin-top:32px;overflow:hidden}
+.disco-head{padding:24px 32px;background:var(--bg3);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
+.disco-title{font-size:20px;font-weight:600;letter-spacing:-.2px}
+.disco-time{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--cg);border:1px solid var(--cb);padding:5px 12px;border-radius:12px}
+.disco-rows{padding:0}
+.disco-row{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:22px 32px;border-bottom:1px solid var(--rule);align-items:start}
+.disco-row:last-child{border-bottom:none}
+.disco-when{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;background:var(--cg);border:1px solid var(--cb);border-radius:12px;display:inline-block;align-self:start}
+.disco-body{}
+.disco-h{font-size:15px;font-weight:600;margin-bottom:8px;letter-spacing:-.2px}
+.disco-t{font-size:13px;color:var(--w2);line-height:1.65;margin-bottom:12px}
+.disco-q{list-style:none;display:flex;flex-direction:column;gap:6px}
+.disco-q li{font-size:13px;color:var(--w2);padding:8px 14px;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r);line-height:1.5;font-style:italic}
+.disco-q li::before{content:'Q: ';font-family:'DM Mono',monospace;color:var(--cyan);font-weight:600;font-style:normal}
+
+/* OBJECTIONS */
+.obj-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:32px}
+.obj{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden}
+.obj-q{padding:24px 28px;background:rgba(255,92,122,0.03);border-right:1px solid var(--rule);position:relative}
+.obj-q::before{content:'OBJECTION';position:absolute;top:14px;left:28px;font-family:'DM Mono',monospace;font-size:10px;color:var(--red);letter-spacing:1.5px;font-weight:600}
+.obj-q-text{font-size:15px;color:var(--white);font-style:italic;font-weight:500;line-height:1.5;margin-top:18px}
+.obj-a{padding:24px 28px;background:rgba(0,200,240,0.025);position:relative}
+.obj-a::before{content:'RESPONSE';position:absolute;top:14px;left:28px;font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1.5px;font-weight:600}
+.obj-a-text{font-size:14px;color:var(--w2);line-height:1.65;margin-top:18px}
+.obj-a-text b{color:var(--cyan);font-weight:600}
+
+/* PROPOSAL */
+.prop-list{display:grid;grid-template-columns:1fr;gap:0;margin-top:32px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden}
+.prop-item{display:grid;grid-template-columns:60px 1fr;gap:24px;padding:22px 28px;border-bottom:1px solid var(--rule);align-items:start}
+.prop-item:last-child{border-bottom:none}
+.prop-num{font-family:'DM Mono',monospace;font-size:14px;color:var(--cyan);font-weight:600;padding-top:2px}
+.prop-h{font-size:16px;font-weight:600;letter-spacing:-.2px;margin-bottom:6px}
+.prop-t{font-size:13px;color:var(--w2);line-height:1.6}
+
+/* PRICING GUARDRAILS */
+.guard-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:13px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden}
+.guard-table th{padding:14px 16px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--bg3);border-bottom:1px solid var(--rule)}
+.guard-table th:not(:first-child){text-align:right}
+.guard-table td{padding:14px 16px;border-bottom:1px solid var(--rule);color:var(--w2);vertical-align:middle}
+.guard-table tr:last-child td{border-bottom:none}
+.guard-table td:first-child{color:var(--white);font-weight:600}
+.guard-table td.right{text-align:right;font-family:'DM Mono',monospace;color:var(--cyan)}
+.guard-table td.danger{text-align:right;font-family:'DM Mono',monospace;color:var(--red);font-weight:600}
+
+.disc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+.disc-card{padding:20px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);text-align:center}
+.disc-role{font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.disc-pct{font-size:28px;font-weight:600;color:var(--white);letter-spacing:-.5px;line-height:1}
+.disc-meta{font-size:11px;color:var(--w2);margin-top:8px;line-height:1.5}
+
+/* CADENCE */
+.cad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.cad-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:28px;position:relative;overflow:hidden}
+.cad-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--cyan)}
+.cad-tag{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.cad-h{font-size:18px;font-weight:600;margin-bottom:14px;letter-spacing:-.2px}
+.cad-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.cad-list li{font-size:13px;color:var(--w2);padding-left:18px;position:relative;line-height:1.5}
+.cad-list li::before{content:'✓';position:absolute;left:0;color:var(--cyan);font-weight:700}
+.cad-list li b{color:var(--white);font-weight:600}
+
+/* COMMISSION */
+.comm-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:13px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden}
+.comm-table th{padding:14px 16px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--bg3);border-bottom:1px solid var(--rule)}
+.comm-table th:not(:first-child){text-align:right}
+.comm-table td{padding:14px 16px;border-bottom:1px solid var(--rule);color:var(--w2);vertical-align:middle}
+.comm-table tr:last-child td{border-bottom:none}
+.comm-table td:not(:first-child){text-align:right;font-family:'DM Mono',monospace}
+.comm-table td:first-child{color:var(--white);font-weight:600}
+.comm-table td.cy{color:var(--cyan);font-weight:600}
+.comm-table td.gr{color:var(--green);font-weight:600}
+
+.comm-ex{margin-top:32px;padding:32px;background:linear-gradient(135deg,var(--bg2)0%,var(--bg3)100%);border:1px solid var(--rule2);border-radius:var(--rl);position:relative;overflow:hidden}
+.comm-ex::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--cyan)}
+.comm-ex-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.comm-ex-h{font-size:18px;font-weight:600;margin-bottom:14px}
+.comm-ex-rows{display:grid;grid-template-columns:1fr auto;gap:12px 24px;font-size:14px;color:var(--w2);line-height:1.7}
+.comm-ex-rows .l{color:var(--w2)}
+.comm-ex-rows .v{font-family:'DM Mono',monospace;color:var(--cyan);text-align:right;font-weight:600}
+.comm-ex-rows .total-l{color:var(--white);font-weight:600;padding-top:14px;border-top:1px solid var(--rule);margin-top:8px}
+.comm-ex-rows .total-v{font-family:'DM Mono',monospace;color:var(--cyan);font-weight:700;font-size:18px;text-align:right;padding-top:14px;border-top:1px solid var(--rule);margin-top:8px}
+
+footer{padding:48px;border-top:1px solid var(--rule);position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);letter-spacing:1px;flex-wrap:wrap;gap:12px}
+
+@media(max-width:900px){
+  .cover-title{font-size:54px}.s-title{font-size:34px}
+  .band-grid,.philo-grid,.src-grid,.cad-grid{grid-template-columns:1fr}
+  .funnel{grid-template-columns:repeat(2,1fr);gap:24px}.funnel::before{display:none}
+  .funnel-math-rows{grid-template-columns:1fr 1fr}
+  .disco-row{grid-template-columns:1fr;gap:12px}
+  .obj{grid-template-columns:1fr}.obj-q{border-right:none;border-bottom:1px solid var(--rule)}
+  .prop-item{grid-template-columns:40px 1fr;gap:16px;padding:18px 22px}
+  .disc-grid{grid-template-columns:1fr 1fr}
+  section{padding:64px 24px}.cover,.band{padding:24px}
+  .guard-table,.comm-table{font-size:12px}
+  .guard-table th,.guard-table td,.comm-table th,.comm-table td{padding:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="mark">
+      <div class="mark-box">R/</div>
+      <div>
+        <div class="mark-text">RMS Technologies</div>
+        <div class="mark-sub">Sales Playbook · 2026</div>
+      </div>
+    </div>
+    <div class="classified">Sales Team · Internal Use</div>
+  </div>
+  <div class="cover-center">
+    <div class="cover-meta">Document 06 · Sales & Revenue Operations</div>
+    <h1 class="cover-title">Sell the<br><b>company</b>.</h1>
+    <p class="cover-tagline">How RMS Technologies actually generates the ₦167m — the prospect lists, the cold emails, the discovery scripts, the demos, the objection responses, the proposals, and the close.</p>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Y1 Target</div>
+      <div class="cover-meta-value">25 SMEs · 2 corporates · 32 hardware deals</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Owner</div>
+      <div class="cover-meta-value">CEO until Month 1 · BizDev Lead after</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Cadence</div>
+      <div class="cover-meta-value">Friday pipeline review · weekly</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">First revenue target</div>
+      <div class="cover-meta-value">Day 45 of CSP enrolment</div>
+    </div>
+  </div>
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <div class="band-grid">
+    <div class="band-item"><div class="band-label">Weekly meetings</div><div class="band-value">8<small>discovery calls / wk · BizDev KPI</small></div></div>
+    <div class="band-item"><div class="band-label">Demo → proposal</div><div class="band-value">60%<small>target conversion rate</small></div></div>
+    <div class="band-item"><div class="band-label">Proposal → close</div><div class="band-value">35%<small>target win rate</small></div></div>
+    <div class="band-item"><div class="band-label">Avg SME cycle</div><div class="band-value">3 wks<small>first call to MSA signed</small></div></div>
+  </div>
+</div>
+
+<!-- 01 PHILOSOPHY -->
+<section>
+  <div class="container">
+    <div class="s-num">01 — Sales Philosophy</div>
+    <h2 class="s-title">How RMS sells —<br>and how <b>we don't</b>.</h2>
+    <p class="s-lede">Six principles that govern every sales conversation. If a pitch, email, or proposal violates one of these, it does not go out. Junior salespeople should be able to recite all six from memory in their first week.</p>
+
+    <div class="philo-grid">
+      <div class="philo-card">
+        <div class="philo-num">// 01</div>
+        <div class="philo-h">Consultative, not transactional</div>
+        <p class="philo-t">We diagnose before we prescribe. Every discovery call starts with <b>"what are you currently running"</b> and ends with the prospect telling us their pain — not us pitching features.</p>
+      </div>
+      <div class="philo-card">
+        <div class="philo-num">// 02</div>
+        <div class="philo-h">Value-led, not discount-led</div>
+        <p class="philo-t">We never open with a discount. We open with the credential trio and the outcome. <b>Discounting before the prospect anchors on value</b> tells them the price was inflated to begin with.</p>
+      </div>
+      <div class="philo-card">
+        <div class="philo-num">// 03</div>
+        <div class="philo-h">MD-attended onboarding</div>
+        <p class="philo-t">Every retainer client meets the MD personally at kickoff. <b>Senior accountability is a sales differentiator</b> — and a retention insurance policy worth more than any SLA clause.</p>
+      </div>
+      <div class="philo-card">
+        <div class="philo-num">// 04</div>
+        <div class="philo-h">One conversation, one number</div>
+        <p class="philo-t">We sell the whole portfolio in every meeting. The SME buying laptops is being mentally pre-qualified for M365, NDPR, and managed IT. <b>Cross-engine bundling triples lifetime value.</b></p>
+      </div>
+      <div class="philo-card">
+        <div class="philo-num">// 05</div>
+        <div class="philo-h">Transparent pricing</div>
+        <p class="philo-t">Our website publishes Naira pricing. We do not play games. <b>The prospect arrives at the call already qualified on price</b> — every minute saved on price negotiation is a minute spent on fit.</p>
+      </div>
+      <div class="philo-card">
+        <div class="philo-num">// 06</div>
+        <div class="philo-h">Velocity over volume</div>
+        <p class="philo-t">A 3-week SME cycle from first call to MSA is the standard. <b>Speed is a feature</b> — the prospect who waited four months at an incumbent integrator is the prospect who signs with RMS in twelve days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 FUNNEL -->
+<section>
+  <div class="container">
+    <div class="s-num">02 — The Sales Funnel</div>
+    <h2 class="s-title">Six stages.<br><b>One ratio per stage.</b></h2>
+    <p class="s-lede">Every deal moves through these six stages. Time-in-stage and conversion rate are tracked weekly. A deal stuck more than 30 days in one stage is automatically reviewed at Friday pipeline.</p>
+
+    <div class="funnel">
+      <div class="f-stage"><div class="f-num">01</div><div class="f-name">Prospect</div><div class="f-conv">100%</div><div class="f-time">— day 0</div></div>
+      <div class="f-stage"><div class="f-num">02</div><div class="f-name">Qualified</div><div class="f-conv">→ 25%</div><div class="f-time">day 1–7</div></div>
+      <div class="f-stage"><div class="f-num">03</div><div class="f-name">Demo</div><div class="f-conv">→ 60%</div><div class="f-time">day 7–10</div></div>
+      <div class="f-stage"><div class="f-num">04</div><div class="f-name">Proposal</div><div class="f-conv">→ 60%</div><div class="f-time">day 10–14</div></div>
+      <div class="f-stage"><div class="f-num">05</div><div class="f-name">Negotiation</div><div class="f-conv">→ 70%</div><div class="f-time">day 14–21</div></div>
+      <div class="f-stage"><div class="f-num">06</div><div class="f-name">Closed Won</div><div class="f-conv">→ 50%</div><div class="f-time">day 21</div></div>
+    </div>
+
+    <div class="funnel-math">
+      <div class="funnel-math-label">// Top-of-funnel math to hit Y1 plan</div>
+      <div class="funnel-math-rows">
+        <div class="fm-row">
+          <div class="fm-num">~1,200</div>
+          <div class="fm-label">Prospects contacted</div>
+          <div class="fm-meta">Across LinkedIn + email + events Y1</div>
+        </div>
+        <div class="fm-row">
+          <div class="fm-num">~300</div>
+          <div class="fm-label">Qualified meetings</div>
+          <div class="fm-meta">25% qualification rate · 6/week sustained</div>
+        </div>
+        <div class="fm-row">
+          <div class="fm-num">~110</div>
+          <div class="fm-label">Proposals sent</div>
+          <div class="fm-meta">Across all packages and segments</div>
+        </div>
+        <div class="fm-row">
+          <div class="fm-num">~32</div>
+          <div class="fm-label">Closed-won clients</div>
+          <div class="fm-meta">~30% blended win rate · funds the plan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PROSPECT SOURCES -->
+<section>
+  <div class="container">
+    <div class="s-num">03 — Where Prospects Come From</div>
+    <h2 class="s-title">Four sources.<br><b>Five hours per day.</b></h2>
+    <p class="s-lede">Prospect generation is a daily discipline, not an occasional campaign. The BizDev Lead spends 5 hours every day across these four sources. No exceptions, no "I'll catch up next week."</p>
+
+    <div class="src-grid">
+      <div class="src-card">
+        <div class="src-head">
+          <div class="src-name">LinkedIn outbound</div>
+          <div class="src-tag">// 2 hrs/day</div>
+        </div>
+        <p class="src-text">The primary engine. We connect with founders, COOs, CTOs, and IT managers at Lagos SMEs and corporates. Personalised connection request, then a no-pitch nurture message, then a soft demo invite at week 2.</p>
+        <ul class="src-pts">
+          <li>Daily target: <b>30 personalised connection requests</b></li>
+          <li>Sales Navigator filters: Lagos · 10–500 staff · Founder/COO/CTO/IT</li>
+          <li>Auto-decline anyone outside Nigeria or below 10 staff</li>
+          <li>Weekly LinkedIn post from CEO — "M365 in plain English" series</li>
+        </ul>
+      </div>
+
+      <div class="src-card">
+        <div class="src-head">
+          <div class="src-name">Cold email sequences</div>
+          <div class="src-tag">// 1.5 hrs/day</div>
+        </div>
+        <p class="src-text">Sourced lists from Apollo, ZoomInfo, or LinkedIn export. 4-touch sequence over 21 days. Stop sequence the moment a prospect replies — even with "not interested."</p>
+        <ul class="src-pts">
+          <li>Daily target: <b>50 new prospects added to sequence</b></li>
+          <li>Reply rate target: 8%+ on first touch</li>
+          <li>Meeting booking rate target: 2.5% of contacts</li>
+          <li>Domain rotation: 2nd domain (mail.rmstech.ng) for sequenced sends</li>
+        </ul>
+      </div>
+
+      <div class="src-card">
+        <div class="src-head">
+          <div class="src-name">Partner channel</div>
+          <div class="src-tag">// 1 hr/day</div>
+        </div>
+        <p class="src-text">TD Africa referrals, Microsoft co-sell, accountant/lawyer referral partners. The highest-converting source — partner-referred prospects close at 2–3× the rate of cold outbound.</p>
+        <ul class="src-pts">
+          <li>Monthly check-in with TD Africa channel manager</li>
+          <li>Quarterly co-marketing with 1–2 accounting firms</li>
+          <li>Microsoft Partner Center: register all deals for co-sell</li>
+          <li>Referral fee: <b>5% of first-year revenue</b> to introducer</li>
+        </ul>
+      </div>
+
+      <div class="src-card">
+        <div class="src-head">
+          <div class="src-name">Events & community</div>
+          <div class="src-tag">// 0.5 hr/day + 2 events/mo</div>
+        </div>
+        <p class="src-text">Lagos tech meetups, CIBN/CITN events, NDPR/cybersecurity webinars, Microsoft community days. Slow-burn but builds the brand and produces inbound over time.</p>
+        <ul class="src-pts">
+          <li>Attend <b>2 industry events monthly</b> minimum</li>
+          <li>Host one webinar per quarter (NDPR or Copilot themed)</li>
+          <li>Sponsor one industry event Y1 for credibility</li>
+          <li>Daily: 30 minutes scanning industry news for trigger events</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 COLD EMAIL SEQUENCE -->
+<section>
+  <div class="container">
+    <div class="s-num">04 — Cold Email Sequence</div>
+    <h2 class="s-title">Four touches.<br><b>Twenty-one days.</b></h2>
+    <p class="s-lede">The exact 4-touch cold sequence. Send Touch 01 on Day 0 — Tuesday or Wednesday between 9:30am and 10:30am. Subsequent touches at +5, +9, +21 days. Stop the sequence the moment the prospect replies — even with a "no thanks."</p>
+
+    <div class="email-block">
+      <div class="email-head">
+        <div class="email-tag">// Touch 01 · Day 0 · Introduction</div>
+        <div class="email-when">Open rate target: 45%+ · Reply rate: 8%+</div>
+      </div>
+      <div class="email-body">
+        <span class="e-line"><span class="e-key">Subject:</span> Quick question about [Company]'s Microsoft 365 setup</span>
+        <span class="e-line"><span class="e-key">From:</span> [Your name] · RMS Technologies</span>
+        <div class="e-sep"></div>
+        <p class="e-prose">Hi [First name],</p>
+        <p class="e-prose">I'm reaching out because [Company] is exactly the kind of team that tends to outgrow ad-hoc Microsoft licensing — usually around the 15–20-staff mark — and starts paying more than it should while getting less support than it deserves.</p>
+        <p class="e-prose">As a <b>Microsoft CSP Partner</b>, we provision M365 licences at better-than-direct pricing, configure the security baseline properly, and stay on the relationship every month. Most of our SME clients also use us for laptops via our TD Africa partnership and ongoing IT support.</p>
+        <p class="e-prose">Worth a 20-minute conversation next week? I can show you exactly what we'd configure for [Company]'s headcount and what it would cost monthly — no proposal-writing dance required.</p>
+        <div class="e-sig">[Your name]<br>RMS Technologies · rmstech.ng<br><span class="e-cred">Microsoft CSP Indirect Reseller</span><span class="e-cred">TD Africa Authorised Channel Partner</span></div>
+      </div>
+    </div>
+
+    <div class="email-block">
+      <div class="email-head">
+        <div class="email-tag">// Touch 02 · Day +5 · Value reframe</div>
+        <div class="email-when">Same thread · "Reply" on Touch 01</div>
+      </div>
+      <div class="email-body">
+        <span class="e-line"><span class="e-key">Subject:</span> Re: Quick question about [Company]'s Microsoft 365 setup</span>
+        <div class="e-sep"></div>
+        <p class="e-prose">Hi [First name] — quick follow-up.</p>
+        <p class="e-prose">In case the first note went past, here's the version of this for someone short on time:</p>
+        <p class="e-prose"><b>Most growing SMEs in Lagos pay roughly 20–30% more for Microsoft 365 than they need to</b>, because they buy direct from Microsoft instead of through a CSP partner. They also get zero provisioning support, no MFA enforcement out of the box, and no one to call when something breaks.</p>
+        <p class="e-prose">We fix all three — at better pricing — for [estimated team size of Company]. The 20-minute call shows exactly what the swap would look like, no slides.</p>
+        <p class="e-prose">Available Wed or Thu this week. Direct link: [Calendly link]</p>
+        <div class="e-sig">[Your name]</div>
+      </div>
+    </div>
+
+    <div class="email-block">
+      <div class="email-head">
+        <div class="email-tag">// Touch 03 · Day +9 · Proof point</div>
+        <div class="email-when">Switch subject · separate thread</div>
+      </div>
+      <div class="email-body">
+        <span class="e-line"><span class="e-key">Subject:</span> How [Similar company] cut their Microsoft spend by 18%</span>
+        <div class="e-sep"></div>
+        <p class="e-prose">Hi [First name],</p>
+        <p class="e-prose">Different angle this time — wanted to share a quick example.</p>
+        <p class="e-prose">A 30-person Lagos firm in [similar industry] came to us paying ₦14,200/user/month for Microsoft 365 direct. We moved them onto the same plans via our CSP, configured Defender properly, took over their IT support, and put it all on one monthly invoice.</p>
+        <p class="e-prose">Net result: <b>licensing cost down 18%, security materially better, one number to call when something breaks</b>. The conversation that made it happen took 20 minutes.</p>
+        <p class="e-prose">Worth one of those for [Company]? [Calendly link]</p>
+        <div class="e-sig">[Your name]</div>
+      </div>
+    </div>
+
+    <div class="email-block">
+      <div class="email-head">
+        <div class="email-tag">// Touch 04 · Day +21 · Breakup</div>
+        <div class="email-when">High open rate · 4–6% reply rate</div>
+      </div>
+      <div class="email-body">
+        <span class="e-line"><span class="e-key">Subject:</span> Last note — should I close the loop?</span>
+        <div class="e-sep"></div>
+        <p class="e-prose">Hi [First name],</p>
+        <p class="e-prose">I've reached out a few times about [Company]'s Microsoft setup and haven't heard back — which I read as <b>"not a priority right now"</b> rather than a problem.</p>
+        <p class="e-prose">I'll close the loop on my end. If anything changes — new hires, security concerns, an IT person leaving, or just curiosity — my inbox is open at hello@rmstech.ng.</p>
+        <p class="e-prose">Good luck with everything you're building.</p>
+        <div class="e-sig">[Your name]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 DISCOVERY CALL -->
+<section>
+  <div class="container">
+    <div class="s-num">05 — Discovery Call Framework</div>
+    <h2 class="s-title">Twenty minutes.<br><b>One outcome.</b></h2>
+    <p class="s-lede">The discovery call has exactly one objective: end the call with either a booked demo or a "no, not for us." Anything else is a deferred decision dressed up as progress. Stick to 20 minutes — long discovery loses prospects.</p>
+
+    <div class="disco-block">
+      <div class="disco-head">
+        <div class="disco-title">20-Minute Discovery Call · Standard Flow</div>
+        <div class="disco-time">Hard cap: 22 min</div>
+      </div>
+      <div class="disco-rows">
+        <div class="disco-row">
+          <div class="disco-when">0–2 min</div>
+          <div class="disco-body">
+            <div class="disco-h">Open · rapport + agenda lock</div>
+            <p class="disco-t">Thank them for the time. Confirm you have 20 minutes. State the agenda: "I'll ask a few questions about your current setup, share what we typically do for companies your size, and at the end we'll either book a proper demo or you'll tell me it's not a fit. Sound fair?"</p>
+          </div>
+        </div>
+        <div class="disco-row">
+          <div class="disco-when">2–14 min</div>
+          <div class="disco-body">
+            <div class="disco-h">Discover · twelve questions, in order</div>
+            <p class="disco-t">Listen for: pain, urgency, budget signal, decision process. Take notes. Resist the urge to pitch in this section — every minute you spend listening compounds the close.</p>
+            <ul class="disco-q">
+              <li>Walk me through your current Microsoft setup — what plan are people on?</li>
+              <li>How many staff use it daily? Any contractors or external users?</li>
+              <li>Who handles IT today — internal team, freelancer, or somebody's nephew?</li>
+              <li>When something breaks, what's the typical resolution time?</li>
+              <li>What hardware are people using — company laptops or BYOD?</li>
+              <li>Last time you bought laptops, who did you buy from?</li>
+              <li>Any recent security concerns or breach scares?</li>
+              <li>Where does your client data live — OneDrive, local drives, third-party?</li>
+              <li>Have you done anything specific for NDPR compliance?</li>
+              <li>What's prompting you to look at this now — what's changing?</li>
+              <li>Who else would be involved in a decision like this?</li>
+              <li>If we could fix all of that, what would it be worth to you?</li>
+            </ul>
+          </div>
+        </div>
+        <div class="disco-row">
+          <div class="disco-when">14–18 min</div>
+          <div class="disco-body">
+            <div class="disco-h">Reframe · position the next step</div>
+            <p class="disco-t">Reflect back two or three of the pains they mentioned. Then position which RMS package fits — by name. <b>"Based on what you've described, you're a fit for RMS Business — that's M365 Business Standard plus managed IT essentials. For 25 users that lands at roughly ₦340k/month all-in."</b> Mention TD Africa for hardware if they raised it. Mention NDPR if compliance came up.</p>
+          </div>
+        </div>
+        <div class="disco-row">
+          <div class="disco-when">18–20 min</div>
+          <div class="disco-body">
+            <div class="disco-h">Close · book the demo or close the loop</div>
+            <p class="disco-t">"Two ways we usually take this forward: a 45-minute proper demo where I show you exactly what your environment would look like, or I send you a written proposal off this call and you decide on your own time. Which works better?" Lock the calendar invite live, on the call. <b>If they hedge, ask directly: "Is this a no for now, or a not-yet?"</b> A clean no is more valuable than a soft maybe.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 OBJECTION HANDLING -->
+<section>
+  <div class="container">
+    <div class="s-num">06 — Objection Handling</div>
+    <h2 class="s-title">The ten<br><b>most common objections.</b></h2>
+    <p class="s-lede">If a prospect raises any of these, you respond in your own words — but the response below is the spine. Practise out loud until each lands in under 45 seconds. Long objection responses signal weakness.</p>
+
+    <div class="obj-grid">
+      <div class="obj">
+        <div class="obj-q"><div class="obj-q-text">"It's too expensive."</div></div>
+        <div class="obj-a"><div class="obj-a-text">"Compared to what? If it's compared to your current Microsoft direct spend, our CSP pricing is <b>actually cheaper at your headcount</b>. If it's compared to having no IT support — yes, paying for IT is more expensive than not paying for it, until something breaks and you spend two weeks recovering. Which comparison are we making?"</div></div>
+      </div>
+      <div class="obj">
+        <div class="obj-q"><div class="obj-q-text">"We already use Google Workspace."</div></div>
+        <div class="obj-a"><div class="obj-a-text">"Got it. A lot of companies stay on Google long-term and that's fine. The conversations where it makes sense to switch are usually about <b>Excel-heavy finance teams, Microsoft Teams for enterprise clients who use it, or Copilot for AI productivity</b>. Are any of those landing for you? If not, no switch needed — but we also do hardware and IT support regardless of which email you use."</div></div>
+      </div>
+      <div class="obj">
+        <div class="obj-q"><div class="obj-q-text">"We buy our M365 direct from Microsoft."</div></div>
+        <div class="obj-a"><div class="obj-a-text">"That's normal — most growing companies start there. Two things buying direct doesn't get you: <b>better-than-direct pricing</b> (CSP partners price below Microsoft direct in most cases), and <b>provisioning support</b> (we configure MFA, Defender, Intune, NDPR — Microsoft direct just gives you the licence). Want me to show you the side-by-side?"</div></div>
+      </div>
+      <div class="obj">
+        <div class="obj-q"><div class="obj-q-text">"We have a guy who does our IT."</div></div>
+        <div class="obj-a"><div class="obj-a-text">"Fantastic — we work alongside internal IT all the time. Two questions: <b>does your guy hold Microsoft certifications</b>, and <b>what happens when he's on leave or unavailable</b>? Most clients keep their internal person for day-to-day and use us for the heavy lifting — licensing, security, hardware procurement, and as backup coverage."</div></div>
+      </div>
+      <div class="obj">
+        <div class="obj-q"><div class="obj-q-text">"Just send me a proposal."</div></div>
+        <div class="obj-a"><div class="obj-a-text">"Happy to. To make sure the proposal is actually useful and not a generic template, I need 15 minutes to understand <b>your headcount, what you're running today, and what you're trying to fix</b>. Otherwise I send you a 12-page document and you spend an hour figuring out which 3 pages apply. Can we do the 15 minutes Thursday morning, then you have the proposal Friday?"</div></div>
+      </div>
+      <div class="obj">
+        <div class="obj-q"><div class="obj-q-text">"We need to compare with two other vendors."</div></div>
+        <div class="obj-a"><div class="obj-a-text">"Completely reasonable. To make the comparison fair, ask the other two: <b>are they a Microsoft CSP partner</b>, <b>do they have a published Naira pricing schedule</b>, and <b>who specifically signs off on retention</b>. If the answers are yes/yes/MD, we're comparing apples to apples. If not, we're not. I'm happy to come back after you've spoken to them."</div></div>
+      </div>
+      <div class="obj">
+        <div class="obj-q"><div class="obj-q-text">"What if you go out of business?"</div></div>
+        <div class="obj-a"><div class="obj-a-text">"Fair question for any IT partner. Two facts: <b>your Microsoft tenant belongs to you, not to us</b> — if we vanished tomorrow, you'd contact any other Microsoft CSP partner and transfer in 48 hours. And <b>your hardware is sourced from TD Africa</b>, who has been distributing Microsoft and HP across West Africa since 1999. The infrastructure you're buying is durable independent of us."</div></div>
+      </div>
+      <div class="obj">
+        <div class="obj-q"><div class="obj-q-text">"What about uptime — what if Microsoft goes down?"</div></div>
+        <div class="obj-a"><div class="obj-a-text">"Microsoft 365 has a <b>99.9% uptime SLA</b> — financially backed. That works out to roughly 8 hours of downtime per year in the absolute worst case. In practice over the last 3 years it's been measurably better. Compare to typical on-premise email servers in Lagos — power, internet, hardware — most companies see 8+ hours of downtime per month on local setups."</div></div>
+      </div>
+      <div class="obj">
+        <div class="obj-q"><div class="obj-q-text">"What about NDPR — we don't really do that."</div></div>
+        <div class="obj-a"><div class="obj-a-text">"You should — NITDA is actively enforcing, and fines are <b>up to 2% of annual gross revenue or ₦10 million</b>, whichever is higher. The good news: NDPR compliance is included in our deployment by default. You don't need to do anything beyond signing the documentation we provide. We treat it as table stakes, not a separate sales line."</div></div>
+      </div>
+      <div class="obj">
+        <div class="obj-q"><div class="obj-q-text">"We'll think about it / get back to you."</div></div>
+        <div class="obj-a"><div class="obj-a-text">"Of course. To make sure I don't pester you — <b>is there something specific holding it up</b>, or is the timing just not right? If there's a specific concern, I'd rather address it now; if it's timing, just tell me roughly when to circle back. I'd rather get a clean 'not now' than spend the next month guessing."</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 PROPOSAL TEMPLATE -->
+<section>
+  <div class="container">
+    <div class="s-num">07 — Proposal Template</div>
+    <h2 class="s-title">Every proposal,<br><b>eight sections.</b></h2>
+    <p class="s-lede">In this order. The structure is fixed; the content is tailored. A new BizDev hire should be able to assemble a proposal in 90 minutes by working through these eight sections in sequence.</p>
+
+    <div class="prop-list">
+      <div class="prop-item">
+        <div class="prop-num">01</div>
+        <div>
+          <div class="prop-h">Cover page</div>
+          <p class="prop-t">Client name, proposal title, RMS Technologies branding, date, validity (30 days), and the credential trio in the footer. No prose on this page.</p>
+        </div>
+      </div>
+      <div class="prop-item">
+        <div class="prop-num">02</div>
+        <div>
+          <div class="prop-h">Our understanding of your need</div>
+          <p class="prop-t">Three to four sentences reflecting back exactly what the prospect told you in discovery. <b>This page proves we listened</b> and is the single most important page in the document.</p>
+        </div>
+      </div>
+      <div class="prop-item">
+        <div class="prop-num">03</div>
+        <div>
+          <div class="prop-h">Recommended package</div>
+          <p class="prop-t">Name the package (RMS Starter / Business / Professional / Enterprise / NGO-Edu / Copilot Add-On). State what's included as a clean checklist. No fluff, no buzzwords.</p>
+        </div>
+      </div>
+      <div class="prop-item">
+        <div class="prop-num">04</div>
+        <div>
+          <div class="prop-h">Pricing</div>
+          <p class="prop-t">Naira pricing, all-inclusive monthly cost, plus a one-time setup fee if applicable. Show the per-user cost and the total. Annual billing option with 8% discount footnote. <b>VAT clearly labelled.</b></p>
+        </div>
+      </div>
+      <div class="prop-item">
+        <div class="prop-num">05</div>
+        <div>
+          <div class="prop-h">Implementation timeline</div>
+          <p class="prop-t">Day-by-day for a typical 5-day deployment, or week-by-week for larger engagements. Lists who does what (RMS vs client). <b>Always specify a go-live date</b> — a date in the document is a commitment, not a hope.</p>
+        </div>
+      </div>
+      <div class="prop-item">
+        <div class="prop-num">06</div>
+        <div>
+          <div class="prop-h">SLA commitments</div>
+          <p class="prop-t">Response times, uptime guarantee, escalation path, support hours. <b>The MD's direct line</b> for the named senior contact above ₦1m monthly spend.</p>
+        </div>
+      </div>
+      <div class="prop-item">
+        <div class="prop-num">07</div>
+        <div>
+          <div class="prop-h">Pre-engagement actions</div>
+          <p class="prop-t">What we need from the client before kickoff: list of users, current domain admin access, signed DPA, payment method confirmed. <b>Sequence matters</b> — the proposal converts only if the client knows what they need to do next.</p>
+        </div>
+      </div>
+      <div class="prop-item">
+        <div class="prop-num">08</div>
+        <div>
+          <div class="prop-h">About RMS Technologies</div>
+          <p class="prop-t">Half a page. The one-liner, the credential trio, two named partnerships (Microsoft CSP, TD Africa), the registered company name and RC number, and a single sentence on the MD's senior accountability commitment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 PRICING GUARDRAILS -->
+<section>
+  <div class="container">
+    <div class="s-num">08 — Pricing Guardrails</div>
+    <h2 class="s-title">What we'll discount.<br><b>What we won't.</b></h2>
+    <p class="s-lede">Discount authority is delegated by role. Anything above the role's authority requires written approval from the next level up. <b>No verbal approvals</b> — discounts are a written-only decision so the audit trail is clean.</p>
+
+    <table class="guard-table">
+      <thead><tr><th>Revenue line</th><th>List margin</th><th>Floor margin</th><th>Never below</th></tr></thead>
+      <tbody>
+        <tr><td>Microsoft 365 licensing</td><td class="right">12–22%</td><td class="right">8%</td><td class="danger">5%</td></tr>
+        <tr><td>Azure consumption</td><td class="right">10–15%</td><td class="right">6%</td><td class="danger">4%</td></tr>
+        <tr><td>Microsoft Copilot</td><td class="right">12–18%</td><td class="right">10%</td><td class="danger">8%</td></tr>
+        <tr><td>Hardware (HP, Dell, Lenovo)</td><td class="right">8–12%</td><td class="right">6%</td><td class="danger">4%</td></tr>
+        <tr><td>Networking & infrastructure</td><td class="right">7–10%</td><td class="right">5%</td><td class="danger">3%</td></tr>
+        <tr><td>Managed IT retainer</td><td class="right">65–80% gross</td><td class="right">55% gross</td><td class="danger">45% gross</td></tr>
+        <tr><td>NDPR audit + cybersecurity projects</td><td class="right">50–65%</td><td class="right">40%</td><td class="danger">30%</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:20px;font-weight:600;margin-top:48px;margin-bottom:18px;letter-spacing:-.3px">Discount authority by role</h3>
+    <div class="disc-grid">
+      <div class="disc-card">
+        <div class="disc-role">// BizDev Lead</div>
+        <div class="disc-pct">5%</div>
+        <div class="disc-meta">No approval needed</div>
+      </div>
+      <div class="disc-card">
+        <div class="disc-role">// Account Manager</div>
+        <div class="disc-pct">10%</div>
+        <div class="disc-meta">No approval needed</div>
+      </div>
+      <div class="disc-card">
+        <div class="disc-role">// MD</div>
+        <div class="disc-pct">15%</div>
+        <div class="disc-meta">Documented in CRM</div>
+      </div>
+      <div class="disc-card">
+        <div class="disc-role">// CEO only</div>
+        <div class="disc-pct">15%+</div>
+        <div class="disc-meta">Written email approval</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:20px;font-weight:600;margin-top:48px;margin-bottom:12px;letter-spacing:-.3px">What we throw in free</h3>
+    <p style="font-size:14px;color:var(--w2);line-height:1.7;margin-bottom:14px">Use these as negotiation closers <b>before discounting price</b>: NDPR documentation pack; first month of helpdesk free with annual commitment; one user training session for the team; quarterly business review for retainer clients ₦500k+/month; free Copilot 30-day pilot for 5 users on Premium tier.</p>
+
+    <h3 style="font-size:20px;font-weight:600;margin-top:32px;margin-bottom:12px;letter-spacing:-.3px">What we charge for separately — never bundle free</h3>
+    <p style="font-size:14px;color:var(--w2);line-height:1.7">Custom integrations (Power Automate flows, third-party API connections); on-site deployments outside Lagos (travel + day rate); urgent same-day hardware delivery; out-of-hours support; data migration above 500GB; bespoke Power BI dashboards.</p>
+  </div>
+</section>
+
+<!-- 09 CRM HYGIENE -->
+<section>
+  <div class="container">
+    <div class="s-num">09 — CRM Hygiene & Weekly Cadence</div>
+    <h2 class="s-title">The pipeline is<br><b>the source of truth</b>.</h2>
+    <p class="s-lede">HubSpot Free is the system of record for Year 1. Pipeline hygiene is non-negotiable — if a deal is not in the CRM with all required fields, it does not exist for forecasting purposes.</p>
+
+    <div class="cad-grid">
+      <div class="cad-card">
+        <div class="cad-tag">// Daily</div>
+        <div class="cad-h">End-of-day hygiene</div>
+        <ul class="cad-list">
+          <li>Every call <b>logged in HubSpot</b> with notes</li>
+          <li>Every meeting outcome updated in deal stage</li>
+          <li>Every prospect contacted today <b>moved to "Qualified"</b> or out of pipeline</li>
+          <li>Inbox zero on prospect replies — none over 24 hrs</li>
+        </ul>
+      </div>
+      <div class="cad-card">
+        <div class="cad-tag">// Friday · 4pm</div>
+        <div class="cad-h">Weekly pipeline review</div>
+        <ul class="cad-list">
+          <li>30-minute call · CEO + BizDev + AM</li>
+          <li>Walk every deal in <b>Proposal & Negotiation</b> stage</li>
+          <li>Flag deals stuck >30 days in stage</li>
+          <li>Next week's <b>top 3 closing priorities</b> agreed</li>
+          <li>Weekly numbers logged: meetings, demos, proposals, wins</li>
+        </ul>
+      </div>
+      <div class="cad-card">
+        <div class="cad-tag">// Monthly</div>
+        <div class="cad-h">Pipeline & retention review</div>
+        <ul class="cad-list">
+          <li><b>Pipeline coverage ratio</b> ≥ 3× of next-90-day target</li>
+          <li>Conversion rates by stage vs target</li>
+          <li>Gross retention % · Net retention %</li>
+          <li>Top 5 at-risk clients reviewed with named owner</li>
+          <li>Comp/commission paid out within 5 days of month-end</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 COMMISSION -->
+<section>
+  <div class="container">
+    <div class="s-num">10 — Commission Structure</div>
+    <h2 class="s-title">Reward the<br><b>right behaviour.</b></h2>
+    <p class="s-lede">The commission plan rewards recurring revenue more than one-shot hardware deals — because that is what compounds. BizDev hires should be able to model their own monthly payout from this plan within 5 minutes.</p>
+
+    <table class="comm-table">
+      <thead><tr><th>Revenue type</th><th>Commission rate</th><th>Paid on</th><th>Cap</th></tr></thead>
+      <tbody>
+        <tr><td>New M365 / Azure / Copilot MRR</td><td class="cy">5% of first 12 months</td><td>Each month, on collected revenue</td><td>None</td></tr>
+        <tr><td>New Managed IT retainer MRR</td><td class="cy">8% of first 12 months</td><td>Each month, on collected revenue</td><td>None</td></tr>
+        <tr><td>One-time hardware deal</td><td class="cy">2% of gross deal value</td><td>30 days after client payment</td><td>₦400k per deal</td></tr>
+        <tr><td>NDPR & cybersecurity project</td><td class="cy">4% of project value</td><td>On project completion</td><td>None</td></tr>
+        <tr><td>Renewal of recurring contract</td><td class="cy">2% for AM · 1% for originator</td><td>Each month of renewed term</td><td>None</td></tr>
+        <tr><td>Quarterly target accelerator (≥110%)</td><td class="gr">+50% on all commission</td><td>Quarter-end true-up</td><td>One quarter only</td></tr>
+      </tbody>
+    </table>
+
+    <div class="comm-ex">
+      <div class="comm-ex-label">// Worked example · BizDev Lead in a strong month</div>
+      <div class="comm-ex-h">Closed: 1 SME on RMS Business (25 seats), 1 hardware deal (₦6m), 1 NDPR audit (₦600k)</div>
+      <div class="comm-ex-rows">
+        <span class="l">Base salary</span><span class="v">₦400,000</span>
+        <span class="l">M365 MRR commission · 25 seats × ₦14k × 5%</span><span class="v">₦17,500</span>
+        <span class="l">Managed IT MRR commission · 25 seats × ₦15k × 8%</span><span class="v">₦30,000</span>
+        <span class="l">Hardware deal commission · ₦6m × 2%</span><span class="v">₦120,000</span>
+        <span class="l">NDPR audit commission · ₦600k × 4%</span><span class="v">₦24,000</span>
+        <span class="total-l">Total monthly payout</span><span class="total-v">₦591,500</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>RMS Technologies Limited · Sales Playbook 2026</div>
+  <div>Document 06 · CEO + Sales Team</div>
+</footer>
+
+</body>
+</html>

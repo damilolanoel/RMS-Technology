@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RMS Technologies — Infrastructure for what's next</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050914;--bg2:#0F1729;--bg3:#131D2F;--bg4:#1E2A3C;
+  --accent:#49C7F6;--accent-deep:#1C90B3;--accent-soft:rgba(73,199,246,0.12);
+  --text:#F1F6FF;--text-muted:#9AA7BF;--text-soft:#B1BACF;
+  --border:#1E2A3C;--rule:rgba(255,255,255,0.08);--rule-strong:rgba(73,199,246,0.16);
+  --success:#27D5A0;--warning:#F7B334;--danger:#FF6A84;
+  --radius:16px;--radius-sm:12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:linear-gradient(180deg,#050914 0%,#070D17 40%,#04070E 100%);color:var(--text);line-height:1.7;overflow-x:hidden}
+
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.36;
+  background-image:radial-gradient(circle at top left,rgba(73,199,246,0.12)0%,transparent 25%),radial-gradient(circle at 80% 10%,rgba(255,255,255,0.05)0%,transparent 18%)}
+body::after{content:'';position:fixed;top:0;left:50%;transform:translateX(-50%);width:900px;height:700px;z-index:0;pointer-events:none;background:radial-gradient(circle,rgba(73,199,246,0.08)0%,transparent 55%)}
+
+img,svg{max-width:100%;height:auto}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,9,20,0.88);border-bottom:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:space-between;padding:0 36px;height:70px}
+.nav-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.nav-mark{width:38px;height:38px;background:var(--accent);border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:#05101B;letter-spacing:-.5px}
+.nav-name{font-size:15px;font-weight:700;color:var(--text);letter-spacing:-.3px}
+.nav-sub{font-size:11px;color:var(--text-soft);letter-spacing:.4px;margin-top:2px}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{font-size:13px;color:var(--text-soft);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:#05101B;font-size:13px;font-weight:700;padding:10px 24px;border-radius:999px;text-decoration:none;transition:transform .2s,background .2s;letter-spacing:-.2px}
+.nav-cta:hover{background:#67D3FF;transform:translateY(-1px)}
+
+section{position:relative;z-index:1}
+.container{max-width:1120px;margin:0 auto;padding:0 32px}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 100px}
+.hero-inner{display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:center}
+.hero-label{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;padding:8px 16px;border:1px solid rgba(73,199,246,0.2);border-radius:999px;background:var(--accent-soft)}
+.hero-label::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.85)}}
+.hero h1{font-size:72px;font-weight:300;line-height:0.98;letter-spacing:-2px;margin-bottom:26px;max-width:520px}
+.hero h1 b{font-weight:800;color:var(--accent)}
+.hero-lead{font-size:18px;color:var(--text-soft);line-height:1.8;margin-bottom:38px;max-width:560px}
+.hero-cta{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#05101B;font-size:14px;font-weight:700;padding:16px 28px;border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:transform .2s,background .2s;letter-spacing:-.2px}
+.btn-primary:hover{background:#61D2FF;transform:translateY(-1px)}
+.btn-ghost{background:rgba(255,255,255,0.06);color:var(--text);font-size:14px;font-weight:600;padding:16px 28px;border:1px solid rgba(255,255,255,0.08);border-radius:999px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* HERO PORTAL MOCK */
+.portal-mock{background:linear-gradient(135deg,#0f1729 0%,#141f2f 100%);border:1px solid rgba(255,255,255,0.08);border-radius:24px;overflow:hidden;box-shadow:0 35px 90px rgba(0,0,0,0.45)}
+.portal-bar{display:flex;align-items:center;gap:10px;padding:18px 22px;background:#08101f;border-bottom:1px solid rgba(255,255,255,0.05)}
+.portal-dot{width:10px;height:10px;border-radius:50%;background:var(--text-soft)}
+.portal-title{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-soft);letter-spacing:.35px}
+.portal-body{padding:26px}
+.portal-head{display:flex;justify-content:space-between;align-items:start;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.portal-h-name{font-size:15px;font-weight:700;color:var(--text)}
+.portal-h-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-soft);letter-spacing:1px;margin-top:4px}
+.portal-status{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;background:rgba(39,213,160,0.14);border:1px solid rgba(39,213,160,0.28);border-radius:999px;font-family:'DM Mono',monospace;font-size:10px;color:var(--success);letter-spacing:1px;text-transform:uppercase}
+.portal-status::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--success)}
+.portal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:18px}
+.portal-tile{padding:18px;background:#07101f;border:1px solid rgba(255,255,255,0.06);border-radius:18px}
+.portal-tile-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-soft);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.portal-tile-val{font-size:20px;font-weight:700;color:var(--accent);letter-spacing:-.3px;line-height:1.1}
+.portal-tile-meta{font-size:11px;color:var(--text-soft);margin-top:6px}
+.portal-rows{display:flex;flex-direction:column;gap:10px}
+.portal-row{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#07101f;border:1px solid rgba(255,255,255,0.06);border-radius:16px}
+.portal-row-label{font-size:12px;color:var(--text-soft)}
+.portal-row-val{font-family:'DM Mono',monospace;font-size:12px;color:var(--accent);font-weight:700}
+.portal-foot{margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.06);font-family:'DM Mono',monospace;font-size:10px;color:var(--text-soft);text-align:center;letter-spacing:.5px}
+
+/* PARTNERS BAND */
+.partners-band{padding:38px 48px;background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04)}
+.partners-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:32px;flex-wrap:wrap;justify-content:center}
+.partners-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-soft);letter-spacing:2px;text-transform:uppercase;margin-right:12px}
+.partner-chip{padding:10px 18px;background:#07101f;border:1px solid rgba(255,255,255,0.05);border-radius:999px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text-soft);letter-spacing:.4px;transition:all .2s}
+.partner-chip:hover{border-color:rgba(73,199,246,0.24);color:var(--accent)}
+.partner-chip.primary{color:var(--accent);border-color:rgba(73,199,246,0.24);background:rgba(73,199,246,0.08)}
+
+/* SECTION HEADERS */
+.sec{padding:96px 0;border-top:1px solid rgba(255,255,255,0.06)}
+.sec-eyebrow{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.sec-eyebrow::after{content:'';flex:1;height:1px;background:var(--rule-strong);max-width:96px}
+.sec-title{font-size:48px;font-weight:300;letter-spacing:-1.4px;line-height:1.05;margin-bottom:20px;max-width:780px}
+.sec-title b{font-weight:700;color:var(--accent)}
+.sec-lead{font-size:17px;color:var(--text-soft);max-width:720px;line-height:1.75;margin-bottom:56px}
+
+/* SERVICES */
+.svc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.svc{background:#07101f;border:1px solid rgba(255,255,255,0.05);border-radius:24px;padding:38px;transition:transform .25s,border-color .25s;position:relative;overflow:hidden}
+.svc:hover{border-color:rgba(73,199,246,0.22);transform:translateY(-3px)}
+.svc::before{content:'';position:absolute;top:0;left:0;width:0;height:4px;background:var(--accent);transition:width .28s}
+.svc:hover::before{width:100%}
+.svc-icon{font-size:22px;margin-bottom:18px;display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:18px;background:rgba(73,199,246,0.14);color:var(--accent)}
+.svc-eye{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;display:inline-block}
+.svc-name{font-size:22px;font-weight:700;letter-spacing:-.35px;margin-bottom:16px}
+.svc-text{font-size:15px;color:var(--text-soft);line-height:1.8;margin-bottom:26px}
+.svc-pts{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:26px}
+.svc-pts li{font-size:14px;color:var(--text-soft);padding-left:24px;position:relative;line-height:1.7}
+.svc-pts li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:700}
+.svc-foot{padding-top:20px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center}
+.svc-price{font-family:'DM Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.45px}
+.svc-link{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-soft);text-decoration:none;letter-spacing:.5px;transition:color .15s}
+.svc-link:hover{color:var(--accent)}
+
+/* PRICING TABLE */
+.price-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:13px;background:#07101f;border:1px solid rgba(255,255,255,0.06);border-radius:24px;overflow:hidden}
+.price-table th{padding:18px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:1.6px;text-transform:uppercase;background:#0B1628;border-bottom:1px solid rgba(255,255,255,0.06)}
+.price-table th:not(:first-child){text-align:right}
+.price-table td{padding:18px;border-bottom:1px solid rgba(255,255,255,0.06);color:var(--text-soft);vertical-align:middle}
+.price-table td:not(:first-child){text-align:right}
+.price-table td:first-child{color:var(--text);font-weight:600}
+.price-table td .plan-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-soft);letter-spacing:1px;display:block;margin-top:4px;font-weight:400}
+.price-table td.price{font-family:'DM Mono',monospace;font-weight:700;color:var(--accent);white-space:nowrap}
+.price-table tr:last-child td{border-bottom:none}
+.price-table tr.featured{background:rgba(73,199,246,0.05)}
+.price-table tr.featured td:first-child{color:var(--accent)}
+
+/* MANAGED IT TIERS */
+.tier-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:32px}
+.tier{background:#07101f;border:1px solid rgba(255,255,255,0.05);border-radius:24px;padding:38px;position:relative;transition:transform .25s,border-color .25s}
+.tier:hover{border-color:rgba(73,199,246,0.22);transform:translateY(-3px)}
+.tier.recommended{border-color:rgba(73,199,246,0.24);background:linear-gradient(135deg,rgba(73,199,246,0.08)0%,transparent 100%)}
+.tier-badge{position:absolute;top:-12px;right:24px;font-family:'DM Mono',monospace;font-size:10px;color:#05101B;background:var(--accent);padding:7px 16px;border-radius:999px;letter-spacing:1.3px;text-transform:uppercase;font-weight:700}
+.tier-name{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.tier-h{font-size:24px;font-weight:700;letter-spacing:-.35px;margin-bottom:10px}
+.tier-price{font-family:'DM Mono',monospace;font-size:32px;font-weight:700;color:var(--accent);letter-spacing:-1px;margin-bottom:6px;line-height:1}
+.tier-price small{font-size:13px;color:var(--text-soft);font-weight:400;letter-spacing:0}
+.tier-text{font-size:14px;color:var(--text-soft);line-height:1.75;margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.06)}
+.tier-pts{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:20px}
+.tier-pts li{font-size:14px;color:var(--text-soft);padding-left:24px;position:relative;line-height:1.7}
+.tier-pts li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700}
+
+/* HARDWARE GRID */
+.hw-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:32px}
+.hw-tile{background:#07101f;border:1px solid rgba(255,255,255,0.05);border-radius:24px;padding:30px 22px;text-align:center;transition:transform .25s,border-color .25s}
+.hw-tile:hover{border-color:rgba(73,199,246,0.22);transform:translateY(-2px)}
+.hw-brand{font-size:18px;font-weight:700;color:var(--text);letter-spacing:-.35px;margin-bottom:10px}
+.hw-cat{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-soft);letter-spacing:1.5px;text-transform:uppercase}
+
+/* WHY GRID */
+.why-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:32px}
+.why{background:#07101f;border:1px solid rgba(255,255,255,0.05);border-radius:24px;padding:34px;transition:border-color .2s}
+.why:hover{border-color:rgba(73,199,246,0.22)}
+.why-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:1.5px;margin-bottom:14px}
+.why-h{font-size:18px;font-weight:700;letter-spacing:-.2px;margin-bottom:10px}
+.why-t{font-size:14px;color:var(--text-soft);line-height:1.75}
+.why-t b{color:var(--accent);font-weight:700}
+
+/* PROCESS */
+.process{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:32px;position:relative}
+.process::before{content:'';position:absolute;top:32px;left:4%;right:4%;height:1px;background:linear-gradient(90deg,transparent,rgba(73,199,246,0.24),var(--accent),rgba(73,199,246,0.24),transparent)}
+.process-step{position:relative;z-index:1;background:#050B17;border:1px solid rgba(255,255,255,0.06);border-radius:24px;padding:34px;transition:transform .25s,border-color .25s}
+.process-step:hover{border-color:rgba(73,199,246,0.22);transform:translateY(-2px)}
+.process-num{width:50px;height:50px;border-radius:50%;background:#071827;border:2px solid var(--accent);margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:14px;color:var(--accent);font-weight:700}
+.process-when{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-soft);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;text-align:center}
+.process-h{font-size:16px;font-weight:700;text-align:center;margin-bottom:10px}
+.process-t{font-size:13px;color:var(--text-soft);line-height:1.8;text-align:center;padding:0 8px}
+
+/* CTA */
+.cta-block{margin:96px 32px;padding:64px;background:linear-gradient(135deg,#0F1729 0%,#111F2F 100%);border:1px solid rgba(255,255,255,0.08);border-radius:24px;position:relative;overflow:hidden;text-align:center;max-width:1040px;margin-left:auto;margin-right:auto}
+.cta-block::before{content:'';position:absolute;top:0;left:0;width:5px;height:100%;background:var(--accent)}
+.cta-block::after{content:'>';position:absolute;top:-32px;right:32px;font-size:220px;color:var(--accent);opacity:.06;font-family:'DM Mono',monospace;font-weight:700}
+.cta-eye{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:1.9px;text-transform:uppercase;margin-bottom:18px}
+.cta-h{font-size:42px;font-weight:300;letter-spacing:-1.2px;line-height:1.05;margin-bottom:18px;max-width:700px;margin-left:auto;margin-right:auto}
+.cta-h b{font-weight:800;color:var(--accent)}
+.cta-l{font-size:16px;color:var(--text-soft);line-height:1.75;margin-bottom:32px;max-width:580px;margin-left:auto;margin-right:auto}
+.cta-row{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{padding:64px 48px 36px;background:#08101F;border-top:1px solid rgba(255,255,255,0.06);position:relative;z-index:1}
+.f-grid{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:44px;padding-bottom:46px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.f-brand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.f-mark{width:38px;height:38px;background:var(--accent);border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;color:#05101B;font-weight:700}
+.f-name{font-size:16px;font-weight:700}
+.f-tag{font-size:13px;color:var(--text-soft);line-height:1.8;margin-bottom:18px;max-width:320px}
+.f-creds{display:flex;flex-direction:column;gap:8px}
+.f-cred{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.5px}
+.f-col-h{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.f-col a{display:block;font-size:13px;color:var(--text-soft);text-decoration:none;padding:4px 0;transition:color .15s}
+.f-col a:hover{color:var(--accent)}
+.f-bottom{max-width:1120px;margin:0 auto;padding-top:34px;display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--text-soft);letter-spacing:1px;flex-wrap:wrap;gap:12px}
+
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:50px}
+  .svc-grid,.tier-grid,.why-grid{grid-template-columns:1fr}
+  .hw-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .process{grid-template-columns:1fr;gap:24px}
+  .process::before{display:none}
+}
+
+@media(max-width:900px){
+  nav{padding:0 20px;height:62px}
+  .nav-links{display:none}
+  .hero h1{font-size:52px}
+  .sec-title{font-size:34px}
+  .cta-h{font-size:30px}
+  .sec{padding:68px 0}
+  .container{padding:0 20px}
+  .price-table,.price-table th,.price-table td{font-size:12px;padding:12px}
+  .cta-block{padding:36px 24px;margin:56px 20px}
+  .f-grid{grid-template-columns:1fr 1fr;gap:32px}
+  footer{padding:48px 24px 24px}
+  .partners-band{padding:24px 20px}
+}
+
+@media(max-width:640px){
+  body{font-size:14px}
+  .hero{padding:100px 0 80px}
+  .hero h1{font-size:42px}
+  .hero-lead{font-size:16px}
+  .btn-primary,.btn-ghost{width:100%;justify-content:center}
+  .cta-row{flex-direction:column}
+  .f-grid{grid-template-columns:1fr;gap:28px}
+  .partners-inner{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-mark">R/</div>
+    <div>
+      <div class="nav-name">RMS Technologies</div>
+      <div class="nav-sub">rmstech.ng</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#managed">Managed IT</a>
+    <a href="#hardware">Hardware</a>
+    <a href="#why">Why RMS</a>
+  </div>
+  <a href="#contact" class="nav-cta">Book a demo</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-label">Microsoft CSP · Authorised Hardware Distributor · NDPR-compliant</div>
+      <h1>Infrastructure<br>for what's <b>next</b>.</h1>
+      <p class="hero-lead">RMS Technologies is Nigeria's Microsoft Solutions and IT infrastructure partner — provisioning Microsoft 365 and Azure, supplying enterprise hardware through authorised distribution channels, and managing your IT day-to-day under one monthly invoice.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Book a 20-min demo →</a>
+        <a href="#services" class="btn-ghost">Explore services</a>
+      </div>
+    </div>
+    <div class="portal-mock">
+      <div class="portal-bar">
+        <div class="portal-dot"></div><div class="portal-dot"></div><div class="portal-dot"></div>
+        <div class="portal-title">portal.rmstech.ng / client/atlas-fintech</div>
+      </div>
+      <div class="portal-body">
+        <div class="portal-head">
+          <div>
+            <div class="portal-h-name">Atlas Fintech Ltd</div>
+            <div class="portal-h-sub">M365 BUSINESS PREMIUM · 47/50 SEATS</div>
+          </div>
+          <div class="portal-status">Healthy</div>
+        </div>
+        <div class="portal-grid">
+          <div class="portal-tile">
+            <div class="portal-tile-label">Uptime · 30d</div>
+            <div class="portal-tile-val">99.9%</div>
+            <div class="portal-tile-meta">SLA target met</div>
+          </div>
+          <div class="portal-tile">
+            <div class="portal-tile-label">Support response</div>
+            <div class="portal-tile-val">&lt;2hr</div>
+            <div class="portal-tile-meta">avg this month</div>
+          </div>
+          <div class="portal-tile">
+            <div class="portal-tile-label">MFA coverage</div>
+            <div class="portal-tile-val">100%</div>
+            <div class="portal-tile-meta">47/47 active</div>
+          </div>
+          <div class="portal-tile">
+            <div class="portal-tile-label">NDPR status</div>
+            <div class="portal-tile-val">✓</div>
+            <div class="portal-tile-meta">audit Q1 cleared</div>
+          </div>
+        </div>
+        <div class="portal-rows">
+          <div class="portal-row"><span class="portal-row-label">Defender — endpoints protected</span><span class="portal-row-val">47 / 47</span></div>
+          <div class="portal-row"><span class="portal-row-label">Open tickets</span><span class="portal-row-val">2 · L1</span></div>
+          <div class="portal-row"><span class="portal-row-label">Next billing</span><span class="portal-row-val">01 Jun · ₦798,500</span></div>
+        </div>
+        <div class="portal-foot">// CLIENT PORTAL — LIVE TENANT VIEW</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS BAND -->
+<div class="partners-band">
+  <div class="partners-inner">
+    <div class="partners-label">// Authorised partnerships</div>
+    <span class="partner-chip primary">Microsoft CSP</span>
+    <span class="partner-chip">HP</span>
+    <span class="partner-chip">Dell</span>
+    <span class="partner-chip">Lenovo</span>
+    <span class="partner-chip">Cisco</span>
+    <span class="partner-chip">APC</span>
+    <span class="partner-chip">Starlink</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec" id="services">
+  <div class="container">
+    <div class="sec-eyebrow">01 — Services</div>
+    <h2 class="sec-title">Six services.<br><b>One monthly invoice.</b></h2>
+    <p class="sec-lead">Built to be sold standalone — designed to compound when sold together. The clients who buy multiple lines stay twice as long.</p>
+
+    <div class="svc-grid">
+      <div class="svc">
+        <span class="svc-icon">☁️</span>
+        <div class="svc-eye">// Engine 01 · Recurring</div>
+        <div class="svc-name">Microsoft 365 & Cloud Licensing</div>
+        <p class="svc-text">Provision and manage your full Microsoft environment — email, Teams, Office, SharePoint, OneDrive, Azure, Copilot. CSP pricing beats direct, with provisioning support included.</p>
+        <ul class="svc-pts">
+          <li>All M365 plans — Business Basic to Enterprise E5</li>
+          <li>Azure consumption and reserved instances</li>
+          <li>Microsoft Defender and Intune security stack</li>
+          <li>Same-day tenant setup with security baseline</li>
+        </ul>
+        <div class="svc-foot">
+          <div class="svc-price">From ₦3,200/user/mo</div>
+          <a href="#pricing" class="svc-link">See pricing →</a>
+        </div>
+      </div>
+
+      <div class="svc">
+        <span class="svc-icon">🔧</span>
+        <div class="svc-eye">// Engine 02 · Recurring</div>
+        <div class="svc-name">Managed IT Services</div>
+        <p class="svc-text">Your dedicated IT department on retainer. Helpdesk, endpoint management, security monitoring, user provisioning, monthly health reports. 4-hour response SLA.</p>
+        <ul class="svc-pts">
+          <li>L1, L2 and L3 helpdesk with SLA</li>
+          <li>Endpoint management via Intune</li>
+          <li>Monthly Power BI health report</li>
+          <li>On-site dispatch when needed</li>
+        </ul>
+        <div class="svc-foot">
+          <div class="svc-price">From ₦15,000/user/mo</div>
+          <a href="#managed" class="svc-link">Compare tiers →</a>
+        </div>
+      </div>
+
+      <div class="svc">
+        <span class="svc-icon">🖥️</span>
+        <div class="svc-eye">// Engine 03 · Project</div>
+        <div class="svc-name">Hardware Supply & Deployment</div>
+        <p class="svc-text">HP, Dell, Lenovo, Cisco, Samsung, APC, Starlink, Apple — wholesale via our authorised distribution network. Every device arrives pre-configured: Windows, antivirus, M365, domain-joined.</p>
+        <ul class="svc-pts">
+          <li>Wholesale pricing through authorised distribution</li>
+          <li>Pre-imaged and domain-joined on arrival</li>
+          <li>Manufacturer warranty + RMA handled</li>
+          <li>48-hour delivery within Lagos</li>
+        </ul>
+        <div class="svc-foot">
+          <div class="svc-price">Wholesale pricing</div>
+          <a href="#hardware" class="svc-link">See brands →</a>
+        </div>
+      </div>
+
+      <div class="svc">
+        <span class="svc-icon">🛡️</span>
+        <div class="svc-eye">// Engine 04 · Project + Recurring</div>
+        <div class="svc-name">Cybersecurity & NDPR Compliance</div>
+        <p class="svc-text">NITDA is enforcing NDPR. We audit your posture, deploy Defender and Intune, document your compliance framework, then monitor continuously. Before the breach, not after.</p>
+        <ul class="svc-pts">
+          <li>Initial NDPR audit and gap report</li>
+          <li>Privacy policy, DPA, breach-response plan</li>
+          <li>Defender + Intune deployed across endpoints</li>
+          <li>Annual NITDA compliance filing supported</li>
+        </ul>
+        <div class="svc-foot">
+          <div class="svc-price">Audit from ₦350,000</div>
+          <a href="#contact" class="svc-link">Request audit →</a>
+        </div>
+      </div>
+
+      <div class="svc">
+        <span class="svc-icon">🤖</span>
+        <div class="svc-eye">// Engine 05 · Recurring</div>
+        <div class="svc-name">Microsoft Copilot Enablement</div>
+        <p class="svc-text">Deploy AI across Word, Excel, Teams, Outlook, PowerPoint. Two-day adoption workshop, custom prompt library of 25+ role-specific assistants, 30-day adoption guarantee.</p>
+        <ul class="svc-pts">
+          <li>Copilot licensing + tenant configuration</li>
+          <li>2-day workshop for first 20 users</li>
+          <li>Custom prompt library by role</li>
+          <li>Adoption tracking dashboard</li>
+        </ul>
+        <div class="svc-foot">
+          <div class="svc-price">₦38,000/user/month</div>
+          <a href="#contact" class="svc-link">Book Copilot demo →</a>
+        </div>
+      </div>
+
+      <div class="svc">
+        <span class="svc-icon">🏛️</span>
+        <div class="svc-eye">// Engine 06 · Strategic</div>
+        <div class="svc-name">Government & MDA IT Infrastructure</div>
+        <p class="svc-text">Ministry-scale M365 deployments, HP and Dell refresh cycles, Cisco networking infrastructure, ongoing IT management. CAC-registered, NDPR-compliant, procurement-ready.</p>
+        <ul class="svc-pts">
+          <li>M365 E3/E5 deployments at ministry scale</li>
+          <li>Bulk hardware via authorised TD Africa channel</li>
+          <li>Cisco networking and Vertiv power systems</li>
+          <li>Procurement-ready documentation</li>
+        </ul>
+        <div class="svc-foot">
+          <div class="svc-price">Framework agreements</div>
+          <a href="#contact" class="svc-link">Speak to government team →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- M365 PRICING -->
+<section class="sec" id="pricing">
+  <div class="container">
+    <div class="sec-eyebrow">02 — Microsoft 365 Pricing</div>
+    <h2 class="sec-title">Honest pricing.<br>No <b>middleman games</b>.</h2>
+    <p class="sec-lead">Published Naira pricing for the most common Microsoft 365 plans. Volume discounts begin at 50 seats. All prices include CSP-grade provisioning support and security baseline configuration.</p>
+
+    <table class="price-table">
+      <thead><tr><th>Plan</th><th>Best for</th><th>Per user / month</th><th>Annual / user</th></tr></thead>
+      <tbody>
+        <tr><td>M365 Business Basic<span class="plan-tag">Email + web Office + Teams</span></td><td>SMEs starting on Microsoft</td><td class="price">₦3,200</td><td class="price">₦38,400</td></tr>
+        <tr class="featured"><td>M365 Business Standard<span class="plan-tag">Most popular — full desktop Office</span></td><td>SMEs · 10–50 staff</td><td class="price">₦8,500</td><td class="price">₦102,000</td></tr>
+        <tr><td>M365 Business Premium<span class="plan-tag">Includes Defender & Intune</span></td><td>Security-conscious mid-market</td><td class="price">₦16,800</td><td class="price">₦201,600</td></tr>
+        <tr><td>M365 Enterprise E3<span class="plan-tag">Enterprise feature set</span></td><td>Corporates · 100+ staff</td><td class="price">₦28,000</td><td class="price">₦336,000</td></tr>
+        <tr><td>Microsoft 365 Copilot<span class="plan-tag">AI add-on to existing M365</span></td><td>Productivity acceleration</td><td class="price">₦38,000</td><td class="price">₦456,000</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--w3);margin-top:16px;font-family:'DM Mono',monospace;letter-spacing:.3px">// Prices ex-VAT. Annual billing offers 8% discount. Nonprofit & education pricing available — up to 75% off.</p>
+  </div>
+</section>
+
+<!-- MANAGED IT TIERS -->
+<section class="sec" id="managed">
+  <div class="container">
+    <div class="sec-eyebrow">03 — Managed IT Tiers</div>
+    <h2 class="sec-title">Three tiers.<br>Pick the one that <b>fits</b>.</h2>
+    <p class="sec-lead">Every tier includes the RMS Client Portal, monthly health reports, and senior accountability. The difference is response SLA and the depth of proactive monitoring.</p>
+
+    <div class="tier-grid">
+      <div class="tier">
+        <div class="tier-name">// Tier 01</div>
+        <div class="tier-h">Essential</div>
+        <div class="tier-price">₦15,000<small>/user/month</small></div>
+        <p class="tier-text">For SMEs that need a reliable IT contact and ticketed support, without 24/7 monitoring.</p>
+        <ul class="tier-pts">
+          <li>Business-hours helpdesk (Mon–Fri)</li>
+          <li>8-hour response SLA</li>
+          <li>Monthly health report</li>
+          <li>Basic M365 administration</li>
+          <li>Quarterly tenant review</li>
+        </ul>
+      </div>
+
+      <div class="tier recommended">
+        <div class="tier-badge">Recommended</div>
+        <div class="tier-name">// Tier 02</div>
+        <div class="tier-h">Standard</div>
+        <div class="tier-price">₦35,000<small>/user/month</small></div>
+        <p class="tier-text">The default for established SMEs and growth-stage businesses. Faster SLAs, proactive Intune management.</p>
+        <ul class="tier-pts">
+          <li>Extended helpdesk (Mon–Sat)</li>
+          <li>4-hour response SLA</li>
+          <li>Monthly Power BI report</li>
+          <li>Full Intune endpoint management</li>
+          <li>Defender monitoring + monthly review</li>
+          <li>Onboarding/offboarding automation</li>
+        </ul>
+      </div>
+
+      <div class="tier">
+        <div class="tier-name">// Tier 03</div>
+        <div class="tier-h">Complete</div>
+        <div class="tier-price">₦65,000<small>/user/month</small></div>
+        <p class="tier-text">Enterprise-grade — for corporates, regulated firms, and fast-moving organisations that cannot afford downtime.</p>
+        <ul class="tier-pts">
+          <li>24/7 helpdesk + on-call escalation</li>
+          <li>2-hour response SLA</li>
+          <li>Weekly health reports</li>
+          <li>Full Defender + Sentinel SOC monitoring</li>
+          <li>NDPR audit and quarterly compliance review</li>
+          <li>Named senior account manager</li>
+          <li>Quarterly business review (QBR)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HARDWARE -->
+<section class="sec" id="hardware">
+  <div class="container">
+    <div class="sec-eyebrow">04 — Hardware</div>
+    <h2 class="sec-title">Every brand you'd expect.<br><b>Wholesale</b>, not retail.</h2>
+    <p class="sec-lead">As an authorised channel partner of TD Africa, we source hardware directly from manufacturer-approved distribution. No grey market, full warranty, and pricing your IT manager will recognise as fair.</p>
+
+    <div class="hw-grid">
+      <div class="hw-tile"><div class="hw-brand">HP</div><div class="hw-cat">Laptops · workstations · print</div></div>
+      <div class="hw-tile"><div class="hw-brand">Dell</div><div class="hw-cat">Latitude · OptiPlex · servers</div></div>
+      <div class="hw-tile"><div class="hw-brand">Lenovo</div><div class="hw-cat">ThinkPad · ThinkCentre</div></div>
+      <div class="hw-tile"><div class="hw-brand">Cisco</div><div class="hw-cat">Switching · routing · WiFi</div></div>
+      <div class="hw-tile"><div class="hw-brand">Samsung</div><div class="hw-cat">Devices · displays</div></div>
+      <div class="hw-tile"><div class="hw-brand">APC</div><div class="hw-cat">UPS · power · racks</div></div>
+      <div class="hw-tile"><div class="hw-brand">Apple</div><div class="hw-cat">MacBook · iMac · iPad</div></div>
+      <div class="hw-tile"><div class="hw-brand">Starlink</div><div class="hw-cat">Satellite internet</div></div>
+    </div>
+    <p style="font-size:12px;color:var(--w3);margin-top:24px;font-family:'DM Mono',monospace;letter-spacing:.3px;text-align:center">// Also: IBM · D-Link · Huawei · Bosch · Hikvision · Vertiv · Zinox · Tecno · Infinix · Logitech · Poly · Jabra · and 20+ others</p>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="sec" id="why">
+  <div class="container">
+    <div class="sec-eyebrow">05 — Why RMS</div>
+    <h2 class="sec-title">Why <b>SMEs and corporates</b><br>choose us over the incumbents.</h2>
+    <p class="sec-lead">The Lagos IT market is fragmented between enterprise integrators who don't take small accounts and grey-market resellers who can't be trusted with security. We sit between — Microsoft-credentialled, TD-Africa-stocked, SME-priced.</p>
+
+    <div class="why-grid">
+      <div class="why">
+        <div class="why-num">01</div>
+        <div class="why-h">Microsoft CSP Partner</div>
+        <p class="why-t">Official <b>Microsoft Cloud Solution Provider</b> — you get genuine licences, the security baseline configured properly, and pricing that beats buying direct.</p>
+      </div>
+      <div class="why">
+        <div class="why-num">02</div>
+        <div class="why-h">TD Africa Authorised Channel</div>
+        <p class="why-t">Hardware sourced through <b>West Africa's largest authorised distributor</b>. Full manufacturer warranty, traceable supply chain, government-procurement compliant.</p>
+      </div>
+      <div class="why">
+        <div class="why-num">03</div>
+        <div class="why-h">NDPR-compliant by default</div>
+        <p class="why-t">Every deployment ships with NDPR documentation, consent flows, and a <b>breach-response plan</b>. NITDA enforcement is real; we keep clients on the right side.</p>
+      </div>
+      <div class="why">
+        <div class="why-num">04</div>
+        <div class="why-h">One invoice, one number</div>
+        <p class="why-t">Licensing, hardware, security, managed IT — <b>all on one monthly invoice</b>, with one senior account contact. No finger-pointing between vendors when something breaks.</p>
+      </div>
+      <div class="why">
+        <div class="why-num">05</div>
+        <div class="why-h">SME-priced, enterprise-grade</div>
+        <p class="why-t">Enterprise integrators won't touch you under 200 staff. <b>We deploy the same tech, at SME prices</b>, because TD Africa wholesale and CSP economics make it possible.</p>
+      </div>
+      <div class="why">
+        <div class="why-num">06</div>
+        <div class="why-h">The MD signs every onboarding</div>
+        <p class="why-t">Senior accountability isn't a slogan. The MD attends every kickoff, signs every retainer, and remains personally <b>reachable to top accounts</b> for as long as the relationship lasts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec">
+  <div class="container">
+    <div class="sec-eyebrow">06 — How We Work</div>
+    <h2 class="sec-title">From first call<br>to <b>live tenant</b>, in days.</h2>
+    <p class="sec-lead">Most M365 deployments take three months at incumbent firms. We close, configure, and hand over in under a week — because we removed the bureaucracy that makes traditional IT slow.</p>
+
+    <div class="process">
+      <div class="process-step">
+        <div class="process-num">01</div>
+        <div class="process-when">Day 0 · 20 min</div>
+        <div class="process-h">Discovery call</div>
+        <div class="process-t">Brief Zoom with the MD. We map your headcount, current setup, and pain points. You leave with a draft package and price.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02</div>
+        <div class="process-when">Day 1 · 24 hrs</div>
+        <div class="process-h">Proposal & SOW</div>
+        <div class="process-t">Written proposal, scope, MSA, DPA, NDPR appendix — all delivered within 24 hours. Single signature from your side.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03</div>
+        <div class="process-when">Day 2–4 · Deploy</div>
+        <div class="process-h">Provision & secure</div>
+        <div class="process-t">Tenant provisioned, users created, MFA enforced, Defender deployed, Intune policies applied. Migration of email/files completed.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">04</div>
+        <div class="process-when">Day 5 · Live</div>
+        <div class="process-h">Handover & support</div>
+        <div class="process-t">Team trained, RMS Client Portal access granted, monthly billing established. You start working on the new setup the same week.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-block" id="contact">
+  <div class="cta-eye">// Ready to start</div>
+  <h2 class="cta-h">Book a 20-minute call.<br>Leave with a <b>quote</b>.</h2>
+  <p class="cta-l">The MD takes every first call personally. Tell us your team size and what's currently breaking — we'll come back with a package, a price, and a date you go live.</p>
+  <div class="cta-row">
+    <a href="mailto:hello@rmstech.ng" class="btn-primary">hello@rmstech.ng →</a>
+    <a href="tel:+234" class="btn-ghost">Or call: +234 (0) ... ...</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-grid">
+    <div>
+      <div class="f-brand">
+        <div class="f-mark">R/</div>
+        <div class="f-name">RMS Technologies</div>
+      </div>
+      <p class="f-tag">Nigeria's Microsoft Solutions and IT infrastructure partner. Provisioning, supplying, and managing the technology your business runs on.</p>
+      <div class="f-creds">
+        <div class="f-cred">Microsoft CSP Indirect Reseller</div>
+        <div class="f-cred">TD Africa Authorised Channel Partner</div>
+        <div class="f-cred">NDPR-Compliant Technology Provider</div>
+      </div>
+    </div>
+    <div class="f-col">
+      <div class="f-col-h">// Services</div>
+      <a href="#services">Microsoft 365 & Cloud</a>
+      <a href="#managed">Managed IT</a>
+      <a href="#hardware">Hardware Supply</a>
+      <a href="#services">Cybersecurity & NDPR</a>
+      <a href="#services">Microsoft Copilot</a>
+      <a href="#services">Government IT</a>
+    </div>
+    <div class="f-col">
+      <div class="f-col-h">// Company</div>
+      <a href="#">About</a>
+      <a href="#why">Why RMS</a>
+      <a href="#">Case studies</a>
+      <a href="#">Partnerships</a>
+      <a href="#">Careers</a>
+    </div>
+    <div class="f-col">
+      <div class="f-col-h">// Contact</div>
+      <a href="mailto:hello@rmstech.ng">hello@rmstech.ng</a>
+      <a href="mailto:support@rmstech.ng">support@rmstech.ng</a>
+      <a href="#">Lagos, Nigeria</a>
+      <a href="#">Book a demo</a>
+      <a href="#">Client portal</a>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <div>© 2026 RMS Technologies Limited · Registered in Nigeria</div>
+    <div>rmstech.ng · Infrastructure for what's next.</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RMS Technologies — Strategic Foundations 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06080E;--bg2:#0D1117;--bg3:#141A24;--bg4:#1C2535;
+  --cyan:#00C8F0;--cyan2:#00A0C0;--cg:rgba(0,200,240,0.08);--cb:rgba(0,200,240,0.2);
+  --white:#EEF2FF;--w2:#A8B4CC;--w3:#5A6478;--w4:#2E3648;
+  --rule:rgba(255,255,255,0.06);--rule2:rgba(0,200,240,0.14);
+  --green:#00D4A0;--amber:#F0A800;--red:#FF5C7A;
+  --r:8px;--rl:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.65;overflow-x:hidden}
+
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,200,240,0.025)1px,transparent 1px),linear-gradient(90deg,rgba(0,200,240,0.025)1px,transparent 1px);
+  background-size:60px 60px}
+body::after{content:'';position:fixed;top:-20%;left:50%;transform:translateX(-50%);
+  width:900px;height:700px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(0,200,240,0.08)0%,transparent 65%)}
+
+/* COVER */
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:48px;position:relative;z-index:1}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start}
+.mark{display:flex;align-items:center;gap:14px}
+.mark-box{width:48px;height:48px;background:var(--cyan);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-weight:500;color:var(--bg);font-size:14px;letter-spacing:-.5px}
+.mark-text{font-weight:700;font-size:18px;letter-spacing:-.3px}
+.mark-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+.classified{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);padding:6px 12px;border:1px solid var(--cb);border-radius:20px;background:var(--cg);letter-spacing:1.5px;text-transform:uppercase}
+.classified::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+.cover-center{max-width:900px}
+.cover-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:24px}
+.cover-title{font-size:88px;font-weight:300;line-height:.95;letter-spacing:-3px;margin-bottom:28px}
+.cover-title b{font-weight:700;color:var(--cyan);font-style:italic}
+.cover-tagline{font-size:22px;color:var(--w2);max-width:680px;font-weight:300;line-height:1.45}
+.cover-bottom{display:flex;justify-content:space-between;align-items:flex-end;padding-top:32px;border-top:1px solid var(--rule)}
+.cover-meta-block{display:flex;flex-direction:column;gap:4px}
+.cover-meta-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase}
+.cover-meta-value{font-size:13px;color:var(--w2)}
+
+/* SECTIONS */
+section{position:relative;z-index:1;padding:88px 48px;border-top:1px solid var(--rule)}
+.container{max-width:1100px;margin:0 auto}
+.s-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.s-num::after{content:'';flex:1;height:1px;background:var(--rule2);max-width:80px}
+.s-title{font-size:52px;font-weight:300;letter-spacing:-1.5px;line-height:1.05;margin-bottom:18px}
+.s-title b{font-weight:700;color:var(--cyan)}
+.s-lede{font-size:18px;color:var(--w2);max-width:760px;line-height:1.55;margin-bottom:56px}
+
+/* MANDATE STATEMENT */
+.mandate{background:linear-gradient(135deg,var(--bg2)0%,var(--bg3)100%);border:1px solid var(--rule2);border-radius:var(--rl);padding:56px;position:relative;overflow:hidden}
+.mandate::before{content:'"';position:absolute;top:-20px;right:30px;font-size:240px;color:var(--cyan);opacity:.08;font-family:'DM Mono',monospace;line-height:1}
+.mandate-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+.mandate-text{font-size:28px;font-weight:400;line-height:1.4;letter-spacing:-.5px;max-width:880px}
+.mandate-text b{color:var(--cyan);font-weight:600}
+.mandate-foot{margin-top:32px;padding-top:24px;border-top:1px solid var(--rule);font-family:'DM Mono',monospace;font-size:12px;color:var(--w3);letter-spacing:1px}
+
+/* WHY CARDS */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.why-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:32px;transition:all .25s;position:relative}
+.why-card:hover{border-color:var(--cb);transform:translateY(-3px)}
+.why-icon{font-size:28px;margin-bottom:16px;display:block}
+.why-title{font-size:17px;font-weight:600;margin-bottom:12px;letter-spacing:-.2px}
+.why-text{font-size:14px;color:var(--w2);line-height:1.6}
+.why-text b{color:var(--cyan);font-weight:600}
+
+/* COMPARISON */
+.compare{display:grid;grid-template-columns:1fr auto 1fr;gap:32px;align-items:stretch;margin-top:40px}
+.compare-col{padding:36px;border-radius:var(--rl)}
+.compare-old{background:var(--bg2);border:1px solid var(--rule)}
+.compare-new{background:linear-gradient(135deg,rgba(0,200,240,0.06)0%,transparent 100%);border:1px solid var(--cb)}
+.compare-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.compare-old .compare-label{color:var(--w3)}
+.compare-new .compare-label{color:var(--cyan)}
+.compare-head{font-size:22px;font-weight:600;letter-spacing:-.5px;margin-bottom:24px}
+.compare-old .compare-head{color:var(--w2)}
+.compare-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+.compare-list li{font-size:14px;color:var(--w2);padding-left:20px;position:relative;line-height:1.5}
+.compare-list li::before{content:'';position:absolute;left:0;top:8px;width:10px;height:1px;background:var(--w3)}
+.compare-new .compare-list li::before{background:var(--cyan)}
+.compare-arrow{display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--cyan);font-weight:300}
+
+/* BRAND BLOCK */
+.brand-block{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.brand-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:36px}
+.brand-card-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.brand-card-value{font-size:28px;font-weight:600;letter-spacing:-.5px;line-height:1.2;margin-bottom:10px}
+.brand-card-note{font-size:13px;color:var(--w2);line-height:1.6}
+
+.swatch-row{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.swatch{flex:1;min-width:140px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden}
+.swatch-color{height:80px}
+.swatch-meta{padding:14px;display:flex;flex-direction:column;gap:4px}
+.swatch-name{font-size:12px;font-weight:600}
+.swatch-hex{font-family:'DM Mono',monospace;font-size:11px;color:var(--w3)}
+
+.code-block{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:32px;margin-top:32px;font-family:'DM Mono',monospace;font-size:13px;line-height:1.9;color:var(--w2);overflow-x:auto}
+.code-key{color:var(--cyan)}
+.code-val{color:var(--white)}
+.code-comment{color:var(--w3);font-style:italic;display:block;margin-bottom:8px}
+
+/* ENGINES */
+.engines-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.engine-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:36px;position:relative;overflow:hidden}
+.engine-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--cyan)}
+.engine-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.engine-title{font-size:24px;font-weight:600;letter-spacing:-.5px;margin-bottom:8px}
+.engine-sub{font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px}
+.engine-text{font-size:14px;color:var(--w2);line-height:1.65;margin-bottom:24px}
+.engine-stat{font-family:'DM Mono',monospace;font-size:13px;color:var(--cyan);padding:10px 14px;background:var(--cg);border-radius:var(--r);border:1px solid var(--cb);display:inline-block}
+
+/* LIFECYCLE */
+.cycle{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:48px;position:relative}
+.cycle::before{content:'';position:absolute;top:24px;left:5%;right:5%;height:1px;background:linear-gradient(90deg,transparent,var(--cb),var(--cyan),var(--cb),transparent);z-index:0}
+.cycle-step{position:relative;z-index:1;text-align:center}
+.cycle-dot{width:48px;height:48px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;color:var(--cyan);font-weight:600}
+.cycle-when{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.cycle-title{font-size:14px;font-weight:600;margin-bottom:6px}
+.cycle-text{font-size:12px;color:var(--w2);line-height:1.55}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:48px;border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden;background:var(--bg2)}
+.metric{padding:28px;border-right:1px solid var(--rule)}
+.metric:last-child{border-right:none}
+.metric-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.metric-value{font-size:28px;font-weight:600;color:var(--cyan);letter-spacing:-.5px;line-height:1.1}
+.metric-unit{font-size:13px;color:var(--w2);margin-top:6px;font-weight:400}
+
+/* ROADMAP */
+.roadmap{margin-top:48px;display:flex;flex-direction:column;gap:0}
+.phase{display:grid;grid-template-columns:140px 1fr auto;gap:32px;padding:32px 0;border-bottom:1px solid var(--rule);align-items:start}
+.phase:last-child{border-bottom:none}
+.phase-tag{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--cg);border:1px solid var(--cb);padding:6px 12px;border-radius:20px;display:inline-block;align-self:start}
+.phase-body{}
+.phase-title{font-size:22px;font-weight:600;letter-spacing:-.3px;margin-bottom:10px}
+.phase-text{font-size:14px;color:var(--w2);line-height:1.65;margin-bottom:14px}
+.phase-items{list-style:none;display:flex;flex-direction:column;gap:8px}
+.phase-items li{font-size:13px;color:var(--w2);padding-left:18px;position:relative;line-height:1.5}
+.phase-items li::before{content:'→';position:absolute;left:0;color:var(--cyan);font-weight:700}
+.phase-target{font-family:'DM Mono',monospace;font-size:12px;color:var(--cyan);text-align:right;line-height:1.6}
+.phase-target b{display:block;font-size:18px;color:var(--white);font-weight:600;margin-top:4px}
+
+/* WIND-DOWN BLOCK */
+.warn-block{background:linear-gradient(135deg,rgba(240,168,0,0.06)0%,transparent 100%);border:1px solid rgba(240,168,0,0.25);border-radius:var(--rl);padding:36px;margin-top:48px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start}
+.warn-icon{font-size:32px}
+.warn-title{font-size:18px;font-weight:600;color:var(--amber);margin-bottom:10px;letter-spacing:-.2px}
+.warn-text{font-size:14px;color:var(--w2);line-height:1.7}
+
+/* FOOTER */
+footer{padding:48px;border-top:1px solid var(--rule);position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);letter-spacing:1px}
+
+@media(max-width:900px){
+  .cover-title{font-size:54px}.s-title{font-size:36px}
+  .why-grid,.engines-grid{grid-template-columns:1fr}
+  .compare{grid-template-columns:1fr}.compare-arrow{transform:rotate(90deg);padding:8px 0}
+  .brand-block{grid-template-columns:1fr}
+  .cycle{grid-template-columns:1fr;gap:24px}.cycle::before{display:none}
+  .metrics{grid-template-columns:1fr 1fr}.metric{border-right:none;border-bottom:1px solid var(--rule)}
+  .phase{grid-template-columns:1fr}.phase-target{text-align:left}
+  section{padding:64px 24px}.cover{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="mark">
+      <div class="mark-box">R/</div>
+      <div>
+        <div class="mark-text">RMS Technologies</div>
+        <div class="mark-sub">Strategic Foundations · 2026</div>
+      </div>
+    </div>
+    <div class="classified">CEO Only · Confidential</div>
+  </div>
+  <div class="cover-center">
+    <div class="cover-meta">Document 01 of 05 · Strategic Foundations</div>
+    <h1 class="cover-title">We are a<br><b>technology</b> company.</h1>
+    <p class="cover-tagline">This document defines what RMS Technologies is, why it exists, what it sells, who it sells to, and how every decision flows from a single strategic mandate.</p>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Issued</div>
+      <div class="cover-meta-value">April 2026 · Lagos</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Status</div>
+      <div class="cover-meta-value">Active — Governing Document</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Supersedes</div>
+      <div class="cover-meta-value">RMS Research Mandate 2025</div>
+    </div>
+  </div>
+</div>
+
+<!-- THE MANDATE -->
+<section>
+  <div class="container">
+    <div class="s-num">01 — The Mandate</div>
+    <h2 class="s-title">One sentence that governs<br>every decision from here.</h2>
+    <div class="mandate">
+      <div class="mandate-label">// Strategic Mandate</div>
+      <p class="mandate-text">RMS Technologies is Nigeria's most accessible <b>Microsoft Solutions and IT Infrastructure partner</b> — making enterprise-grade technology deployable, affordable, and fully managed for businesses that have been underserved by the tech industry.</p>
+      <div class="mandate-foot">// Every product decision, hire, partnership, and proposal is tested against this sentence. If it doesn't serve the mandate, it doesn't ship.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section>
+  <div class="container">
+    <div class="s-num">02 — Strategic Rationale</div>
+    <h2 class="s-title">Why <b>this</b>, why <b>now</b>.</h2>
+    <p class="s-lede">Six independent reasons converge on the same answer. Each one alone would justify the pivot. Together they make it inevitable.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-icon">📈</span>
+        <div class="why-title">Revenue Quality</div>
+        <p class="why-text">Research is project-by-project — one client, one study, gone. Tech is <b>recurring</b>. A client on M365 Business Standard pays every month. MRR is worth 5–8× project revenue at exit.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🏗️</span>
+        <div class="why-title">Infrastructure Advantage</div>
+        <p class="why-text">We already hold the TD Africa partnership, the Microsoft Partner Center pathway, and the commercial relationships most new tech companies take <b>2–3 years to build</b>. We are activating an asset, not starting from zero.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🌍</span>
+        <div class="why-title">Market Timing</div>
+        <p class="why-text">Nigeria's SME sector is undergoing forced digitisation — CBN cashless policy, NDPR enforcement, remote-work needs. The market is creating a <b>buyer's urgency</b> that did not exist three years ago.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">💰</span>
+        <div class="why-title">Margin Structure</div>
+        <p class="why-text">Licensing margins are 10–22% on <b>zero-COGS recurring revenue</b>. Hardware via TD Africa is 8–18% pass-through. Managed IT services run 65–80% gross. The fully-built tech model out-margins research significantly.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🎯</span>
+        <div class="why-title">Simpler to Sell</div>
+        <p class="why-text">Research is intangible — you sell a methodology and a promise. Tech is tangible: <b>"here is your laptop, here is your licence key, here is your IT dashboard."</b> Lower trust barrier, faster cycle, easier to prove value.</p>
+      </div>
+      <div class="why-card">
+        <span class="why-icon">🔒</span>
+        <div class="why-title">Stickiness</div>
+        <p class="why-text">Managed-tech clients churn at <b>8–12% annually</b> vs 40–60% for project research clients. A company whose team data lives in RMS-configured Azure has high switching costs by design.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT CHANGES -->
+<section>
+  <div class="container">
+    <div class="s-num">03 — What Changes</div>
+    <h2 class="s-title">Old <b>RMS</b> → new <b>RMS</b>.</h2>
+    <p class="s-lede">A clear inventory of what the company was and what it now is. The CAC RC number persists; the bank accounts persist; everything else is renegotiated against the mandate.</p>
+    <div class="compare">
+      <div class="compare-col compare-old">
+        <div class="compare-label">// Was — Research House</div>
+        <div class="compare-head">Reliable Market Survey Limited</div>
+        <ul class="compare-list">
+          <li>Identity: Market research agency with a tech side</li>
+          <li>Revenue: Project-based, lumpy, relationship-dependent</li>
+          <li>Motion: Proposal → SOW → deliver → invoice → gone</li>
+          <li>Tagline: "Insight You Can Build On."</li>
+          <li>Client: Anyone who needs surveys or data</li>
+          <li>Pitch: "We are a research firm that also does tech"</li>
+          <li>Revenue ceiling: ~₦212m with heroic effort</li>
+          <li>Exit value: Low — service business, no MRR</li>
+        </ul>
+      </div>
+      <div class="compare-arrow">→</div>
+      <div class="compare-col compare-new">
+        <div class="compare-label">// Is — Technology Company</div>
+        <div class="compare-head">RMS Technologies Limited</div>
+        <ul class="compare-list">
+          <li>Identity: Microsoft Solutions & IT Infrastructure Partner</li>
+          <li>Revenue: Recurring monthly (MRR) + project hardware</li>
+          <li>Motion: Prospect → demo → deploy → retain → upsell</li>
+          <li>Tagline: "Infrastructure for what's next."</li>
+          <li>Client: SMEs, corporates, and government who need IT</li>
+          <li>Pitch: "We deliver and manage everything your business runs on"</li>
+          <li>Revenue ceiling: ₦500m+ with a competent team</li>
+          <li>Exit value: High — recurring revenue, partner credentials</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="warn-block">
+      <div class="warn-icon">⚠️</div>
+      <div>
+        <div class="warn-title">On the research business — the hard truth</div>
+        <p class="warn-text">The research business is not abandoned — it is <b>quietly wound down</b> as the tech business scales. We honour existing commitments and convert research clients who are also natural tech buyers. Purely-research clients are referred to peer agencies. We stop bidding new research, stop building research capability, and stop presenting ourselves as a research firm from this document forward.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAND -->
+<section>
+  <div class="container">
+    <div class="s-num">04 — Brand Identity</div>
+    <h2 class="s-title">A brand built for<br><b>technical authority</b>.</h2>
+    <p class="s-lede">Dark. Precise. Engineered. The visual and verbal system signals that we are tech-native, not a service firm in tech clothing.</p>
+
+    <div class="brand-block">
+      <div class="brand-card">
+        <div class="brand-card-label">// Registered Name</div>
+        <div class="brand-card-value">RMS Technologies Limited</div>
+        <div class="brand-card-note">CAC RC number persists from prior registration; name change filed April 2026. Existing bank accounts, contracts, and TIN remain valid.</div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-card-label">// Trading Name</div>
+        <div class="brand-card-value">RMS Tech</div>
+        <div class="brand-card-note">Used on website, email signatures, social media, and conversational reference. Domain: rmstech.ng</div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-card-label">// Tagline</div>
+        <div class="brand-card-value">Infrastructure for what's next.</div>
+        <div class="brand-card-note">Used on website hero, business cards, proposal covers, and email signatures.</div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-card-label">// One-Liner</div>
+        <div class="brand-card-value" style="font-size:18px;line-height:1.4">Nigeria's Microsoft Solutions and IT infrastructure partner — deploying and managing the technology your business runs on.</div>
+        <div class="brand-card-note">Mandatory opening line on every proposal, every pitch deck, every cold email.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px;font-weight:600;margin-top:64px;margin-bottom:8px;letter-spacing:-.3px">Colour system</h3>
+    <p style="font-size:14px;color:var(--w2);margin-bottom:20px">Near-black backgrounds signal premium tech, not budget SaaS. Electric cyan is used surgically — for actions, accents, and one key statement per surface.</p>
+    <div class="swatch-row">
+      <div class="swatch"><div class="swatch-color" style="background:#06080E"></div><div class="swatch-meta"><div class="swatch-name">Carbon Black</div><div class="swatch-hex">#06080E · Background</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#0D1117"></div><div class="swatch-meta"><div class="swatch-name">Slate</div><div class="swatch-hex">#0D1117 · Surface</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#00C8F0"></div><div class="swatch-meta"><div class="swatch-name">Electric Cyan</div><div class="swatch-hex">#00C8F0 · Primary</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#EEF2FF"></div><div class="swatch-meta"><div class="swatch-name">Ice White</div><div class="swatch-hex">#EEF2FF · Text</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#A8B4CC"></div><div class="swatch-meta"><div class="swatch-name">Cool Grey</div><div class="swatch-hex">#A8B4CC · Body</div></div></div>
+    </div>
+
+    <h3 style="font-size:22px;font-weight:600;margin-top:64px;margin-bottom:8px;letter-spacing:-.3px">Brand positioning — verbatim</h3>
+    <p style="font-size:14px;color:var(--w2);margin-bottom:8px">Use this configuration block exactly across all materials. No paraphrasing of the credentials line — the wording is the credential.</p>
+    <div class="code-block">
+      <span class="code-comment">// RMS Technologies — brand positioning v1</span>
+      <span class="code-key">company_name</span>: <span class="code-val">"RMS Technologies Limited"</span><br>
+      <span class="code-key">trading_as</span>: <span class="code-val">"RMS Tech"</span><br>
+      <span class="code-key">tagline</span>: <span class="code-val">"Infrastructure for what's next."</span><br>
+      <span class="code-key">domain</span>: <span class="code-val">"rmstech.ng"</span><br>
+      <span class="code-key">one_liner</span>: <span class="code-val">"Nigeria's Microsoft Solutions and IT infrastructure partner — deploying and managing the technology your business runs on."</span><br>
+      <span class="code-key">credential_1</span>: <span class="code-val">"Microsoft CSP Indirect Reseller"</span><br>
+      <span class="code-key">credential_2</span>: <span class="code-val">"TD Africa Authorised Channel Partner"</span><br>
+      <span class="code-key">credential_3</span>: <span class="code-val">"NDPR-Compliant Technology Provider"</span>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS MODEL -->
+<section>
+  <div class="container">
+    <div class="s-num">05 — Business Model</div>
+    <h2 class="s-title">Three revenue engines.<br><b>One client relationship.</b></h2>
+    <p class="s-lede">Not one business line — three distinct, complementary revenue streams that compound over time. Each engine serves the same client in a different dimension, and each engine feeds the next.</p>
+
+    <div class="engines-grid">
+      <div class="engine-card">
+        <div class="engine-num">Engine 01</div>
+        <div class="engine-title">Software Licensing</div>
+        <div class="engine-sub">// MRR — Recurring</div>
+        <p class="engine-text">Microsoft 365 (all SKUs), Azure consumption, Copilot, Dynamics 365, Defender. Provisioned monthly, invoiced monthly. Every client onboarded keeps paying every month. At 100 M365 Business Standard seats at ₦8,500/seat/month, that is ₦850k/month in MRR before you lift a finger.</p>
+        <div class="engine-stat">Margin: 10–22% recurring</div>
+      </div>
+      <div class="engine-card">
+        <div class="engine-num">Engine 02</div>
+        <div class="engine-title">Hardware Supply</div>
+        <div class="engine-sub">// Transactional</div>
+        <p class="engine-text">HP, Dell, Lenovo laptops and desktops. Cisco networking. Samsung devices. APC UPS. Bosch CCTV. Starlink. Apple. All sourced wholesale via TD Africa. Transactional and high-value but not recurring — the foot-in-the-door for software. A company that buys laptops from us is a natural M365 prospect.</p>
+        <div class="engine-stat">Margin: 8–18% per project</div>
+      </div>
+      <div class="engine-card">
+        <div class="engine-num">Engine 03</div>
+        <div class="engine-title">Managed IT Services</div>
+        <div class="engine-sub">// MRR — Highest Margin</div>
+        <p class="engine-text">Monthly IT support retainer, endpoint management, email security management, user provisioning, helpdesk. ₦15k–₦65k per user per month depending on scope. The highest-margin, stickiest business in the model. A company on RMS-managed IT does not switch easily.</p>
+        <div class="engine-stat">Margin: 65–80% gross</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIFECYCLE -->
+<section>
+  <div class="container">
+    <div class="s-num">06 — Client Lifecycle</div>
+    <h2 class="s-title">How the engines<br><b>compound</b>.</h2>
+    <p class="s-lede">A single SME enters via hardware and exits the funnel paying ₦1m+ per month across all three engines. The lifecycle is the strategy.</p>
+
+    <div class="cycle">
+      <div class="cycle-step">
+        <div class="cycle-dot">01</div>
+        <div class="cycle-when">Month 0</div>
+        <div class="cycle-title">Hardware Sale</div>
+        <div class="cycle-text">SME buys 10 HP laptops. One-time transaction. First relationship.</div>
+      </div>
+      <div class="cycle-step">
+        <div class="cycle-dot">02</div>
+        <div class="cycle-when">Month 1</div>
+        <div class="cycle-title">M365 Upsell</div>
+        <div class="cycle-text">"Set up professional email for your team." Business Basic starts same week.</div>
+      </div>
+      <div class="cycle-step">
+        <div class="cycle-dot">03</div>
+        <div class="cycle-when">Month 6</div>
+        <div class="cycle-title">Azure Add-On</div>
+        <div class="cycle-text">"Your files should be in Azure Backup, not just OneDrive." Consumption begins.</div>
+      </div>
+      <div class="cycle-step">
+        <div class="cycle-dot">04</div>
+        <div class="cycle-when">Month 12</div>
+        <div class="cycle-title">Security Upsell</div>
+        <div class="cycle-text">"Your competitor was breached. Defender is ₦3k extra per user." Upgrade to Premium.</div>
+      </div>
+      <div class="cycle-step">
+        <div class="cycle-dot">05</div>
+        <div class="cycle-when">Month 18</div>
+        <div class="cycle-title">Managed IT</div>
+        <div class="cycle-text">"Stop calling your nephew. RMS manages everything for ₦25k/user/month."</div>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Y1 MRR target</div>
+        <div class="metric-value">₦8.5m</div>
+        <div class="metric-unit">per month, end of Y1</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Y1 ARR target</div>
+        <div class="metric-value">₦102m</div>
+        <div class="metric-unit">annualised recurring</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Hardware Y1</div>
+        <div class="metric-value">₦65m</div>
+        <div class="metric-unit">transactional supply</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Total Y1</div>
+        <div class="metric-value">₦167m</div>
+        <div class="metric-unit">plan · ₦212m stretch</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Blended margin</div>
+        <div class="metric-value">52%</div>
+        <div class="metric-unit">gross, all engines</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section>
+  <div class="container">
+    <div class="s-num">07 — Execution Roadmap</div>
+    <h2 class="s-title">From <b>name change</b> to ₦100m ARR.</h2>
+    <p class="s-lede">Eighteen months, four phases. Each phase has a single dominant objective and a clear exit criterion. We do not move to the next phase until the current one is complete.</p>
+
+    <div class="roadmap">
+      <div class="phase">
+        <div class="phase-tag">Phase 01 · Q2 2026</div>
+        <div class="phase-body">
+          <div class="phase-title">Foundation — Name, Partners, First Sale</div>
+          <p class="phase-text">File CAC name change. Complete Microsoft CSP enrolment. Activate TD Africa partnership. Launch rmstech.ng. Close the first hardware deal and the first M365 client.</p>
+          <ul class="phase-items">
+            <li>CAC name change filed (₦50k, 2–4 weeks)</li>
+            <li>Microsoft Partner Center enrolment complete + distributor connected</li>
+            <li>TD Africa partnership agreement signed</li>
+            <li>rmstech.ng live with full service catalog</li>
+            <li>First 5 paying clients across hardware and licensing</li>
+          </ul>
+        </div>
+        <div class="phase-target">Exit criterion<b>₦8m</b>revenue<br>Q2 total</div>
+      </div>
+      <div class="phase">
+        <div class="phase-tag">Phase 02 · Q3 2026</div>
+        <div class="phase-body">
+          <div class="phase-title">Scale Licensing — Build the MRR Base</div>
+          <p class="phase-text">Reach 150+ provisioned M365 seats across 15–20 SME clients. Begin Copilot conversion. Establish managed IT services delivery model with first 2 retainer clients.</p>
+          <ul class="phase-items">
+            <li>150+ M365 seats live · ₦1.5m+ monthly MRR</li>
+            <li>2 managed IT services retainers signed</li>
+            <li>NDPR compliance audit service productised</li>
+            <li>First government or NGO contract closed</li>
+          </ul>
+        </div>
+        <div class="phase-target">Exit criterion<b>₦42m</b>YTD revenue<br>end Q3</div>
+      </div>
+      <div class="phase">
+        <div class="phase-tag">Phase 03 · Q4 2026</div>
+        <div class="phase-body">
+          <div class="phase-title">Hardware Engine — TD Africa at Full Throttle</div>
+          <p class="phase-text">Year-end CapEx cycle. Close 3–5 large hardware deals via TD Africa. Push Copilot adoption. Position for 2027 framework agreements with corporate and government accounts.</p>
+          <ul class="phase-items">
+            <li>₦65m+ in hardware revenue closed by Q4 end</li>
+            <li>5 managed IT retainers active</li>
+            <li>300+ M365 seats provisioned · ₦3m+ MRR</li>
+            <li>2027 framework agreements signed with 2+ corporates</li>
+          </ul>
+        </div>
+        <div class="phase-target">Exit criterion<b>₦167m</b>FY2026<br>plan complete</div>
+      </div>
+      <div class="phase">
+        <div class="phase-tag">Phase 04 · 2027</div>
+        <div class="phase-body">
+          <div class="phase-title">Scale — Cross ₦100m ARR Threshold</div>
+          <p class="phase-text">Cross ₦100m annualised MRR. Hire dedicated technical lead. Open Abuja sales presence for government accounts. Begin West Africa expansion conversations via TD Africa's regional network.</p>
+          <ul class="phase-items">
+            <li>₦8.5m+ monthly MRR · ₦102m+ ARR</li>
+            <li>Technical Lead + 2 IT engineers hired</li>
+            <li>Abuja sales hub operational</li>
+            <li>First Ghana or Kenya pilot client closed</li>
+          </ul>
+        </div>
+        <div class="phase-target">FY2027 plan<b>₦400m</b>blended<br>revenue</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>RMS Technologies Limited · Strategic Foundations 2026</div>
+  <div>Document 01 / 05 · CEO Confidential</div>
+</footer>
+
+</body>
+</html>

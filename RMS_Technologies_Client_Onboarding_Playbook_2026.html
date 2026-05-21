@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RMS Technologies — Client Onboarding Playbook 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06080E;--bg2:#0D1117;--bg3:#141A24;--bg4:#1C2535;
+  --cyan:#00C8F0;--cyan2:#00A0C0;--cg:rgba(0,200,240,0.08);--cb:rgba(0,200,240,0.2);
+  --white:#EEF2FF;--w2:#A8B4CC;--w3:#5A6478;--w4:#2E3648;
+  --rule:rgba(255,255,255,0.06);--rule2:rgba(0,200,240,0.14);
+  --green:#00D4A0;--amber:#F0A800;--red:#FF5C7A;
+  --r:8px;--rl:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.65;overflow-x:hidden}
+
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,200,240,0.025)1px,transparent 1px),linear-gradient(90deg,rgba(0,200,240,0.025)1px,transparent 1px);
+  background-size:60px 60px}
+body::after{content:'';position:fixed;top:-20%;left:50%;transform:translateX(-50%);
+  width:900px;height:700px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(0,200,240,0.08)0%,transparent 65%)}
+
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:48px;position:relative;z-index:1}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start}
+.mark{display:flex;align-items:center;gap:14px}
+.mark-box{width:48px;height:48px;background:var(--cyan);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-weight:500;color:var(--bg);font-size:14px;letter-spacing:-.5px}
+.mark-text{font-weight:700;font-size:18px;letter-spacing:-.3px}
+.mark-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+.classified{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);padding:6px 12px;border:1px solid var(--cb);border-radius:20px;background:var(--cg);letter-spacing:1.5px;text-transform:uppercase}
+.classified::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+.cover-center{max-width:900px}
+.cover-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:24px}
+.cover-title{font-size:88px;font-weight:300;line-height:.95;letter-spacing:-3px;margin-bottom:28px}
+.cover-title b{font-weight:700;color:var(--cyan);font-style:italic}
+.cover-tagline{font-size:22px;color:var(--w2);max-width:680px;font-weight:300;line-height:1.45}
+.cover-bottom{display:flex;justify-content:space-between;align-items:flex-end;padding-top:32px;border-top:1px solid var(--rule);flex-wrap:wrap;gap:24px}
+.cover-meta-block{display:flex;flex-direction:column;gap:4px}
+.cover-meta-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase}
+.cover-meta-value{font-size:13px;color:var(--w2)}
+
+.band{padding:32px 48px;background:var(--bg2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.band-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.band-item{display:flex;flex-direction:column;gap:4px}
+.band-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase}
+.band-value{font-size:24px;font-weight:600;color:var(--cyan);letter-spacing:-.5px}
+.band-value small{font-size:12px;color:var(--w2);font-weight:400;display:block;margin-top:4px}
+
+section{position:relative;z-index:1;padding:88px 48px;border-top:1px solid var(--rule)}
+.container{max-width:1100px;margin:0 auto}
+.s-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.s-num::after{content:'';flex:1;height:1px;background:var(--rule2);max-width:80px}
+.s-title{font-size:48px;font-weight:300;letter-spacing:-1.5px;line-height:1.05;margin-bottom:18px}
+.s-title b{font-weight:700;color:var(--cyan)}
+.s-lede{font-size:17px;color:var(--w2);max-width:760px;line-height:1.55;margin-bottom:48px}
+
+/* PRINCIPLES */
+.princ-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.princ-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:30px;transition:all .25s}
+.princ-card:hover{border-color:var(--cb)}
+.princ-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;margin-bottom:12px}
+.princ-h{font-size:17px;font-weight:600;margin-bottom:10px;letter-spacing:-.2px}
+.princ-t{font-size:13px;color:var(--w2);line-height:1.65}
+.princ-t b{color:var(--cyan);font-weight:600}
+
+/* TIMELINE */
+.timeline{margin-top:32px;display:flex;flex-direction:column;gap:0}
+.tl-day{display:grid;grid-template-columns:140px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid var(--rule);align-items:start;position:relative}
+.tl-day:last-child{border-bottom:none}
+.tl-day::before{content:'';position:absolute;left:60px;top:80px;bottom:-32px;width:1px;background:linear-gradient(to bottom,var(--cb),transparent)}
+.tl-day:last-child::before{display:none}
+.tl-label{position:relative;z-index:1}
+.tl-tag{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--cg);border:1px solid var(--cb);padding:5px 12px;border-radius:12px;display:inline-block;margin-bottom:14px}
+.tl-dot{width:48px;height:48px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:14px;color:var(--cyan);font-weight:600;margin-top:4px}
+.tl-body{}
+.tl-h{font-size:22px;font-weight:600;letter-spacing:-.3px;line-height:1.2;margin-bottom:10px}
+.tl-t{font-size:14px;color:var(--w2);line-height:1.65;margin-bottom:16px}
+.tl-t b{color:var(--cyan);font-weight:600}
+.tl-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.tl-list li{font-size:13px;color:var(--w2);padding-left:18px;position:relative;line-height:1.55}
+.tl-list li::before{content:'→';position:absolute;left:0;color:var(--cyan);font-weight:700}
+.tl-owner{font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);padding-top:10px;border-top:1px solid var(--rule);margin-top:6px;letter-spacing:.5px}
+.tl-owner b{color:var(--cyan)}
+
+/* DEEP DIVE BLOCK */
+.dd-block{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden;margin-top:32px}
+.dd-head{padding:24px 32px;background:var(--bg3);border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.dd-title{font-size:20px;font-weight:600;letter-spacing:-.2px}
+.dd-when{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--cg);border:1px solid var(--cb);padding:5px 12px;border-radius:12px}
+.dd-body{padding:32px}
+.dd-intro{font-size:14px;color:var(--w2);line-height:1.7;margin-bottom:24px}
+.dd-intro b{color:var(--cyan)}
+
+.checklist{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.check-item{display:grid;grid-template-columns:24px 1fr auto;gap:14px;padding:14px 18px;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r);align-items:start}
+.check-box{width:18px;height:18px;border:1.5px solid var(--cb);border-radius:4px;margin-top:1px;background:transparent;display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:11px;font-weight:700}
+.check-body .ci-t{font-size:13px;color:var(--white);font-weight:500;margin-bottom:3px;letter-spacing:-.1px}
+.check-body .ci-s{font-size:12px;color:var(--w2);line-height:1.55}
+.check-owner{font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);background:var(--cg);border:1px solid var(--cb);padding:4px 10px;border-radius:12px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;margin-top:1px}
+
+/* DD MEETING AGENDA */
+.agenda{display:grid;grid-template-columns:80px 1fr;gap:18px;margin-top:8px}
+.agenda-row{display:contents}
+.agenda-time{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;padding-top:14px;font-weight:600}
+.agenda-content{padding:14px 0;border-bottom:1px solid var(--rule)}
+.agenda-row:last-of-type .agenda-content{border-bottom:none}
+.agenda-h{font-size:14px;font-weight:600;margin-bottom:4px}
+.agenda-t{font-size:12px;color:var(--w2);line-height:1.55}
+
+/* NDPR PACK */
+.pack-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px}
+.pack-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:24px}
+.pack-name{font-size:15px;font-weight:600;margin-bottom:8px;letter-spacing:-.2px;display:flex;align-items:center;gap:10px}
+.pack-icon{font-size:18px}
+.pack-t{font-size:12px;color:var(--w2);line-height:1.6}
+.pack-t b{color:var(--cyan)}
+
+/* PORTAL SECTION */
+.portal-wrap{background:linear-gradient(135deg,var(--bg2)0%,var(--bg3)100%);border:1px solid var(--rule2);border-radius:var(--rl);padding:0;margin-top:32px;overflow:hidden}
+.portal-bar{display:flex;align-items:center;gap:8px;padding:14px 22px;background:var(--bg);border-bottom:1px solid var(--rule)}
+.portal-dot{width:10px;height:10px;border-radius:50%;background:var(--w4)}
+.portal-url{font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);margin-left:14px;letter-spacing:.5px}
+.portal-pad{padding:32px}
+.portal-head{display:flex;justify-content:space-between;align-items:start;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--rule);gap:20px;flex-wrap:wrap}
+.portal-name{font-size:18px;font-weight:600;letter-spacing:-.3px}
+.portal-sub{font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);letter-spacing:1px;margin-top:3px}
+.portal-stat{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:rgba(0,212,160,0.1);border:1px solid rgba(0,212,160,0.3);border-radius:12px;font-family:'DM Mono',monospace;font-size:10px;color:var(--green);letter-spacing:1px;text-transform:uppercase}
+.portal-stat::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
+.portal-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.portal-tile{padding:16px;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r)}
+.portal-tile-lab{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.portal-tile-val{font-size:22px;font-weight:600;color:var(--cyan);letter-spacing:-.3px;line-height:1}
+.portal-tile-meta{font-size:11px;color:var(--w2);margin-top:6px}
+.portal-modules{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.portal-mod{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--bg);border:1px solid var(--rule);border-radius:var(--r)}
+.portal-mod-l{font-size:12px;color:var(--w2)}
+.portal-mod-v{font-family:'DM Mono',monospace;font-size:12px;color:var(--cyan);font-weight:600}
+
+/* 30 DAYS GRID */
+.thirty-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px;position:relative}
+.thirty-grid::before{content:'';position:absolute;top:24px;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,var(--cb),var(--cyan),var(--cb),transparent)}
+.thirty-card{position:relative;z-index:1;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:24px;text-align:left}
+.thirty-num{width:48px;height:48px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;color:var(--cyan);font-weight:600}
+.thirty-when{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;text-align:center}
+.thirty-h{font-size:15px;font-weight:600;margin-bottom:10px;letter-spacing:-.2px;text-align:center}
+.thirty-t{font-size:12px;color:var(--w2);line-height:1.55}
+.thirty-t b{color:var(--cyan);font-weight:600}
+
+/* FAILURE MODES */
+.fail-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:32px}
+.fail{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden}
+.fail-q{padding:24px 28px;background:rgba(240,168,0,0.04);border-right:1px solid var(--rule);position:relative}
+.fail-q::before{content:'WHEN THIS HAPPENS';position:absolute;top:14px;left:28px;font-family:'DM Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:1.5px;font-weight:600}
+.fail-q-h{font-size:15px;color:var(--white);font-weight:600;line-height:1.5;margin-top:18px}
+.fail-q-t{font-size:13px;color:var(--w2);line-height:1.55;margin-top:8px}
+.fail-a{padding:24px 28px;background:rgba(0,200,240,0.025);position:relative}
+.fail-a::before{content:'PLAYBOOK';position:absolute;top:14px;left:28px;font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1.5px;font-weight:600}
+.fail-a-h{font-size:15px;color:var(--cyan);font-weight:600;line-height:1.5;margin-top:18px;margin-bottom:8px}
+.fail-a-t{font-size:13px;color:var(--w2);line-height:1.65}
+.fail-a-t b{color:var(--white);font-weight:600}
+
+footer{padding:48px;border-top:1px solid var(--rule);position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);letter-spacing:1px;flex-wrap:wrap;gap:12px}
+
+@media(max-width:900px){
+  .cover-title{font-size:54px}.s-title{font-size:34px}
+  .band-grid,.princ-grid,.pack-grid{grid-template-columns:1fr}
+  .portal-tiles{grid-template-columns:1fr 1fr}.portal-modules{grid-template-columns:1fr}
+  .thirty-grid{grid-template-columns:1fr;gap:24px}.thirty-grid::before{display:none}
+  .fail{grid-template-columns:1fr}.fail-q{border-right:none;border-bottom:1px solid var(--rule)}
+  .tl-day{grid-template-columns:1fr;gap:14px}.tl-day::before{display:none}
+  .agenda{grid-template-columns:60px 1fr;gap:12px}
+  section{padding:64px 24px}.cover,.band{padding:24px}.dd-body{padding:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="mark">
+      <div class="mark-box">R/</div>
+      <div>
+        <div class="mark-text">RMS Technologies</div>
+        <div class="mark-sub">Client Onboarding Playbook · 2026</div>
+      </div>
+    </div>
+    <div class="classified">Delivery Team · Internal SOP</div>
+  </div>
+  <div class="cover-center">
+    <div class="cover-meta">Document 07 · Service Delivery Operations</div>
+    <h1 class="cover-title">From <b>signature</b><br>to live tenant.</h1>
+    <p class="cover-tagline">The five-day sequence that turns a closed sale into a deployed client. Day-by-day, hour-by-hour. The artifact that backs the "infrastructure in days" promise.</p>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Standard duration</div>
+      <div class="cover-meta-value">5 business days · MSA → go-live</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Primary owner</div>
+      <div class="cover-meta-value">Technical Lead · MD on kickoff & handover</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Output</div>
+      <div class="cover-meta-value">Live M365 + secured endpoints + portal access</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">First impression</div>
+      <div class="cover-meta-value">Determines lifetime retention</div>
+    </div>
+  </div>
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <div class="band-grid">
+    <div class="band-item"><div class="band-label">Day 0</div><div class="band-value">Signed<small>MSA + DPA + payment confirmed</small></div></div>
+    <div class="band-item"><div class="band-label">Day 1–4</div><div class="band-value">Deploy<small>provision · migrate · secure · train</small></div></div>
+    <div class="band-item"><div class="band-label">Day 5</div><div class="band-value">Live<small>portal handed over · MD signs off</small></div></div>
+    <div class="band-item"><div class="band-label">Day 30</div><div class="band-value">Embedded<small>first health report · QBR booked</small></div></div>
+  </div>
+</div>
+
+<!-- 01 PHILOSOPHY -->
+<section>
+  <div class="container">
+    <div class="s-num">01 — Onboarding Philosophy</div>
+    <h2 class="s-title">Speed is the<br><b>product</b>.</h2>
+    <p class="s-lede">Six principles govern every onboarding. They are the difference between a client who hits the 12-month renewal and a client who churns at month 3. The first 30 days set the lifetime trajectory of the relationship.</p>
+
+    <div class="princ-grid">
+      <div class="princ-card">
+        <div class="princ-num">// 01</div>
+        <div class="princ-h">Five business days, not five months</div>
+        <p class="princ-t">Incumbent integrators take 8–12 weeks to deploy what we deploy in 5 days. <b>Velocity is a commercial weapon</b> and the brand promise — protect the SLA fiercely.</p>
+      </div>
+      <div class="princ-card">
+        <div class="princ-num">// 02</div>
+        <div class="princ-h">MD attends Day 1 and Day 5</div>
+        <p class="princ-t">The CEO/MD personally attends every kickoff and every handover, regardless of deal size. <b>Senior accountability is the retention insurance policy</b> we built the brand on.</p>
+      </div>
+      <div class="princ-card">
+        <div class="princ-num">// 03</div>
+        <div class="princ-h">One named owner per client</div>
+        <p class="princ-t">Every client is assigned a <b>named Account Manager</b> on Day 1. The AM is the single human the client thinks of when anything goes wrong. No round-robin support queues, ever.</p>
+      </div>
+      <div class="princ-card">
+        <div class="princ-num">// 04</div>
+        <div class="princ-h">NDPR is the default</div>
+        <p class="princ-t">Every onboarding ships with the NDPR documentation pack signed. We do not "offer" NDPR — we <b>include it as standard</b>, because NITDA enforcement makes it table stakes.</p>
+      </div>
+      <div class="princ-card">
+        <div class="princ-num">// 05</div>
+        <div class="princ-h">The portal is the deliverable</div>
+        <p class="princ-t">A Power BI client portal showing licence count, security posture, ticket queue, and NDPR status is the <b>tangible artifact</b> that justifies the monthly invoice. Set it up on Day 5, never skip.</p>
+      </div>
+      <div class="princ-card">
+        <div class="princ-num">// 06</div>
+        <div class="princ-h">Documentation lives forever</div>
+        <p class="princ-t">Every credential, every configuration, every decision <b>documented in the client's run-book</b> stored in 1Password + SharePoint. Bus-factor of one is unacceptable. The client should never be hostage to one engineer's memory.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 5-DAY TIMELINE -->
+<section>
+  <div class="container">
+    <div class="s-num">02 — The Five-Day Sequence</div>
+    <h2 class="s-title">Day by day,<br><b>signature to live</b>.</h2>
+    <p class="s-lede">The high-level sequence. Each day has a single dominant outcome and a clear exit criterion — we do not advance until today's exit is met. The detail for each day follows in Sections 03–07.</p>
+
+    <div class="timeline">
+      <div class="tl-day">
+        <div class="tl-label">
+          <div class="tl-tag">Day 0</div>
+          <div class="tl-dot">00</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-h">Sale closed — paperwork & access live</div>
+          <p class="tl-t">The deal is signed. Internal alarm: <b>onboarding ticket auto-created in HubSpot/PSA</b>, Tech Lead and AM notified, Day 1 kickoff calendared within 48 hours of MSA signature.</p>
+          <ul class="tl-list">
+            <li>MSA, DPA, and SOW signed by both parties</li>
+            <li>First invoice issued · payment instruction confirmed</li>
+            <li>Onboarding ticket created · AM and Tech Lead assigned</li>
+            <li>Kickoff calendar invite sent for Day 1</li>
+          </ul>
+          <div class="tl-owner">Owner: <b>BizDev Lead</b> · Exit: ticket created + Day 1 meeting confirmed</div>
+        </div>
+      </div>
+
+      <div class="tl-day">
+        <div class="tl-label">
+          <div class="tl-tag">Day 1</div>
+          <div class="tl-dot">01</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-h">Kickoff & data collection</div>
+          <p class="tl-t">60-minute kickoff meeting at the client's office or on Teams. <b>MD attends and personally introduces the AM and Tech Lead.</b> Outcome: every artifact needed for provisioning collected in one session.</p>
+          <ul class="tl-list">
+            <li>MD-led intro · scope, timeline, escalation path confirmed</li>
+            <li>User list collected · 5 fields per user · in Excel format</li>
+            <li>Domain admin access for current email handed over</li>
+            <li>NDPR documentation pack walked through and signed</li>
+          </ul>
+          <div class="tl-owner">Owner: <b>MD + Tech Lead</b> · Exit: full user list + admin access in 1Password vault</div>
+        </div>
+      </div>
+
+      <div class="tl-day">
+        <div class="tl-label">
+          <div class="tl-tag">Day 2</div>
+          <div class="tl-dot">02</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-h">Tenant provisioning</div>
+          <p class="tl-t">Microsoft 365 tenant provisioned via Partner Center. Domain verified, DNS records set, users created with placeholder passwords, licences assigned, baseline security policies applied. <b>The infrastructure exists by end of day.</b></p>
+          <ul class="tl-list">
+            <li>Tenant provisioned · domain verified · DNS records live</li>
+            <li>All users created with M365 licences assigned</li>
+            <li>Conditional Access baseline applied (MFA required, geo-fence Nigeria)</li>
+            <li>Default password reset on first login enforced</li>
+          </ul>
+          <div class="tl-owner">Owner: <b>Tech Lead</b> · Exit: tenant healthy · first admin login tested</div>
+        </div>
+      </div>
+
+      <div class="tl-day">
+        <div class="tl-label">
+          <div class="tl-tag">Day 3</div>
+          <div class="tl-dot">03</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-h">Migration & MFA enforcement</div>
+          <p class="tl-t">Email and file migration begins. Where the client is moving from Google Workspace or another Microsoft tenant, we run the migration overnight. <b>MFA enforced on every user</b> before end of day — no exceptions, including the MD.</p>
+          <ul class="tl-list">
+            <li>Email migration started (Google → M365 via BitTitan or native)</li>
+            <li>OneDrive folders provisioned · default folders standardised</li>
+            <li>MFA enrolled for every user · Authenticator app required</li>
+            <li>Test user logs in successfully from a separate device</li>
+          </ul>
+          <div class="tl-owner">Owner: <b>Tech Lead + IT Support</b> · Exit: 100% MFA coverage · migration in progress</div>
+        </div>
+      </div>
+
+      <div class="tl-day">
+        <div class="tl-label">
+          <div class="tl-tag">Day 4</div>
+          <div class="tl-dot">04</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-h">Security baseline & user training</div>
+          <p class="tl-t">Defender for Business or Microsoft 365 Defender deployed to all endpoints. Intune enrolment if Premium tier or higher. <b>One 60-minute training session</b> for all users on Teams, OneDrive, and password manager. Recording archived.</p>
+          <ul class="tl-list">
+            <li>Defender deployed · scan complete · all endpoints reporting</li>
+            <li>Intune device enrolment (if Premium/E3/E5) · compliance policies live</li>
+            <li>60-min user training session delivered on Teams</li>
+            <li>Phishing simulation scheduled for Week 4</li>
+          </ul>
+          <div class="tl-owner">Owner: <b>Tech Lead</b> · Exit: green security posture · training video uploaded to client portal</div>
+        </div>
+      </div>
+
+      <div class="tl-day">
+        <div class="tl-label">
+          <div class="tl-tag">Day 5</div>
+          <div class="tl-dot">05</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-h">Go-live, portal handover, MD sign-off</div>
+          <p class="tl-t">45-minute handover meeting at the client's office. <b>MD attends, walks the client through the RMS Client Portal, and personally signs the go-live acceptance.</b> Recurring billing begins. The relationship transitions from "onboarding" to "managed."</p>
+          <ul class="tl-list">
+            <li>Final environment health check — every metric green</li>
+            <li>Client Portal access provisioned · walk-through delivered</li>
+            <li>MD-signed go-live acceptance certificate issued</li>
+            <li>Recurring billing activated · next invoice date set</li>
+            <li>30-day check-in calendared with AM</li>
+          </ul>
+          <div class="tl-owner">Owner: <b>MD + AM</b> · Exit: signed acceptance · billing live · client thanks the MD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 DAY 1 KICKOFF DEEP DIVE -->
+<section>
+  <div class="container">
+    <div class="s-num">03 — Day 1 Kickoff · Deep Dive</div>
+    <h2 class="s-title">The 60-minute meeting that<br><b>determines the relationship</b>.</h2>
+    <p class="s-lede">Day 1 kickoff is the single most leveraged hour of the onboarding. Done right, every subsequent day is mechanical. Done wrong, we spend Day 3 chasing the user list and Day 5 explaining why we're late.</p>
+
+    <div class="dd-block">
+      <div class="dd-head">
+        <div class="dd-title">Kickoff meeting agenda · 60 minutes</div>
+        <div class="dd-when">In-person preferred · Teams acceptable</div>
+      </div>
+      <div class="dd-body">
+        <p class="dd-intro"><b>Attendees from RMS:</b> MD (mandatory · 15 min), Account Manager (full meeting), Technical Lead (full meeting). <b>Attendees from client:</b> Decision maker / signatory, IT contact (if any), HR/admin lead (for user list and offboarding policy).</p>
+        <div class="agenda">
+          <div class="agenda-row">
+            <div class="agenda-time">0–10 min</div>
+            <div class="agenda-content">
+              <div class="agenda-h">MD welcome and personal commitment</div>
+              <div class="agenda-t">MD attends, introduces AM and Tech Lead by name, restates the SLA commitments verbally, gives the client direct mobile contact for any escalation above the AM. <b>This is where senior accountability stops being a slogan.</b></div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time">10–25 min</div>
+            <div class="agenda-content">
+              <div class="agenda-h">Scope walkthrough · what we are delivering</div>
+              <div class="agenda-t">Walk the signed SOW page by page. Confirm seat count, package tier, hardware deliveries, NDPR scope. Document any change requests for billing impact. AM takes notes.</div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time">25–45 min</div>
+            <div class="agenda-content">
+              <div class="agenda-h">Data collection — the user list</div>
+              <div class="agenda-t">Tech Lead runs through the required user list format: <b>First Name, Last Name, Job Title, Department, Personal mobile number</b>. Excel template emailed live during the meeting. Client commits to delivery within 24 hours.</div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time">45–55 min</div>
+            <div class="agenda-content">
+              <div class="agenda-h">NDPR pack walkthrough and signature</div>
+              <div class="agenda-t">AM walks through the seven NDPR documents. Client signs the privacy policy adoption and DPA in the meeting. <b>If the client has an existing privacy policy, RMS reviews and merges within 48 hours.</b></div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time">55–60 min</div>
+            <div class="agenda-content">
+              <div class="agenda-h">Calendar lock & Day 5 commitment</div>
+              <div class="agenda-t">Day 5 go-live meeting calendared in the room. Client receives onboarding tracker link to the RMS Client Portal. AM commits to a Wednesday status email throughout the week.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dd-block">
+      <div class="dd-head">
+        <div class="dd-title">Day 1 checklist · everything collected before leaving</div>
+        <div class="dd-when">Exit criterion · all 8 items</div>
+      </div>
+      <div class="dd-body">
+        <div class="checklist">
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">User list template emailed live to client during meeting</div><div class="ci-s">Excel template with the 5 required fields · client commits to 24-hour return</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Domain admin access for current email provider</div><div class="ci-s">Credentials stored in 1Password client vault · MFA temporarily transferred or admin invited</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">DNS access — registrar credentials or zone delegation</div><div class="ci-s">Required for MX, TXT, and CNAME records on Day 2 · alternative: client adds records under guidance</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">NDPR documentation pack signed</div><div class="ci-s">Seven documents · physical or DocuSign · scanned copy uploaded to client SharePoint</div></div><div class="check-owner">AM</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Mobile and email for AM relationship contact</div><div class="ci-s">Primary point of contact at client · plus one backup name for holiday cover</div></div><div class="check-owner">AM</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Day 5 go-live meeting calendared</div><div class="ci-s">In the room · same attendees · 45 minutes · location confirmed</div></div><div class="check-owner">AM</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Hardware delivery date confirmed if applicable</div><div class="ci-s">If onboarding includes laptops · TD Africa dispatch confirmed with delivery to client address</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Onboarding ticket fully populated in PSA</div><div class="ci-s">All notes, contacts, SOW link, NDPR signed copy, credential vault link · before EOD Day 1</div></div><div class="check-owner">AM</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 DAYS 2-4 PROVISIONING DEEP DIVE -->
+<section>
+  <div class="container">
+    <div class="s-num">04 — Days 2–4 · Technical Provisioning</div>
+    <h2 class="s-title">The Tech Lead's<br><b>three-day SOP</b>.</h2>
+    <p class="s-lede">The technical work is sequential and largely automated. The Tech Lead works through the checklists below in order. Every completed item is ticked in the PSA with timestamp and engineer initials.</p>
+
+    <div class="dd-block">
+      <div class="dd-head">
+        <div class="dd-title">Day 2 · Tenant provisioning checklist</div>
+        <div class="dd-when">Target: complete by 5pm</div>
+      </div>
+      <div class="dd-body">
+        <div class="checklist">
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Order placed in Partner Center via distributor</div><div class="ci-s">Correct SKU, seat count, billing term · order ID logged in PSA</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Tenant created · global admin assigned to RMS</div><div class="ci-s">Break-glass admin account stored in 1Password · client admin onboarded as separate user</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Client domain added & verified in Microsoft 365</div><div class="ci-s">TXT verification record added to DNS · usually completes within 1 hour</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">MX, SPF, DKIM, DMARC records configured</div><div class="ci-s">Email-routing records published · DKIM enabled in Exchange · DMARC at p=quarantine initially</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">User accounts created from kickoff Excel</div><div class="ci-s">Naming convention: firstname.lastname@domain · placeholder password · "must change on first login" enforced</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Licences assigned · by department where applicable</div><div class="ci-s">All users on correct M365 SKU · executive group gets Premium if mixed-tier deployment</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Conditional Access baseline policies enabled</div><div class="ci-s">Require MFA for all users, block legacy authentication, restrict admin access from Nigeria-only IP ranges</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Self-service password reset enabled</div><div class="ci-s">Mobile + email verification required · reduces helpdesk burden by ~40%</div></div><div class="check-owner">Tech Lead</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dd-block">
+      <div class="dd-head">
+        <div class="dd-title">Day 3 · Migration & MFA enforcement</div>
+        <div class="dd-when">Migration starts overnight · MFA live by 5pm</div>
+      </div>
+      <div class="dd-body">
+        <div class="checklist">
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Email migration tool configured & test mailbox migrated</div><div class="ci-s">BitTitan MigrationWiz or native cutover migration · test on 1 mailbox before bulk run</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Bulk mailbox migration triggered to run overnight</div><div class="ci-s">Schedule for 8pm start · typical SME (25 mailboxes) completes by 4am · monitor progress at 11pm</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">OneDrive provisioned & default folders standardised</div><div class="ci-s">Folder structure: Documents · Desktop · Pictures · Company Shared · Known Folder Move enabled</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">SharePoint sites created · base permissions set</div><div class="ci-s">Departmental sites: Finance · HR · Operations · Sales · external sharing locked down by default</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Teams created · members added · channels structured</div><div class="ci-s">One team per department · "Company-wide" team for all-hands · external guest access policy applied</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">MFA enrolment rolled out · 100% coverage enforced</div><div class="ci-s">Email + SMS reminder sent to users · 24-hour enrolment window · grace period exception logged if needed</div></div><div class="check-owner">IT Support</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Test user logs in from a separate device</div><div class="ci-s">End-to-end test from Tech Lead's laptop on different network · screenshot uploaded to PSA</div></div><div class="check-owner">Tech Lead</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dd-block">
+      <div class="dd-head">
+        <div class="dd-title">Day 4 · Security baseline & training</div>
+        <div class="dd-when">Defender green by 2pm · training delivered by 5pm</div>
+      </div>
+      <div class="dd-body">
+        <div class="checklist">
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Defender deployed to all endpoints</div><div class="ci-s">Onboarding script run on each device · scan complete · all endpoints show "Active" in Defender portal</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Intune enrolment (Premium / E3 / E5 only)</div><div class="ci-s">Compliance policies: BitLocker required, screen lock after 5 min, USB write-block, password complexity</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Anti-phishing & safe links policies activated</div><div class="ci-s">Microsoft Defender for Office 365 (Premium tier) · ATP policies enabled with default templates</div></div><div class="check-owner">Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">60-minute user training session delivered</div><div class="ci-s">Live on Teams · all users attending · recorded · covers: login, MFA, Teams, OneDrive, password manager, what to report</div></div><div class="check-owner">AM + Tech Lead</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Training video uploaded to client portal</div><div class="ci-s">Permanent reference for new joiners · linked in client portal under "Resources"</div></div><div class="check-owner">AM</div></div>
+          <div class="check-item"><div class="check-box">✓</div><div class="check-body"><div class="ci-t">Phishing simulation campaign scheduled</div><div class="ci-s">Microsoft Attack Simulator · low-difficulty test scheduled for Week 4 · benchmarks user awareness</div></div><div class="check-owner">Tech Lead</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 DAY 5 GO-LIVE -->
+<section>
+  <div class="container">
+    <div class="s-num">05 — Day 5 · Go-Live & Handover</div>
+    <h2 class="s-title">The MD signs.<br><b>Billing starts.</b></h2>
+    <p class="s-lede">The handover meeting is short, ceremonial, and commercial. It moves the client from "project mode" to "managed mode." The portal walkthrough is the focal point — clients should leave the meeting having logged into the portal themselves.</p>
+
+    <div class="dd-block">
+      <div class="dd-head">
+        <div class="dd-title">Day 5 handover meeting · 45 minutes</div>
+        <div class="dd-when">In-person at client office · MD attends</div>
+      </div>
+      <div class="dd-body">
+        <div class="agenda">
+          <div class="agenda-row">
+            <div class="agenda-time">0–10 min</div>
+            <div class="agenda-content">
+              <div class="agenda-h">Environment health check · walk through portal</div>
+              <div class="agenda-t">Tech Lead opens the RMS Client Portal on screen, walks through every metric live. Seat utilisation, MFA coverage, security posture, uptime, NDPR status. <b>Every number green.</b></div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time">10–20 min</div>
+            <div class="agenda-content">
+              <div class="agenda-h">Client logs into portal themselves</div>
+              <div class="agenda-t">Hand the laptop to the client signatory. They log in, navigate the tabs, and open one ticket as a test. <b>The portal becomes muscle memory in this 10 minutes</b> — they never forget how to reach us.</div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time">20–30 min</div>
+            <div class="agenda-content">
+              <div class="agenda-h">MD walks through ongoing relationship cadence</div>
+              <div class="agenda-t">Weekly Wednesday status email from AM, monthly health report, quarterly business review (Complete tier), MD's direct mobile for any escalation above the AM. Restate the SLA verbally.</div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time">30–40 min</div>
+            <div class="agenda-content">
+              <div class="agenda-h">Go-live acceptance certificate signed</div>
+              <div class="agenda-t">MD and client signatory sign the one-page certificate confirming environment is live and accepted. Triggers recurring billing activation. <b>Certificate scanned and filed in client SharePoint.</b></div>
+            </div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time">40–45 min</div>
+            <div class="agenda-content">
+              <div class="agenda-h">Forward calendar · 30-day check-in</div>
+              <div class="agenda-t">AM calendars the 30-day check-in (Day 30). For Complete tier, also calendars Day 90 QBR. Client confirms their attendees and locks both in their own calendar.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 NDPR PACK -->
+<section>
+  <div class="container">
+    <div class="s-num">06 — The NDPR Documentation Pack</div>
+    <h2 class="s-title">Seven documents.<br><b>Signed on Day 1.</b></h2>
+    <p class="s-lede">Every client receives the same seven NDPR documents on Day 1, customised to their entity name and business sector. The pack is the same pack we sell as a standalone NDPR audit service — included free with every managed engagement, because NITDA enforcement makes compliance non-optional.</p>
+
+    <div class="pack-grid">
+      <div class="pack-card">
+        <div class="pack-name"><span class="pack-icon">📋</span>Privacy Policy (public-facing)</div>
+        <p class="pack-t">Customer-facing policy for the client's website and product. Covers data collection, use, retention, sharing, and subject rights under NDPR. <b>Templated · customised in 2 hours per client.</b></p>
+      </div>
+      <div class="pack-card">
+        <div class="pack-name"><span class="pack-icon">🔒</span>Data Processing Agreement (DPA)</div>
+        <p class="pack-t">Between client and RMS Technologies as data processor. Required by NDPR Article 28 equivalent. Limits liability, defines processing scope, and documents sub-processors. <b>Signed mutually on Day 1.</b></p>
+      </div>
+      <div class="pack-card">
+        <div class="pack-name"><span class="pack-icon">📝</span>Internal Data Protection Policy</div>
+        <p class="pack-t">The client's internal policy governing how staff handle personal data. Covers retention, access control, sharing, and disposal. <b>Annexed to employee handbook.</b></p>
+      </div>
+      <div class="pack-card">
+        <div class="pack-name"><span class="pack-icon">⚡</span>Breach Response Plan</div>
+        <p class="pack-t">Step-by-step response plan for a data breach. Defines roles, NITDA notification timeline (72 hours), subject notification, and forensic preservation. <b>Tested annually via tabletop exercise.</b></p>
+      </div>
+      <div class="pack-card">
+        <div class="pack-name"><span class="pack-icon">📊</span>Data Inventory & Mapping</div>
+        <p class="pack-t">Documents every category of personal data the client holds: source, location, lawful basis, retention period, recipients. <b>Required for NITDA audit · refreshed annually.</b></p>
+      </div>
+      <div class="pack-card">
+        <div class="pack-name"><span class="pack-icon">✅</span>Consent Management Framework</div>
+        <p class="pack-t">Standard consent forms and opt-in flows for marketing, employment, and customer onboarding contexts. <b>Aligned with NDPR consent requirements (specific, informed, freely given).</b></p>
+      </div>
+      <div class="pack-card">
+        <div class="pack-name"><span class="pack-icon">🛡️</span>Subject Rights Request Procedure</div>
+        <p class="pack-t">Workflow for handling subject access, deletion, correction, and portability requests. Includes templated response letters and timelines (30 days per NDPR). <b>Lives in client portal.</b></p>
+      </div>
+      <div class="pack-card">
+        <div class="pack-name"><span class="pack-icon">📄</span>Annual NDPR Compliance Audit</div>
+        <p class="pack-t">12-month review of the framework against NITDA enforcement guidance. Filed to NITDA where required by client's data-processing threshold. <b>RMS files on behalf of client at no extra cost.</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 CLIENT PORTAL -->
+<section>
+  <div class="container">
+    <div class="s-num">07 — The RMS Client Portal</div>
+    <h2 class="s-title">What the client sees<br><b>every month</b>.</h2>
+    <p class="s-lede">The portal is the artifact that justifies the recurring invoice. Power BI dashboard backed by the client's M365 tenant, Defender, Intune, and the RMS PSA. Refreshed nightly. The client logs in, sees green, and knows they are getting their money's worth.</p>
+
+    <div class="portal-wrap">
+      <div class="portal-bar">
+        <div class="portal-dot"></div><div class="portal-dot"></div><div class="portal-dot"></div>
+        <div class="portal-url">portal.rmstech.ng / client/[client-slug]</div>
+      </div>
+      <div class="portal-pad">
+        <div class="portal-head">
+          <div>
+            <div class="portal-name">[Client Name] · M365 Business Premium</div>
+            <div class="portal-sub">25/25 LICENCES ACTIVE · MANAGED IT STANDARD TIER · 4-HR SLA</div>
+          </div>
+          <div class="portal-stat">All systems healthy</div>
+        </div>
+
+        <div class="portal-tiles">
+          <div class="portal-tile">
+            <div class="portal-tile-lab">Uptime · 30d</div>
+            <div class="portal-tile-val">99.97%</div>
+            <div class="portal-tile-meta">SLA target met</div>
+          </div>
+          <div class="portal-tile">
+            <div class="portal-tile-lab">Avg response</div>
+            <div class="portal-tile-val">1.8 hrs</div>
+            <div class="portal-tile-meta">vs 4-hr SLA</div>
+          </div>
+          <div class="portal-tile">
+            <div class="portal-tile-lab">MFA coverage</div>
+            <div class="portal-tile-val">100%</div>
+            <div class="portal-tile-meta">25/25 active</div>
+          </div>
+          <div class="portal-tile">
+            <div class="portal-tile-lab">NDPR status</div>
+            <div class="portal-tile-val">✓</div>
+            <div class="portal-tile-meta">audit current</div>
+          </div>
+        </div>
+
+        <div class="portal-modules">
+          <div class="portal-mod"><span class="portal-mod-l">Defender · endpoints protected</span><span class="portal-mod-v">25 / 25</span></div>
+          <div class="portal-mod"><span class="portal-mod-l">Defender · threats blocked (30d)</span><span class="portal-mod-v">142</span></div>
+          <div class="portal-mod"><span class="portal-mod-l">Intune · compliant devices</span><span class="portal-mod-v">25 / 25</span></div>
+          <div class="portal-mod"><span class="portal-mod-l">Phishing simulation · click rate</span><span class="portal-mod-v">3% (good)</span></div>
+          <div class="portal-mod"><span class="portal-mod-l">Open tickets</span><span class="portal-mod-v">1 · L1</span></div>
+          <div class="portal-mod"><span class="portal-mod-l">Tickets resolved this month</span><span class="portal-mod-v">12</span></div>
+          <div class="portal-mod"><span class="portal-mod-l">Next monthly health report</span><span class="portal-mod-v">15 Jun 2026</span></div>
+          <div class="portal-mod"><span class="portal-mod-l">Next invoice</span><span class="portal-mod-v">01 Jul · ₦798,500</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 FIRST 30 DAYS -->
+<section>
+  <div class="container">
+    <div class="s-num">08 — The First 30 Days Post-Go-Live</div>
+    <h2 class="s-title">From <b>onboarding</b><br>to embedded.</h2>
+    <p class="s-lede">The first 30 days after go-live determine whether the client renews at month 12. We over-communicate, deliver an early win, and lock the next quarterly review on the calendar before the relationship goes quiet.</p>
+
+    <div class="thirty-grid">
+      <div class="thirty-card">
+        <div class="thirty-num">07</div>
+        <div class="thirty-when">Day 7</div>
+        <div class="thirty-h">Settling-in call</div>
+        <p class="thirty-t">30-min call. AM checks in with the client signatory. Address any post-go-live friction. <b>Any sign of friction triggers same-day Tech Lead intervention.</b></p>
+      </div>
+      <div class="thirty-card">
+        <div class="thirty-num">14</div>
+        <div class="thirty-when">Day 14</div>
+        <div class="thirty-h">Phishing simulation</div>
+        <p class="thirty-t">Low-difficulty simulated phishing email. Results reported to client privately. <b>Sets a security baseline</b> and creates a teaching moment that reinforces ongoing value.</p>
+      </div>
+      <div class="thirty-card">
+        <div class="thirty-num">21</div>
+        <div class="thirty-when">Day 21</div>
+        <div class="thirty-h">First proactive upsell</div>
+        <p class="thirty-t">AM proposes a small adjacent service based on observed usage — Copilot pilot for 5 users, OneDrive backup expansion, or a printer SKU via TD Africa. <b>Always small, always relevant.</b></p>
+      </div>
+      <div class="thirty-card">
+        <div class="thirty-num">30</div>
+        <div class="thirty-when">Day 30</div>
+        <div class="thirty-h">First monthly health report</div>
+        <p class="thirty-t">First Power BI health report emailed + walked through in a 30-min call. Quarterly Business Review scheduled (Complete tier). <b>The relationship is now embedded.</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 FAILURE MODES -->
+<section>
+  <div class="container">
+    <div class="s-num">09 — What Goes Wrong · Playbook</div>
+    <h2 class="s-title">Six failures.<br><b>Six responses.</b></h2>
+    <p class="s-lede">The six most common onboarding failures and the documented response to each. Read these before the first onboarding. The reason we hit Day 5 every time is that we know what tends to break and we route around it before it costs the SLA.</p>
+
+    <div class="fail-grid">
+      <div class="fail">
+        <div class="fail-q">
+          <div class="fail-q-h">User list delivered late or incomplete</div>
+          <div class="fail-q-t">Client promises the user list at end of Day 1 but it arrives Day 3 with missing fields. Or arrives in the wrong format and needs rework. The single most common Day 2 blocker.</div>
+        </div>
+        <div class="fail-a">
+          <div class="fail-a-h">Pre-populate from LinkedIn during kickoff</div>
+          <div class="fail-a-t">During the kickoff meeting itself, the AM opens the client's LinkedIn company page and <b>pre-populates the user list live</b> with everyone visible. Client just adds emails, mobile numbers, and any private hires. Cuts the user-list delay from 2 days to 0.</div>
+        </div>
+      </div>
+      <div class="fail">
+        <div class="fail-q">
+          <div class="fail-q-h">DNS access blocked or unknown</div>
+          <div class="fail-q-t">Client doesn't have access to their domain registrar or doesn't know who manages DNS. Common with older companies where the original web developer holds the registrar credentials.</div>
+        </div>
+        <div class="fail-a">
+          <div class="fail-a-h">Day 1 has a "DNS verification" gate</div>
+          <div class="fail-a-t">Before leaving Day 1 kickoff, Tech Lead opens MX Toolbox live and verifies the client can reach their DNS. <b>If not, kickoff is paused</b> and the AM works the registrar recovery in parallel. We do not start Day 2 without DNS confirmed accessible.</div>
+        </div>
+      </div>
+      <div class="fail">
+        <div class="fail-q">
+          <div class="fail-q-h">MFA enrolment resistance from users</div>
+          <div class="fail-q-t">"This is annoying, I don't have a smartphone, why do I need this." Mid-level managers especially resist MFA on cultural grounds. Threatens 100% coverage by Day 3.</div>
+        </div>
+        <div class="fail-a">
+          <div class="fail-a-h">MD-signed all-hands email on Day 0</div>
+          <div class="fail-a-t">The client signatory (CEO/MD on their side) sends an internal email on Day 0 stating MFA enrolment is mandatory and personally signed off. <b>Top-down legitimacy</b> resolves 90% of friction. RMS provides the template; client just signs and sends.</div>
+        </div>
+      </div>
+      <div class="fail">
+        <div class="fail-q">
+          <div class="fail-q-h">Email migration overruns and Day 4 starts behind</div>
+          <div class="fail-q-t">Large mailboxes (executive accounts with 50GB+) take longer than projected. Migration still running when MFA enrolment is meant to start. Threatens Day 5 go-live.</div>
+        </div>
+        <div class="fail-a">
+          <div class="fail-a-h">Two-pass migration · executives first</div>
+          <div class="fail-a-t">Run the executive group separately on Day 2 evening (smaller batch, complete by morning). General staff run Day 3 evening as planned. <b>Executive mailboxes never determine the Day 5 critical path.</b></div>
+        </div>
+      </div>
+      <div class="fail">
+        <div class="fail-q">
+          <div class="fail-q-h">Internal IT contact stalls the project</div>
+          <div class="fail-q-t">Client has an internal IT person who feels threatened by RMS arriving. Withholds passwords, asks repeated clarifying questions, drags out scope conversations. Slows everything by 2× silently.</div>
+        </div>
+        <div class="fail-a">
+          <div class="fail-a-h">MD-to-MD handoff · explicitly co-opt internal IT</div>
+          <div class="fail-a-t">MD escalates to the client signatory: <b>internal IT person becomes the named "client IT lead" with RMS as their delivery partner</b>, not their replacement. Reframe protects the relationship and removes the political resistance.</div>
+        </div>
+      </div>
+      <div class="fail">
+        <div class="fail-q">
+          <div class="fail-q-h">Day 5 acceptance unsigned · billing blocked</div>
+          <div class="fail-q-t">Go-live meeting goes well but the signatory wants "one more week to test before signing acceptance." Billing remains in limbo. Cash flow delayed by an unspecified period.</div>
+        </div>
+        <div class="fail-a">
+          <div class="fail-a-h">Pre-frame acceptance in the SOW</div>
+          <div class="fail-a-t">The SOW signed at sale time states <b>"go-live acceptance presumed if not contested within 5 business days of Day 5 walkthrough"</b>. Day 5 walkthrough is documented in the PSA with screenshots. Billing activates automatically on Day 10 with or without signature.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>RMS Technologies Limited · Client Onboarding Playbook 2026</div>
+  <div>Document 07 · CEO + Delivery Team</div>
+</footer>
+
+</body>
+</html>

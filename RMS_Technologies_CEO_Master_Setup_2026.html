@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RMS Technologies — CEO Master Business Setup 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06080E;--bg2:#0D1117;--bg3:#141A24;--bg4:#1C2535;
+  --cyan:#00C8F0;--cyan2:#00A0C0;--cg:rgba(0,200,240,0.08);--cb:rgba(0,200,240,0.2);
+  --white:#EEF2FF;--w2:#A8B4CC;--w3:#5A6478;--w4:#2E3648;
+  --rule:rgba(255,255,255,0.06);--rule2:rgba(0,200,240,0.14);
+  --green:#00D4A0;--amber:#F0A800;--red:#FF5C7A;
+  --r:8px;--rl:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.65;overflow-x:hidden}
+
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(0,200,240,0.025)1px,transparent 1px),linear-gradient(90deg,rgba(0,200,240,0.025)1px,transparent 1px);
+  background-size:60px 60px}
+body::after{content:'';position:fixed;top:-20%;left:50%;transform:translateX(-50%);
+  width:900px;height:700px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(0,200,240,0.08)0%,transparent 65%)}
+
+/* COVER */
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:48px;position:relative;z-index:1}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start}
+.mark{display:flex;align-items:center;gap:14px}
+.mark-box{width:48px;height:48px;background:var(--cyan);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-weight:500;color:var(--bg);font-size:14px;letter-spacing:-.5px}
+.mark-text{font-weight:700;font-size:18px;letter-spacing:-.3px}
+.mark-sub{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+.classified{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);padding:6px 12px;border:1px solid var(--cb);border-radius:20px;background:var(--cg);letter-spacing:1.5px;text-transform:uppercase}
+.classified::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--cyan)}
+.cover-center{max-width:900px}
+.cover-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:24px}
+.cover-title{font-size:88px;font-weight:300;line-height:.95;letter-spacing:-3px;margin-bottom:28px}
+.cover-title b{font-weight:700;color:var(--cyan);font-style:italic}
+.cover-tagline{font-size:22px;color:var(--w2);max-width:680px;font-weight:300;line-height:1.45}
+.cover-bottom{display:flex;justify-content:space-between;align-items:flex-end;padding-top:32px;border-top:1px solid var(--rule);flex-wrap:wrap;gap:24px}
+.cover-meta-block{display:flex;flex-direction:column;gap:4px}
+.cover-meta-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase}
+.cover-meta-value{font-size:13px;color:var(--w2)}
+
+/* HEADLINE METRICS BAND */
+.band{padding:32px 48px;background:var(--bg2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);position:relative;z-index:1}
+.band-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:32px}
+.band-item{display:flex;flex-direction:column;gap:4px}
+.band-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase}
+.band-value{font-size:22px;font-weight:600;color:var(--white);letter-spacing:-.5px}
+.band-value b{color:var(--cyan)}
+
+/* SECTIONS */
+section{position:relative;z-index:1;padding:88px 48px;border-top:1px solid var(--rule)}
+.container{max-width:1100px;margin:0 auto}
+.s-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.s-num::after{content:'';flex:1;height:1px;background:var(--rule2);max-width:80px}
+.s-title{font-size:48px;font-weight:300;letter-spacing:-1.5px;line-height:1.05;margin-bottom:18px}
+.s-title b{font-weight:700;color:var(--cyan)}
+.s-lede{font-size:17px;color:var(--w2);max-width:760px;line-height:1.55;margin-bottom:48px}
+
+/* PROGRESS HEADER */
+.progress-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
+.progress-card{padding:24px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl)}
+.progress-card.done{border-color:rgba(0,212,160,0.3);background:linear-gradient(135deg,rgba(0,212,160,0.05)0%,transparent 100%)}
+.progress-num{font-size:36px;font-weight:600;letter-spacing:-1px;line-height:1}
+.progress-num.green{color:var(--green)}
+.progress-num.cyan{color:var(--cyan)}
+.progress-num.amber{color:var(--amber)}
+.progress-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);letter-spacing:1.5px;text-transform:uppercase;margin-top:10px}
+.progress-text{font-size:13px;color:var(--w2);margin-top:6px;line-height:1.5}
+
+/* CHECKLIST */
+.cat-block{margin-bottom:48px}
+.cat-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.cat-icon{width:36px;height:36px;background:var(--cg);border:1px solid var(--cb);border-radius:var(--r);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-family:'DM Mono',monospace;font-size:12px;font-weight:600}
+.cat-name{font-size:18px;font-weight:600;letter-spacing:-.2px}
+.cat-count{font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);letter-spacing:1px;margin-left:auto}
+.check-list{display:flex;flex-direction:column;gap:8px}
+.check-item{display:grid;grid-template-columns:32px 1fr auto;gap:16px;padding:18px 20px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);align-items:start;transition:border-color .2s}
+.check-item:hover{border-color:var(--cb)}
+.check-item.done{background:rgba(0,212,160,0.04);border-color:rgba(0,212,160,0.2)}
+.check-status{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:2px}
+.check-status.done{background:var(--green);color:var(--bg)}
+.check-status.urgent{background:var(--cg);border:1.5px solid var(--cyan);color:var(--cyan)}
+.check-status.normal{background:var(--bg);border:1.5px solid var(--w4);color:var(--w3)}
+.check-body .ci-title{font-size:15px;font-weight:600;letter-spacing:-.1px;margin-bottom:4px}
+.check-body .ci-text{font-size:13px;color:var(--w2);line-height:1.55}
+.check-when{font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);background:var(--cg);border:1px solid var(--cb);padding:4px 10px;border-radius:12px;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;margin-top:2px}
+.check-when.done{color:var(--green);background:rgba(0,212,160,0.08);border-color:rgba(0,212,160,0.25)}
+
+/* BRAND BLOCK */
+.brand-stack{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+.brand-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:30px}
+.brand-card-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.brand-card-value{font-size:24px;font-weight:600;letter-spacing:-.5px;line-height:1.2;margin-bottom:10px}
+.brand-card-note{font-size:13px;color:var(--w2);line-height:1.6}
+
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+.value-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--r);padding:24px}
+.value-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;margin-bottom:8px}
+.value-title{font-size:16px;font-weight:600;margin-bottom:8px}
+.value-text{font-size:13px;color:var(--w2);line-height:1.6}
+
+.position-block{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:36px;margin-top:32px;position:relative;overflow:hidden}
+.position-block::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--cyan)}
+.position-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.position-text{font-size:18px;line-height:1.65;color:var(--white);font-weight:400}
+.position-text b{color:var(--cyan);font-weight:600}
+
+/* SERVICES */
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:32px}
+.svc-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:28px;position:relative;transition:all .2s}
+.svc-card:hover{border-color:var(--cb);transform:translateY(-2px)}
+.svc-icon{font-size:24px;margin-bottom:14px;display:block}
+.svc-title{font-size:18px;font-weight:600;margin-bottom:8px;letter-spacing:-.2px}
+.svc-text{font-size:13px;color:var(--w2);line-height:1.6;margin-bottom:18px}
+.svc-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);padding:8px 12px;background:var(--cg);border:1px solid var(--cb);border-radius:var(--r);display:inline-block;letter-spacing:.5px}
+
+/* TARGET MARKET */
+.tm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+.tm-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:24px}
+.tm-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;padding:4px 10px;background:var(--cg);border:1px solid var(--cb);border-radius:12px;display:inline-block}
+.tm-name{font-size:16px;font-weight:600;margin-bottom:8px}
+.tm-text{font-size:12px;color:var(--w2);line-height:1.55;margin-bottom:14px}
+.tm-need{font-family:'DM Mono',monospace;font-size:11px;color:var(--w2);line-height:1.6;padding-top:14px;border-top:1px solid var(--rule)}
+.tm-need b{color:var(--cyan)}
+
+/* REVENUE TABLE */
+.rev-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:13px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden}
+.rev-table th{padding:16px 18px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--bg3);border-bottom:1px solid var(--rule)}
+.rev-table td{padding:16px 18px;border-bottom:1px solid var(--rule);color:var(--w2);vertical-align:top}
+.rev-table tr:last-child td{border-bottom:none}
+.rev-table tr:last-child{background:var(--bg3)}
+.rev-table tr:last-child td{font-weight:600;color:var(--cyan)}
+.rev-table td b{color:var(--white);font-weight:600}
+
+/* ORG STRUCTURE */
+.org-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.org-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:28px;position:relative}
+.org-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--cyan);border-radius:var(--rl) var(--rl) 0 0}
+.org-role{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.org-name{font-size:18px;font-weight:600;margin-bottom:10px;letter-spacing:-.2px}
+.org-text{font-size:13px;color:var(--w2);line-height:1.6;margin-bottom:18px}
+.org-budget{font-family:'DM Mono',monospace;font-size:12px;color:var(--w2);padding-top:14px;border-top:1px solid var(--rule)}
+.org-budget b{color:var(--cyan)}
+
+/* FINANCIALS */
+.fin-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:13px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden}
+.fin-table th{padding:14px 16px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--bg3);border-bottom:1px solid var(--rule)}
+.fin-table th:not(:first-child){text-align:right}
+.fin-table td{padding:14px 16px;border-bottom:1px solid var(--rule);color:var(--w2)}
+.fin-table td:not(:first-child){text-align:right;font-family:'DM Mono',monospace}
+.fin-table td:first-child{color:var(--white)}
+.fin-table tr:last-child td{border-bottom:none;background:var(--bg3);font-weight:600;color:var(--cyan)}
+.fin-table tr.section td{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:rgba(0,200,240,0.03);font-weight:600}
+
+/* COMPETITIVE */
+.comp-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:13px;background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);overflow:hidden}
+.comp-table th{padding:16px 18px;text-align:left;font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;background:var(--bg3);border-bottom:1px solid var(--rule);vertical-align:bottom}
+.comp-table td{padding:16px 18px;border-bottom:1px solid var(--rule);color:var(--w2);vertical-align:top;line-height:1.55}
+.comp-table td:first-child{font-weight:600;color:var(--white)}
+.comp-table tr.us td{background:rgba(0,200,240,0.04)}
+.comp-table tr.us td:first-child{color:var(--cyan)}
+
+/* PITCH BLOCK */
+.pitch-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+.pitch-card{background:var(--bg2);border:1px solid var(--rule);border-radius:var(--rl);padding:28px}
+.pitch-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.pitch-body{font-size:14px;color:var(--w2);line-height:1.7;font-style:italic}
+.pitch-body b{color:var(--white);font-style:normal;font-weight:600}
+
+/* FOOTER */
+footer{padding:48px;border-top:1px solid var(--rule);position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',monospace;font-size:11px;color:var(--w3);letter-spacing:1px;flex-wrap:wrap;gap:12px}
+
+@media(max-width:900px){
+  .cover-title{font-size:54px}.s-title{font-size:34px}
+  .band-grid,.progress-row,.values-grid,.svc-grid,.tm-grid,.org-grid,.brand-stack,.pitch-grid{grid-template-columns:1fr}
+  section{padding:64px 24px}.cover,.band{padding:24px}
+  .rev-table,.fin-table,.comp-table{font-size:12px}
+  .rev-table th,.rev-table td,.fin-table th,.fin-table td,.comp-table th,.comp-table td{padding:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="mark">
+      <div class="mark-box">R/</div>
+      <div>
+        <div class="mark-text">RMS Technologies</div>
+        <div class="mark-sub">CEO Master Setup · 2026</div>
+      </div>
+    </div>
+    <div class="classified">CEO Master Document · Confidential</div>
+  </div>
+  <div class="cover-center">
+    <div class="cover-meta">Document 02 of 05 · CEO Master Business Setup</div>
+    <h1 class="cover-title">Build the<br><b>company</b>.</h1>
+    <p class="cover-tagline">Every compliance step, every brand decision, every service line, every revenue commitment, every hire — sequenced and costed from day one.</p>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Revenue target</div>
+      <div class="cover-meta-value">₦167m plan · ₦212m stretch</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Registration</div>
+      <div class="cover-meta-value">CAC name change filed ⟳</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Banking</div>
+      <div class="cover-meta-value">Accounts active ✓</div>
+    </div>
+    <div class="cover-meta-block">
+      <div class="cover-meta-label">Head office</div>
+      <div class="cover-meta-value">Lagos, Nigeria</div>
+    </div>
+  </div>
+</div>
+
+<!-- BAND -->
+<div class="band">
+  <div class="band-grid">
+    <div class="band-item"><div class="band-label">Engine 01</div><div class="band-value">Microsoft <b>CSP</b></div></div>
+    <div class="band-item"><div class="band-label">Engine 02</div><div class="band-value">Hardware <b>Supply</b></div></div>
+    <div class="band-item"><div class="band-label">Engine 03</div><div class="band-value">Managed <b>IT</b></div></div>
+    <div class="band-item"><div class="band-label">Engine 04</div><div class="band-value">Cyber <b>+ NDPR</b></div></div>
+    <div class="band-item"><div class="band-label">Engine 05</div><div class="band-value">Copilot <b>Enablement</b></div></div>
+  </div>
+</div>
+
+<!-- 01 SETUP CHECKLIST -->
+<section>
+  <div class="container">
+    <div class="s-num">01 — Setup Checklist</div>
+    <h2 class="s-title">Every compliance, ops,<br>and tech step — <b>sequenced</b>.</h2>
+    <p class="s-lede">Twenty-four items across legal, operational, and technology. Two complete. The remaining items are sequenced so nothing blocks the first paying client.</p>
+
+    <div class="progress-row">
+      <div class="progress-card done">
+        <div class="progress-num green">02</div>
+        <div class="progress-label">// Complete</div>
+        <p class="progress-text">CAC registration (RMS) + business bank accounts active</p>
+      </div>
+      <div class="progress-card">
+        <div class="progress-num cyan">22</div>
+        <div class="progress-label">// Remaining</div>
+        <p class="progress-text">Across compliance, operations, partnerships, and tech stack</p>
+      </div>
+      <div class="progress-card">
+        <div class="progress-num amber">08</div>
+        <div class="progress-label">// Week 1 priorities</div>
+        <p class="progress-text">Items that must start this week to unblock first paying client</p>
+      </div>
+    </div>
+
+    <!-- LEGAL -->
+    <div class="cat-block">
+      <div class="cat-head">
+        <div class="cat-icon">01</div>
+        <div class="cat-name">Legal & Compliance</div>
+        <div class="cat-count">// 10 items</div>
+      </div>
+      <div class="check-list">
+        <div class="check-item done">
+          <div class="check-status done">✓</div>
+          <div class="check-body">
+            <div class="ci-title">CAC Incorporation (RMS) — name change in progress</div>
+            <div class="ci-text">Original company registered with Corporate Affairs Commission. Name-change filing from "Reliable Market Survey Limited" to "RMS Technologies Limited" submitted — 2–4 week processing.</div>
+          </div>
+          <div class="check-when done">Filed</div>
+        </div>
+        <div class="check-item done">
+          <div class="check-status done">✓</div>
+          <div class="check-body">
+            <div class="ci-title">Business Bank Accounts</div>
+            <div class="ci-text">Current + domiciliary accounts active. Domiciliary critical for distributor settlement with TD Africa and Microsoft CSP billing in USD.</div>
+          </div>
+          <div class="check-when done">Done</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status urgent">!</div>
+          <div class="check-body">
+            <div class="ci-title">FIRS TIN Registration</div>
+            <div class="ci-text">Tax Identification Number from Federal Inland Revenue Service — required for invoicing and contracts. Visit firs.gov.ng or nearest FIRS office with CAC documents.</div>
+          </div>
+          <div class="check-when">Week 1</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status urgent">!</div>
+          <div class="check-body">
+            <div class="ci-title">LIRS Business Registration</div>
+            <div class="ci-text">Lagos Internal Revenue Service — register for business premises levy and withholding tax. Required for Lagos-based client contracts.</div>
+          </div>
+          <div class="check-when">Week 1</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status normal">○</div>
+          <div class="check-body">
+            <div class="ci-title">VAT Registration (FIRS)</div>
+            <div class="ci-text">Register for VAT collection and remittance. Required to issue VAT invoices to corporate clients. 7.5% standard rate applies on all hardware and service sales.</div>
+          </div>
+          <div class="check-when">Week 2</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status normal">○</div>
+          <div class="check-body">
+            <div class="ci-title">NSITF & ITF Registration</div>
+            <div class="ci-text">NSITF (1% of payroll) and ITF (1% of annual payroll for ≥5 staff or ₦50m+ turnover). Mandatory employer obligations.</div>
+          </div>
+          <div class="check-when">Week 2</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status normal">○</div>
+          <div class="check-body">
+            <div class="ci-title">NHF & PenCom Setup</div>
+            <div class="ci-text">National Housing Fund (2.5% of basic salary). Pension Fund Administrator (10% employer + 8% employee). Mandatory once headcount ≥3.</div>
+          </div>
+          <div class="check-when">Month 1</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status urgent">!</div>
+          <div class="check-body">
+            <div class="ci-title">NITDA NDPR Compliance Framework</div>
+            <div class="ci-text">Critical for a tech company. Data audit, privacy policy, consent management, breach-response plan. File compliance audit with NITDA annually. We sell this framework to clients — it must be flawless in-house first.</div>
+          </div>
+          <div class="check-when">Month 1</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status normal">○</div>
+          <div class="check-body">
+            <div class="ci-title">Professional Indemnity + Cyber Liability Insurance</div>
+            <div class="ci-text">PI protects against claims from IT deployment errors. Cyber covers data breaches and PII exposure — critical given client tenant access. Minimum ₦50m PI + ₦100m cyber recommended. Contact AXA Mansard, Leadway, or NEM.</div>
+          </div>
+          <div class="check-when">Month 1</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status normal">○</div>
+          <div class="check-body">
+            <div class="ci-title">CPN Membership (Computer Professionals of Nigeria)</div>
+            <div class="ci-text">Professional credibility for IT firms in Nigeria. Required reference for some government IT procurements. Annual fee applies.</div>
+          </div>
+          <div class="check-when">Month 2</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OPERATIONAL -->
+    <div class="cat-block">
+      <div class="cat-head">
+        <div class="cat-icon">02</div>
+        <div class="cat-name">Operational Setup</div>
+        <div class="cat-count">// 6 items</div>
+      </div>
+      <div class="check-list">
+        <div class="check-item">
+          <div class="check-status urgent">!</div>
+          <div class="check-body">
+            <div class="ci-title">Office Lease Agreement</div>
+            <div class="ci-text">Signed lease for Lagos head office. Minimum: 3 private offices, demo/training room for client M365 demos, secure stockholding for occasional hardware staging. Ikeja, Victoria Island, or Lekki axis preferred for client access.</div>
+          </div>
+          <div class="check-when">Week 1</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status urgent">!</div>
+          <div class="check-body">
+            <div class="ci-title">Company Seal & Brand Stationery</div>
+            <div class="ci-text">Order common seal with updated "RMS Technologies Limited" name once CAC change is gazetted. Branded letterhead, invoice templates, and proposal templates carrying TIN, RC number, bank details, and the credential trio (Microsoft CSP · TD Africa · NDPR).</div>
+          </div>
+          <div class="check-when">Week 2</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status urgent">!</div>
+          <div class="check-body">
+            <div class="ci-title">Contract Library — MSA, MSP, SOW, NDA, DPA</div>
+            <div class="ci-text">Master Service Agreement, Managed Services Provider contract, Statement of Work, NDA, and Data Processing Agreement — all reviewed by commercial solicitor. The DPA is non-negotiable for any client where we touch their tenant.</div>
+          </div>
+          <div class="check-when">Week 2</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status normal">○</div>
+          <div class="check-body">
+            <div class="ci-title">Accounting Software (QuickBooks or Sage)</div>
+            <div class="ci-text">Chart of accounts configured with MRR tracking, hardware cost-of-goods, and project cost centres. Link to business bank account for reconciliation. Multi-currency support required for USD distributor billing.</div>
+          </div>
+          <div class="check-when">Week 2</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status normal">○</div>
+          <div class="check-body">
+            <div class="ci-title">Internal IT — eat-our-own-cooking</div>
+            <div class="ci-text">Deploy M365 Business Premium for our own team. Intune-managed laptops. Defender enabled. NDPR-compliant data handling. Every client demo starts with "this is exactly how we run ourselves."</div>
+          </div>
+          <div class="check-when">Month 1</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status normal">○</div>
+          <div class="check-body">
+            <div class="ci-title">RMS Client Portal — branded delivery surface</div>
+            <div class="ci-text">Power BI-based client dashboard showing licence count, MFA coverage, security posture, ticket queue, and NDPR status. The artifact that justifies the monthly invoice. Productised version live by Month 3.</div>
+          </div>
+          <div class="check-when">Month 3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TECH STACK -->
+    <div class="cat-block">
+      <div class="cat-head">
+        <div class="cat-icon">03</div>
+        <div class="cat-name">Technology Stack & Partnerships</div>
+        <div class="cat-count">// 8 items</div>
+      </div>
+      <div class="check-list">
+        <div class="check-item">
+          <div class="check-status urgent">!</div>
+          <div class="check-body">
+            <div class="ci-title">Domain & Website — rmstech.ng</div>
+            <div class="ci-text">Register rmstech.ng, rmstechnologies.ng, rmstech.com.ng as defensive registrations. Host on Cloudflare Pages or WPX. Deploy professional site within 2 weeks. Keep reliablemarketsurvey.com auto-forwarding for 6 months.</div>
+          </div>
+          <div class="check-when">Week 1</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status urgent">!</div>
+          <div class="check-body">
+            <div class="ci-title">Microsoft 365 Business — internal tenant</div>
+            <div class="ci-text">Create our own Azure AD tenant on @rmstech.ng. Required prerequisite for Microsoft Partner Center enrolment. Set up: CEO, BizDev, Account Manager, Technical Lead, Finance. Auto-forward from @reliablemarketsurvey.com for transition.</div>
+          </div>
+          <div class="check-when">Week 1</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status urgent">!</div>
+          <div class="check-body">
+            <div class="ci-title">Microsoft AI Cloud Partner Programme — MPN ID</div>
+            <div class="ci-text">Sign up at partner.microsoft.com → MPN ID issued within minutes. Free. Required for every subsequent CSP step. Document fully in the CSP Playbook (Doc 03).</div>
+          </div>
+          <div class="check-when">Week 1</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status urgent">!</div>
+          <div class="check-body">
+            <div class="ci-title">CSP Indirect Reseller Enrolment</div>
+            <div class="ci-text">Partner Center → Cloud Solution Provider → Indirect Reseller. 3–5 business days verification. Microsoft validates CAC records, domain ownership, and CEO identity.</div>
+          </div>
+          <div class="check-when">Week 1–2</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status urgent">!</div>
+          <div class="check-body">
+            <div class="ci-title">TD Africa Channel Partnership Agreement</div>
+            <div class="ci-text">Sign authorised channel-partner agreement with TD Africa (Technology Distributions Limited). Single most important commercial relationship. Detail in Doc 04 (TD Africa Partnership).</div>
+          </div>
+          <div class="check-when">Week 2</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status normal">○</div>
+          <div class="check-body">
+            <div class="ci-title">CRM (HubSpot Free or Pipedrive)</div>
+            <div class="ci-text">Track pipeline, deal stages, MRR cohorts, and client renewals. HubSpot Free sufficient for Year 1. Upgrade once pipeline exceeds 50 active deals.</div>
+          </div>
+          <div class="check-when">Week 2</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status normal">○</div>
+          <div class="check-body">
+            <div class="ci-title">PSA / Ticketing — HaloPSA, ConnectWise, or Freshservice</div>
+            <div class="ci-text">Professional Services Automation platform for managed-IT ticket tracking, SLA monitoring, billing automation. Start with Freshservice Free, evolve to HaloPSA at 5+ retainer clients.</div>
+          </div>
+          <div class="check-when">Month 2</div>
+        </div>
+        <div class="check-item">
+          <div class="check-status normal">○</div>
+          <div class="check-body">
+            <div class="ci-title">LinkedIn Company Page + Content Engine</div>
+            <div class="ci-text">RMS Technologies company page. Weekly "Microsoft 365 in Plain English" series for SMEs. Monthly client wins. Quarterly NDPR briefings. Drives inbound — costs zero in paid media.</div>
+          </div>
+          <div class="check-when">Week 2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 BRAND IDENTITY -->
+<section>
+  <div class="container">
+    <div class="s-num">02 — Brand & Identity</div>
+    <h2 class="s-title">How the market<br>knows <b>RMS Technologies</b>.</h2>
+    <p class="s-lede">Brand is what we own when the proposal is gone. This is the canonical reference — every pitch deck, signature, and contract draws from here.</p>
+
+    <div class="brand-stack">
+      <div class="brand-card">
+        <div class="brand-card-label">// Registered Name</div>
+        <div class="brand-card-value">RMS Technologies Limited</div>
+        <div class="brand-card-note">CAC RC number persists from original registration. Name change filed April 2026.</div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-card-label">// Trading Name</div>
+        <div class="brand-card-value">RMS Tech</div>
+        <div class="brand-card-note">Used in all marketing, conversational reference, email signatures. Domain: rmstech.ng</div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-card-label">// Tagline</div>
+        <div class="brand-card-value">Infrastructure for what's next.</div>
+        <div class="brand-card-note">Locked across every surface. No alternative wording.</div>
+      </div>
+      <div class="brand-card">
+        <div class="brand-card-label">// Head Office</div>
+        <div class="brand-card-value">Lagos, Nigeria</div>
+        <div class="brand-card-note">Serving Nigeria + West Africa via TD Africa's regional network across 8 countries.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:20px;font-weight:600;margin-top:56px;margin-bottom:8px;letter-spacing:-.3px">Vision</h3>
+    <p style="font-size:18px;color:var(--white);line-height:1.55;max-width:780px;font-style:italic">To be West Africa's most trusted Microsoft Solutions and IT Infrastructure partner — making enterprise-grade technology deployable, affordable, and fully managed for the businesses that have been underserved.</p>
+
+    <h3 style="font-size:20px;font-weight:600;margin-top:40px;margin-bottom:8px;letter-spacing:-.3px">Mission</h3>
+    <p style="font-size:18px;color:var(--white);line-height:1.55;max-width:780px;font-style:italic">We provision and manage the technology your business runs on — Microsoft 365, cloud infrastructure, hardware, security, and IT support — under one relationship and one monthly invoice.</p>
+
+    <h3 style="font-size:20px;font-weight:600;margin-top:56px;margin-bottom:18px;letter-spacing:-.3px">Core values</h3>
+    <div class="values-grid">
+      <div class="value-card"><div class="value-num">01</div><div class="value-title">Deployable</div><div class="value-text">Every product we sell is deployed within days, not months. Velocity is a commercial weapon.</div></div>
+      <div class="value-card"><div class="value-num">02</div><div class="value-title">Accountable</div><div class="value-text">One invoice, one number to call. We do not finger-point between hardware and software.</div></div>
+      <div class="value-card"><div class="value-num">03</div><div class="value-title">Compliant by default</div><div class="value-text">NDPR baked in. Microsoft-licensed, never grey-market. Audit trail on every transaction.</div></div>
+      <div class="value-card"><div class="value-num">04</div><div class="value-title">Senior-first</div><div class="value-text">The MD attends onboarding. The account contact is senior. Juniors do not own client outcomes.</div></div>
+      <div class="value-card"><div class="value-num">05</div><div class="value-title">SME-priced</div><div class="value-text">Enterprise-grade tech at a price an SME can justify. Accessibility is the differentiator.</div></div>
+      <div class="value-card"><div class="value-num">06</div><div class="value-title">Recurring trust</div><div class="value-text">We earn the relationship every month. MRR is the proof — if we stop delivering, the client stops paying.</div></div>
+    </div>
+
+    <h3 style="font-size:20px;font-weight:600;margin-top:56px;margin-bottom:18px;letter-spacing:-.3px">Positioning statement</h3>
+    <div class="position-block">
+      <div class="position-label">// Verbatim — every proposal opens with this</div>
+      <p class="position-text">For Nigerian and West African businesses — from growing SMEs to corporates, government ministries, and NGOs — <b>RMS Technologies Limited</b> is the Microsoft Solutions and IT Infrastructure partner that delivers <b>licensing, hardware, cybersecurity, and managed IT services under one relationship</b>. Unlike fragmented IT vendors and grey-market resellers, RMS combines <b>Microsoft CSP credentials, TD Africa wholesale pricing, and NDPR-grade compliance</b> — making enterprise-grade technology affordable, deployable in days, and fully managed by senior accountable owners.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 SERVICE CATALOG -->
+<section>
+  <div class="container">
+    <div class="s-num">03 — Service Catalog</div>
+    <h2 class="s-title">Six service lines.<br><b>One relationship.</b></h2>
+    <p class="s-lede">Each service is designed to be sold standalone — and designed to compound when sold together. Bundled clients churn at half the rate of single-line clients.</p>
+
+    <div class="svc-grid">
+      <div class="svc-card">
+        <span class="svc-icon">☁️</span>
+        <div class="svc-title">Microsoft 365 & Cloud Licensing</div>
+        <p class="svc-text">Provision and manage the entire Microsoft environment — email, Teams, SharePoint, OneDrive, Azure, Copilot, Dynamics 365 — from one monthly invoice. CSP pricing beats direct.</p>
+        <div class="svc-meta">From ₦3,200/user/month · all SKUs</div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🔧</span>
+        <div class="svc-title">Managed IT Services</div>
+        <p class="svc-text">Dedicated IT department on retainer — helpdesk, endpoint management, security monitoring, user provisioning, monthly health reports. 4-hour response SLA.</p>
+        <div class="svc-meta">From ₦15,000/user/month · 4-hr SLA</div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🖥️</span>
+        <div class="svc-title">Hardware Supply & Deployment</div>
+        <p class="svc-text">HP, Dell, Lenovo, Cisco, Samsung, APC, Starlink — wholesale via TD Africa. Every device arrives pre-configured: Windows, antivirus, M365, domain-joined, user-ready in 48 hours.</p>
+        <div class="svc-meta">Wholesale pricing · 48-hr delivery</div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🛡️</span>
+        <div class="svc-title">Cybersecurity & NDPR Compliance</div>
+        <p class="svc-text">NITDA is enforcing NDPR. We audit posture, deploy Defender and Intune, document the compliance framework, and monitor continuously — before a breach, not after.</p>
+        <div class="svc-meta">NDPR audit from ₦350k · Defender included</div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🤖</span>
+        <div class="svc-title">Microsoft Copilot Enablement</div>
+        <p class="svc-text">Deploy AI across Word, Excel, Teams, Outlook, PowerPoint. Two-day adoption workshop. Custom prompt library of 25+ role-specific AI assistants. 30-day adoption guarantee.</p>
+        <div class="svc-meta">₦38,000/user/month · adoption included</div>
+      </div>
+      <div class="svc-card">
+        <span class="svc-icon">🏛️</span>
+        <div class="svc-title">Government IT Infrastructure</div>
+        <p class="svc-text">Ministry-scale M365 deployments, HP and Dell refresh cycles, Cisco networking, ongoing IT management. CAC-registered, NDPR-compliant, procurement-ready.</p>
+        <div class="svc-meta">M365 E3 · bulk hardware · procurement-compliant</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 TARGET MARKET -->
+<section>
+  <div class="container">
+    <div class="s-num">04 — Target Market</div>
+    <h2 class="s-title">Four segments.<br><b>Same playbook</b>.</h2>
+    <p class="s-lede">The technology buyers we serve and the specific need we resolve for each. Sales effort is allocated proportionally to lifetime value, not deal size.</p>
+
+    <div class="tm-grid">
+      <div class="tm-card">
+        <div class="tm-tag">Segment 01</div>
+        <div class="tm-name">Growth SMEs</div>
+        <div class="tm-text">10–50 staff. ₦50m–₦500m revenue. Typically running ad-hoc tech without an IT lead. First serious M365 deployment.</div>
+        <div class="tm-need"><b>Need:</b> Email, Teams, laptops, basic security. Single accountable IT partner.</div>
+      </div>
+      <div class="tm-card">
+        <div class="tm-tag">Segment 02</div>
+        <div class="tm-name">Established Corporates</div>
+        <div class="tm-text">100–500 staff. Fintechs, FMCG, manufacturing. Existing M365 setup but fragmented across vendors. Looking for consolidation.</div>
+        <div class="tm-need"><b>Need:</b> Premium licensing, Defender, Intune, hardware refresh, managed IT.</div>
+      </div>
+      <div class="tm-card">
+        <div class="tm-tag">Segment 03</div>
+        <div class="tm-name">Government & MDAs</div>
+        <div class="tm-text">Federal ministries, Lagos State agencies, parastatals. Multi-year procurement cycles. CAC + NDPR + procurement compliance are non-negotiable.</div>
+        <div class="tm-need"><b>Need:</b> M365 E3/E5, bulk hardware, framework agreements, on-premise integration.</div>
+      </div>
+      <div class="tm-card">
+        <div class="tm-tag">Segment 04</div>
+        <div class="tm-name">NGOs & Donor-Funded</div>
+        <div class="tm-text">UNICEF, DAI, Palladium, Save the Children. Qualify for Microsoft Nonprofit pricing. Project-based funding cycles with clear procurement windows.</div>
+        <div class="tm-need"><b>Need:</b> Discounted M365 Nonprofit, Starlink for field offices, NDPR documentation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 PITCH MATERIALS -->
+<section>
+  <div class="container">
+    <div class="s-num">05 — Pitch Materials</div>
+    <h2 class="s-title">How we <b>talk</b><br>about ourselves.</h2>
+    <p class="s-lede">Three versions of the same story, sized for different surfaces. Memorise the elevator pitch. Internalise the one-pager. Use the deck verbatim until you've delivered it 25 times.</p>
+
+    <div class="pitch-grid">
+      <div class="pitch-card">
+        <div class="pitch-label">// 15-second elevator pitch</div>
+        <p class="pitch-body"><b>"RMS Technologies is Nigeria's Microsoft Solutions and IT infrastructure partner.</b> We provision Microsoft 365 and Azure, supply HP and Dell hardware wholesale via TD Africa, and manage your IT day-to-day — all on one monthly invoice. <b>One partner. Everything covered."</b></p>
+      </div>
+      <div class="pitch-card">
+        <div class="pitch-label">// 90-second cold-email opener</div>
+        <p class="pitch-body">Your team is probably already paying for Microsoft 365 — but buying it direct from Microsoft means no provisioning support, no consolidated invoice, and no one accountable when something breaks. <b>As a Microsoft CSP Partner</b>, RMS Technologies provisions your licences at better pricing than direct, configures the security baseline, and includes ongoing support. <b>Plus we can supply your hardware wholesale via our TD Africa partnership.</b> One relationship, one invoice, real accountability.</p>
+      </div>
+      <div class="pitch-card">
+        <div class="pitch-label">// First slide of every deck — Open / Close</div>
+        <p class="pitch-body"><b>Open:</b> "Every Nigerian business is running on technology it didn't choose well, doesn't manage properly, and pays too much for. We fix that." <br><br><b>Close:</b> "We are a Microsoft CSP Partner. We are a TD Africa Channel Partner. We are NDPR-compliant. <b>And the MD signs every onboarding.</b>"</p>
+      </div>
+      <div class="pitch-card">
+        <div class="pitch-label">// The three-credential closing line</div>
+        <p class="pitch-body">Every proposal, every cold email, every business card carries these three lines under the signature:<br><br><b>Microsoft CSP Indirect Reseller<br>TD Africa Authorised Channel Partner<br>NDPR-Compliant Technology Provider</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 REVENUE PLAN -->
+<section>
+  <div class="container">
+    <div class="s-num">06 — Revenue Plan</div>
+    <h2 class="s-title">₦167m plan.<br>₦212m <b>stretch</b>.</h2>
+    <p class="s-lede">The Year 1 revenue plan, broken down by engine. Stretch assumes a corporate framework deal closes in Q4. Plan assumes none — and still hits the target.</p>
+
+    <table class="rev-table">
+      <thead>
+        <tr><th>Engine</th><th>Description</th><th>Plan</th><th>Stretch</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Microsoft Licensing</b></td><td>M365, Azure, Copilot, Dynamics — recurring MRR</td><td>₦42m</td><td>₦58m</td><td>300+ seats end Y1 · ₦3.5m+ MRR</td></tr>
+        <tr><td><b>Hardware Supply</b></td><td>HP, Dell, Lenovo, Cisco, Samsung, APC via TD Africa</td><td>₦65m</td><td>₦82m</td><td>Year-end CapEx cycle drives Q4 spike</td></tr>
+        <tr><td><b>Managed IT Services</b></td><td>Monthly retainers — Essential, Standard, Complete tiers</td><td>₦28m</td><td>₦38m</td><td>5+ retainer clients · ₦2.3m+ MRR</td></tr>
+        <tr><td><b>Cybersecurity & NDPR</b></td><td>Audits, Defender deployments, compliance frameworks</td><td>₦18m</td><td>₦22m</td><td>NITDA enforcement is the tailwind</td></tr>
+        <tr><td><b>Copilot Enablement</b></td><td>Provisioning, training workshops, prompt libraries</td><td>₦14m</td><td>₦12m</td><td>High-margin add-on to existing M365 clients</td></tr>
+        <tr><td>Total</td><td></td><td>₦167m</td><td>₦212m</td><td>Y1 ARR exit run-rate: ₦102m+</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 07 ORG STRUCTURE -->
+<section>
+  <div class="container">
+    <div class="s-num">07 — Org Structure</div>
+    <h2 class="s-title">A team built for<br><b>MRR — not headcount</b>.</h2>
+    <p class="s-lede">The Year 1 team is six people. Senior, accountable, and not padded with juniors. TD Africa is our deployment army — we hire for relationships, accounts, and the technical lead who keeps tenants healthy.</p>
+
+    <div class="org-grid">
+      <div class="org-card">
+        <div class="org-role">// Founder · CEO</div>
+        <div class="org-name">Chief Executive</div>
+        <div class="org-text">Sales-led. Owns the top 10 accounts personally. Attends every client onboarding. Final approver on all proposals above ₦5m. Signs the MSA on every retainer.</div>
+        <div class="org-budget">Compensation: <b>Founder equity + ₦150k draw</b></div>
+      </div>
+      <div class="org-card">
+        <div class="org-role">// Hire 01 · Month 1</div>
+        <div class="org-name">Business Development Lead</div>
+        <div class="org-text">Outbound to SMEs and corporates. Owns LinkedIn, cold email, and event presence. KPI: 8 qualified meetings per week. Reports directly to CEO.</div>
+        <div class="org-budget">Comp: <b>₦400k/mo + 5% commission</b></div>
+      </div>
+      <div class="org-card">
+        <div class="org-role">// Hire 02 · Month 2</div>
+        <div class="org-name">Technical Lead / Microsoft Engineer</div>
+        <div class="org-text">Microsoft-certified (MS-100, MS-500, AZ-104). Owns tenant provisioning, Intune deployment, security baseline, NDPR documentation. The crown jewel hire — protect ferociously.</div>
+        <div class="org-budget">Comp: <b>₦650k/mo + cert reimbursement</b></div>
+      </div>
+      <div class="org-card">
+        <div class="org-role">// Hire 03 · Month 3</div>
+        <div class="org-name">Account Manager — Existing Clients</div>
+        <div class="org-text">Owns client renewals, monthly health reviews, upsell motions. KPI: ≥85% gross retention, ≥110% net retention by end of Y1.</div>
+        <div class="org-budget">Comp: <b>₦350k/mo + retention bonus</b></div>
+      </div>
+      <div class="org-card">
+        <div class="org-role">// Hire 04 · Month 4</div>
+        <div class="org-name">IT Support Engineer (Helpdesk)</div>
+        <div class="org-text">L1/L2 helpdesk for managed-IT clients. Owns the ticket queue, SLA adherence, and Intune day-to-day. Microsoft 365 Certified Fundamentals + working towards MS-900.</div>
+        <div class="org-budget">Comp: <b>₦280k/mo + cert track</b></div>
+      </div>
+      <div class="org-card">
+        <div class="org-role">// Hire 05 · Month 6</div>
+        <div class="org-name">Finance & Operations Lead</div>
+        <div class="org-text">Multi-currency billing, distributor settlements, MRR reconciliation, VAT remittance, payroll. Part-time consultant for first 6 months, full-time once revenue clears ₦80m YTD.</div>
+        <div class="org-budget">Comp: <b>₦400k/mo when full-time</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 FINANCIALS -->
+<section>
+  <div class="container">
+    <div class="s-num">08 — Financials</div>
+    <h2 class="s-title">The <b>P&L</b><br>that has to work.</h2>
+    <p class="s-lede">Year 1 P&L summary at plan revenue. Blended gross margin lands at 52%. Operating expense is dominated by senior payroll. Profit is reinvested into Year 2 hiring and Abuja presence.</p>
+
+    <table class="fin-table">
+      <thead>
+        <tr><th>Line Item</th><th>Y1 Plan (₦)</th><th>% of Revenue</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr class="section"><td colspan="4">// Revenue</td></tr>
+        <tr><td>Microsoft Licensing (recurring)</td><td>42,000,000</td><td>25%</td><td>MRR ramping from ₦0 to ₦3.5m/mo</td></tr>
+        <tr><td>Hardware Supply</td><td>65,000,000</td><td>39%</td><td>Highest ticket value, lowest margin</td></tr>
+        <tr><td>Managed IT Services (recurring)</td><td>28,000,000</td><td>17%</td><td>MRR ramping from ₦0 to ₦2.3m/mo</td></tr>
+        <tr><td>Cybersecurity & NDPR</td><td>18,000,000</td><td>11%</td><td>Project-based · NITDA enforcement driven</td></tr>
+        <tr><td>Copilot Enablement</td><td>14,000,000</td><td>8%</td><td>High-margin attach to existing licensing</td></tr>
+        <tr class="section"><td colspan="4">// Cost of Revenue</td></tr>
+        <tr><td>Microsoft licence COGS (distributor)</td><td>(33,600,000)</td><td>20%</td><td>80% of licensing revenue passes through</td></tr>
+        <tr><td>Hardware COGS (TD Africa wholesale)</td><td>(54,600,000)</td><td>33%</td><td>~84% pass-through, 16% gross</td></tr>
+        <tr><td>Direct service delivery</td><td>(2,200,000)</td><td>1%</td><td>3rd-party tools, deployment travel</td></tr>
+        <tr class="section"><td colspan="4">// Operating Expenses</td></tr>
+        <tr><td>Payroll (6 hires, fully ramped)</td><td>(28,800,000)</td><td>17%</td><td>Avg ₦400k/mo blended across team</td></tr>
+        <tr><td>Office lease + utilities (Lagos)</td><td>(6,000,000)</td><td>4%</td><td>3-office space, Lekki/Ikeja</td></tr>
+        <tr><td>Software stack (CRM, PSA, M365, Power BI)</td><td>(2,400,000)</td><td>1%</td><td>Internal tooling — eat-own-cooking</td></tr>
+        <tr><td>Marketing & content (LinkedIn ads, events)</td><td>(4,800,000)</td><td>3%</td><td>Lean — inbound led</td></tr>
+        <tr><td>Insurance (PI + Cyber)</td><td>(1,800,000)</td><td>1%</td><td>Minimum ₦50m PI + ₦100m cyber</td></tr>
+        <tr><td>Professional fees (legal, accounting, NDPR)</td><td>(2,400,000)</td><td>1%</td><td>Solicitor retainer + annual audit</td></tr>
+        <tr><td>Compliance (CPN, NITDA, NIMRA exits)</td><td>(1,200,000)</td><td>1%</td><td>One-time professional bodies</td></tr>
+        <tr><td>Profit before tax</td><td>~9,200,000</td><td>~5.5%</td><td>Modest Y1 — reinvest into Y2 growth</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 09 COMPETITIVE POSITIONING -->
+<section>
+  <div class="container">
+    <div class="s-num">09 — Competitive Positioning</div>
+    <h2 class="s-title">Why we win<br>against the <b>incumbents</b>.</h2>
+    <p class="s-lede">The Lagos IT market is fragmented between large enterprise integrators, grey-market hardware resellers, and freelance IT consultants. None combine licensing + hardware + managed IT under one accountable brand for SMEs.</p>
+
+    <table class="comp-table">
+      <thead>
+        <tr><th>Dimension</th><th>Big integrators (Computer Warehouse, Inlaks)</th><th>Hardware resellers</th><th>Freelance IT consultants</th><th>RMS Technologies</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Microsoft CSP credential</td>
+          <td>Yes — but priced for ₦200m+ deals</td>
+          <td>Rare — most resell grey-market keys</td>
+          <td>No — buy direct from Microsoft</td>
+          <td class="us">Yes — CSP-priced for SMEs</td>
+        </tr>
+        <tr class="us">
+          <td>TD Africa channel access</td>
+          <td>Yes — but priority on large accounts</td>
+          <td>Limited — depends on credit terms</td>
+          <td>No</td>
+          <td>Yes — authorised channel partner</td>
+        </tr>
+        <tr>
+          <td>Managed IT retainer model</td>
+          <td>Enterprise-priced (₦150k+/user/mo)</td>
+          <td>Not offered</td>
+          <td>Ad-hoc, no SLA</td>
+          <td class="us">SME-priced — ₦15k–₦65k/user/mo</td>
+        </tr>
+        <tr>
+          <td>NDPR compliance baked in</td>
+          <td>Yes — separate consulting line</td>
+          <td>Generally no</td>
+          <td>No — outside scope</td>
+          <td class="us">Yes — included in every deployment</td>
+        </tr>
+        <tr>
+          <td>Single invoice across all services</td>
+          <td>Yes — but project-based, lumpy</td>
+          <td>No — hardware only</td>
+          <td>No — invoices per visit</td>
+          <td class="us">Yes — one monthly invoice, every engine</td>
+        </tr>
+        <tr>
+          <td>Senior accountability (MD attends onboarding)</td>
+          <td>Junior account manager owns</td>
+          <td>Sales-only relationship</td>
+          <td>One-person shop — yes by default</td>
+          <td class="us">MD signs every retainer</td>
+        </tr>
+        <tr>
+          <td>Response SLA</td>
+          <td>Variable · contractual</td>
+          <td>Best-effort</td>
+          <td>"When I'm free"</td>
+          <td class="us">4-hour SLA on Managed IT contracts</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div>RMS Technologies Limited · CEO Master Business Setup 2026</div>
+  <div>Document 02 / 05 · CEO Confidential</div>
+</footer>
+
+</body>
+</html>
