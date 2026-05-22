@@ -115,6 +115,8 @@ main{padding-top:108px}
 .contact-item label{font-family:'DM Mono',monospace;font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;color:var(--accent)}
 .contact-item strong{font-size:1rem;color:var(--text)}
 .contact-card a{color:var(--accent);text-decoration:none}
+/* Ensure button links inside contact cards keep their intended button text color */
+.contact-card a.btn, .contact-card a.btn-primary{color:#0a0f0c}
 
 footer{padding:54px 0 28px}
 .section-alt{background:radial-gradient(circle at top left, rgba(90,195,176,0.08) 0%, transparent 38%), rgba(15,26,22,0.95);border-radius:32px;padding:96px 0 90px;position:relative;overflow:hidden}
