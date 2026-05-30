@@ -48,6 +48,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:99;
 .brand-mark{width:40px;height:40px;background:var(--accent);border-radius:14px;
   display:grid;place-items:center;color:#fff;font-family:'DM Mono',monospace;
   font-weight:700;font-size:13px;letter-spacing:-.5px;flex-shrink:0}
+.brand-logo{height:40px;width:auto;border-radius:10px;display:block;flex-shrink:0}
+.footer-brand .brand-logo{height:48px}
 .brand-copy{display:flex;flex-direction:column;gap:2px}
 .brand-name{font-size:14px;font-weight:700;color:var(--text)}
 .brand-tag{font-size:10px;color:var(--text-muted);letter-spacing:.18em;text-transform:uppercase}
